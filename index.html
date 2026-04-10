@@ -5,26 +5,32 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Woody Weedpecker — Cannabis Sommelier · Koh Phangan</title>
   <meta name="description" content="Premium cannabis sommelier on Koh Phangan, Thailand. Lab-certified strains and curated selection.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700&display=swap" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg: #080c08;
-      --bg-surface: #0c110c;
-      --bg-card: #101610;
-      --bg-card-hover: #141d14;
+      --bg: #1a1c18;
+      --bg-surface: #1e2019;
+      --bg-card: #222420;
+      --bg-card-hover: #272924;
       --text: #e8edd8;
       --text-muted: #8a9078;
       --text-faint: #3e4838;
-      --green-lime: #7ec850;
-      --green-accent: #3d6b33;
-      --border: #1a221a;
+      --green-lime: #5a9a48;
+      --green-accent: #4a7a38;
+      --border: #282b24;
+      --gold: #d4940a;
+      --red-dusty: #c85040;
       --tropicana: #d4c85a;
       --patronus: #8850dc;
-      --topweed: #64d264;
+      --topweed: #5a9a48;
       --joint: #dc963c;
     }
 
@@ -51,8 +57,8 @@
       align-items: center;
       justify-content: space-between;
       padding: 0 48px;
-      height: 72px;
-      background: rgba(8,12,8,0.94);
+      height: 76px;
+      background: rgba(26,28,24,0.94);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--border);
@@ -66,37 +72,55 @@
     }
 
     .nav-mascot {
-      width: 40px; height: 40px;
+      width: 44px; height: 44px;
       border-radius: 50%;
       background: var(--bg-card);
-      border: 1.5px solid rgba(126,200,80,0.3);
+      border: 1.5px solid rgba(90,154,72,0.3);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.04em;
-      color: var(--green-lime);
-      font-family: Arial, sans-serif;
       flex-shrink: 0;
       cursor: default;
-      title: "Woody Weedpecker mascot placeholder";
+      overflow: hidden;
+    }
+    .nav-mascot img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
     }
 
     .nav-brand-name {
-      font-family: Arial, sans-serif;
-      font-size: 12px;
+      font-family: 'Outfit', system-ui, sans-serif;
+      font-size: clamp(15px, 1.1vw + 12px, 19px);
       font-weight: 700;
-      letter-spacing: 0.16em;
-      color: var(--text);
-      line-height: 1.3;
+      letter-spacing: 0.12em;
+      line-height: 1.15;
+      text-transform: uppercase;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .nav-brand-piece--woody {
+      color: #e87062;
+      text-shadow: 0 0 22px rgba(232, 112, 98, 0.5), 0 1px 2px rgba(0, 0, 0, 0.45);
+    }
+    .nav-brand-piece--weed {
+      color: #72c85a;
+      text-shadow: 0 0 22px rgba(114, 200, 90, 0.42), 0 1px 2px rgba(0, 0, 0, 0.45);
+    }
+    .nav-brand-piece--pecker {
+      color: #e8ac28;
+      text-shadow: 0 0 22px rgba(232, 172, 40, 0.48), 0 1px 2px rgba(0, 0, 0, 0.45);
     }
 
     .nav-brand-tagline {
-      font-size: 9px;
-      letter-spacing: 0.13em;
-      color: var(--text-muted);
+      font-family: 'Outfit', system-ui, sans-serif;
+      font-size: clamp(9px, 0.35vw + 8px, 11px);
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      color: #b8c4a8;
       text-transform: uppercase;
+      margin-top: 3px;
     }
 
     .nav-links {
@@ -154,7 +178,7 @@
       min-height: 100vh;
       display: grid;
       grid-template-columns: 1fr 1fr;
-      padding-top: 72px;
+      padding-top: 76px;
       align-items: center;
     }
 
@@ -170,7 +194,7 @@
       font-weight: 700;
       letter-spacing: 0.24em;
       text-transform: uppercase;
-      color: var(--green-lime);
+      color: var(--gold);
       margin-bottom: 22px;
     }
 
@@ -213,9 +237,9 @@
     }
 
     .btn-primary:hover {
-      background: #8fd660;
+      background: #6db058;
       transform: translateY(-1px);
-      box-shadow: 0 8px 28px rgba(126,200,80,0.28);
+      box-shadow: 0 8px 28px rgba(90,154,72,0.28);
     }
 
     .btn-text-link {
@@ -237,7 +261,7 @@
       padding: 80px 60px;
       position: relative;
       min-height: 540px;
-      background: radial-gradient(ellipse 70% 70% at 50% 50%, rgba(20,45,20,0.5) 0%, transparent 70%);
+      background: radial-gradient(ellipse 70% 70% at 50% 50%, rgba(30,38,26,0.5) 0%, transparent 70%);
     }
 
     .model-container {
@@ -259,17 +283,17 @@
 
     .ring-1 {
       width: 360px; height: 360px;
-      border: 1px solid rgba(100,200,100,0.06);
+      border: 1px solid rgba(90,154,72,0.07);
       animation: rpulse 5s ease-in-out infinite;
     }
     .ring-2 {
       width: 460px; height: 460px;
-      border: 1px solid rgba(100,200,100,0.04);
+      border: 1px solid rgba(90,154,72,0.045);
       animation: rpulse 5s ease-in-out infinite 0.6s;
     }
     .ring-3 {
       width: 560px; height: 560px;
-      border: 1px solid rgba(100,200,100,0.025);
+      border: 1px solid rgba(90,154,72,0.025);
       animation: rpulse 5s ease-in-out infinite 1.2s;
     }
 
@@ -311,7 +335,7 @@
     .strain-pill:hover { color: var(--text); border-color: rgba(255,255,255,0.14); }
     .strain-pill.active-tropicana { color: var(--tropicana); border-color: rgba(212,200,90,0.5); background: rgba(212,200,90,0.07); }
     .strain-pill.active-patronus { color: var(--patronus); border-color: rgba(136,80,220,0.5); background: rgba(136,80,220,0.07); }
-    .strain-pill.active-topweed { color: var(--topweed); border-color: rgba(100,210,100,0.5); background: rgba(100,210,100,0.07); }
+    .strain-pill.active-topweed { color: var(--topweed); border-color: rgba(90,154,72,0.5); background: rgba(90,154,72,0.07); }
 
     /* ── CATALOG ──────────────────────────────────────────────── */
     #catalog {
@@ -330,7 +354,7 @@
       font-weight: 700;
       letter-spacing: 0.24em;
       text-transform: uppercase;
-      color: var(--green-lime);
+      color: var(--gold);
       margin-bottom: 10px;
     }
 
@@ -346,8 +370,8 @@
       font-weight: 700;
       letter-spacing: 0.14em;
       text-transform: uppercase;
-      color: var(--green-lime);
-      border: 1px solid rgba(126,200,80,0.28);
+      color: var(--gold);
+      border: 1px solid rgba(212,148,10,0.28);
       padding: 7px 15px;
       border-radius: 2px;
       white-space: nowrap;
@@ -413,7 +437,7 @@
 
     .stat-pill.tropicana { color: var(--tropicana); border-color: rgba(212,200,90,0.28); background: rgba(212,200,90,0.06); }
     .stat-pill.patronus { color: var(--patronus); border-color: rgba(136,80,220,0.28); background: rgba(136,80,220,0.06); }
-    .stat-pill.topweed { color: var(--topweed); border-color: rgba(100,210,100,0.28); background: rgba(100,210,100,0.06); }
+    .stat-pill.topweed { color: var(--topweed); border-color: rgba(90,154,72,0.28); background: rgba(90,154,72,0.06); }
     .stat-pill.joint { color: var(--joint); border-color: rgba(220,150,60,0.28); background: rgba(220,150,60,0.06); }
 
     .card-desc {
@@ -563,15 +587,15 @@
     .btn-instagram:hover { border-color: rgba(255,255,255,0.18); color: var(--text); }
 
     .btn-telegram {
-      border: 1px solid rgba(126,200,80,0.35);
-      background: rgba(126,200,80,0.08);
+      border: 1px solid rgba(90,154,72,0.4);
+      background: rgba(90,154,72,0.09);
       color: var(--green-lime);
     }
 
     .btn-telegram:hover {
-      background: rgba(126,200,80,0.16);
-      border-color: rgba(126,200,80,0.65);
-      box-shadow: 0 4px 24px rgba(126,200,80,0.14);
+      background: rgba(90,154,72,0.18);
+      border-color: rgba(90,154,72,0.7);
+      box-shadow: 0 4px 24px rgba(90,154,72,0.16);
     }
 
     .btn-instagram svg, .btn-telegram svg {
@@ -678,9 +702,9 @@
   <!-- NAVBAR -->
   <nav id="navbar">
     <div class="nav-brand">
-      <div class="nav-mascot" title="Woody Weedpecker mascot — placeholder for illustrated bird asset">WW</div>
+      <div class="nav-mascot" title="Woody Weedpecker mascot"><img src="logo.png" alt="Woody Weedpecker" width="44" height="44" /></div>
       <div>
-        <div class="nav-brand-name" data-i18n="brand_name">WOODY WEEDPECKER</div>
+        <div class="nav-brand-name"><span class="nav-brand-piece nav-brand-piece--woody">WOODY</span> <span class="nav-brand-piece nav-brand-piece--weed">WEED</span><span class="nav-brand-piece nav-brand-piece--pecker">PECKER</span></div>
         <div class="nav-brand-tagline" data-i18n="brand_tagline">CANNABIS SOMMELIER · KOH PHANGAN</div>
       </div>
     </div>
@@ -704,11 +728,11 @@
   <section id="hero">
     <div class="hero-left">
       <p class="hero-eyebrow" data-i18n="hero_eyebrow">PREMIUM · LAB CERTIFIED · PHANGAN</p>
-      <h1 class="hero-headline" data-i18n="hero_headline">The Art of Georg Cannabis</h1>
+      <h1 class="hero-headline" data-i18n="hero_headline">The Art of Fine Cannabis</h1>
       <p class="hero-sub" data-i18n="hero_sub">We source, curate, and certify every strain. Because connoisseurs deserve to know exactly what they're enjoying.</p>
       <div class="hero-ctas">
         <button class="btn-primary" onclick="navScroll('catalog')" data-i18n="cta_menu">VIEW MENU</button>
-        <span class="btn-text-link" data-i18n="cta_story">Our story</span>
+        <span class="btn-text-link" style="color:var(--gold);border-color:rgba(212,148,10,0.35)" data-i18n="cta_story">Our story</span>
       </div>
     </div>
 
@@ -872,7 +896,7 @@
     gsap.registerPlugin(ScrollToPlugin);
 
     function navScroll(id) {
-      gsap.to(window, { duration: 1.0, scrollTo: { y: '#' + id, offsetY: 72 }, ease: 'power3.inOut' });
+      gsap.to(window, { duration: 1.0, scrollTo: { y: '#' + id, offsetY: 76 }, ease: 'power3.inOut' });
     }
 
     /* ── TRANSLATIONS ─────────────────────────────────────────── */
@@ -1004,68 +1028,48 @@
       renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
       renderer.toneMapping = THREE.ACESFilmicToneMapping;
       renderer.toneMappingExposure = 1.3;
+      renderer.outputEncoding = THREE.sRGBEncoding;
 
       const scene = new THREE.Scene();
       const camera = new THREE.PerspectiveCamera(42, W / H, 0.1, 100);
       camera.position.set(0, 0, 3.4);
 
-      function valueNoise(x, y, seed) {
-        const ix = Math.floor(x), iy = Math.floor(y);
-        const fx = x - ix, fy = y - iy;
-        const ux = fx * fx * fx * (fx * (fx * 6 - 15) + 10);
-        const uy = fy * fy * fy * (fy * (fy * 6 - 15) + 10);
-        function hash(a, b) {
-          let n = (a * 1619 + b * 31337 + seed * 6971) | 0;
-          n = Math.imul(n ^ (n >>> 13), 1540483477);
-          return ((n ^ (n >>> 15)) >>> 0) / 4294967295;
-        }
-        const a = hash(ix, iy), b = hash(ix+1, iy), c = hash(ix, iy+1), d = hash(ix+1, iy+1);
-        return a + (b-a)*ux + (c-a)*uy + (a-b-c+d)*ux*uy;
+      let budRoot = null;
+      const budMaterials = [];
+
+      function collectMaterials(root) {
+        budMaterials.length = 0;
+        root.traverse((child) => {
+          if (!child.isMesh || !child.material) return;
+          const arr = Array.isArray(child.material) ? child.material : [child.material];
+          arr.forEach((m) => {
+            if (m && m.color) budMaterials.push(m);
+          });
+        });
       }
 
-      function fbm(x, y) {
-        let v = 0, amp = 0.5, freq = 1, total = 0;
-        for (let i = 0; i < 8; i++) {
-          v += valueNoise(x * freq, y * freq, i * 73 + 17) * amp;
-          total += amp; amp *= 0.52; freq *= 2.07;
-        }
-        return v / total;
-      }
-
-      function createDispTex() {
-        const sz = 512;
-        const cv = document.createElement('canvas');
-        cv.width = cv.height = sz;
-        const ctx = cv.getContext('2d');
-        const img = ctx.createImageData(sz, sz);
-        for (let y = 0; y < sz; y++) {
-          for (let x = 0; x < sz; x++) {
-            let v = fbm(x / sz * 5, y / sz * 5);
-            v = Math.pow(Math.max(0, Math.min(1, v)), 1.3);
-            const px = Math.floor(v * 255);
-            const i = (y * sz + x) * 4;
-            img.data[i] = px; img.data[i+1] = px; img.data[i+2] = px; img.data[i+3] = 255;
-          }
-        }
-        ctx.putImageData(img, 0, 0);
-        return new THREE.CanvasTexture(cv);
-      }
-
-      const dispTex = createDispTex();
-
-      const geo = new THREE.SphereBufferGeometry(1, 128, 128);
-      const mat = new THREE.MeshStandardMaterial({
-        color: new THREE.Color(0x1e3a1e),
-        roughness: 0.80,
-        metalness: 0.06,
-        displacementMap: dispTex,
-        displacementScale: 0.20,
-        emissive: new THREE.Color(0x0d200d),
-        emissiveIntensity: 1.0,
-      });
-
-      const bud = new THREE.Mesh(geo, mat);
-      scene.add(bud);
+      const modelUrl = new URL('weed_bud.glb', window.location.href).href;
+      new THREE.GLTFLoader().load(
+        modelUrl,
+        (gltf) => {
+          const model = gltf.scene;
+          budRoot = new THREE.Group();
+          budRoot.add(model);
+          const box = new THREE.Box3().setFromObject(budRoot);
+          const size = box.getSize(new THREE.Vector3());
+          const maxDim = Math.max(size.x, size.y, size.z, 1e-6);
+          const target = 1.85;
+          budRoot.scale.setScalar(target / maxDim);
+          const box2 = new THREE.Box3().setFromObject(budRoot);
+          const c = box2.getCenter(new THREE.Vector3());
+          budRoot.position.sub(c);
+          budRoot.rotation.y = -0.45;
+          collectMaterials(budRoot);
+          scene.add(budRoot);
+        },
+        undefined,
+        (err) => { console.error('weed_bud.glb', err); }
+      );
 
       const ambient = new THREE.AmbientLight(0x182418, 0.7);
       scene.add(ambient);
@@ -1078,11 +1082,11 @@
       rimLight.position.set(-3, 0, -2);
       scene.add(rimLight);
 
-      const pt = new THREE.PointLight(0x64d264, 3.5, 9);
+      const pt = new THREE.PointLight(0x5a9a48, 3.5, 9);
       pt.position.set(2, 2, 2);
       scene.add(pt);
 
-      const pt2 = new THREE.PointLight(0x307830, 1.8, 7);
+      const pt2 = new THREE.PointLight(0x2d5a24, 1.8, 7);
       pt2.position.set(-2, -1, -2);
       scene.add(pt2);
 
@@ -1108,11 +1112,11 @@
           ptIntensity: 3.2,
         },
         topweed: {
-          ptColor: new THREE.Color(0x64d264),
-          pt2Color: new THREE.Color(0x30a030),
-          rimColor: new THREE.Color(0x3a8a3a),
-          matColor: new THREE.Color(0x1e3a1e),
-          emissive: new THREE.Color(0x0d200d),
+          ptColor: new THREE.Color(0x5a9a48),
+          pt2Color: new THREE.Color(0x2d6020),
+          rimColor: new THREE.Color(0x347830),
+          matColor: new THREE.Color(0x1c3418),
+          emissive: new THREE.Color(0x0c1e0a),
           speed: 0.005,
           ptIntensity: 3.5,
         },
@@ -1136,8 +1140,10 @@
         animColor(pt, 'color', s.ptColor, dur);
         animColor(pt2, 'color', s.pt2Color, dur);
         animColor(rimLight, 'color', s.rimColor, dur);
-        animColor(mat, 'color', s.matColor, dur);
-        animColor(mat, 'emissive', s.emissive, dur);
+        budMaterials.forEach((m) => {
+          animColor(m, 'color', s.matColor, dur);
+          if (m.emissive) animColor(m, 'emissive', s.emissive, dur);
+        });
 
         const iObj = { v: pt.intensity };
         gsap.to(iObj, { v: s.ptIntensity, duration: dur, ease: 'power2.inOut', onUpdate: () => { pt.intensity = iObj.v; } });
@@ -1145,7 +1151,7 @@
         const spObj = { v: rotSpeed };
         gsap.to(spObj, { v: s.speed, duration: dur, ease: 'power2.inOut', onUpdate: () => { rotSpeed = spObj.v; } });
 
-        gsap.to(bud.rotation, { y: bud.rotation.y + Math.PI * 0.6, duration: 0.9, ease: 'power2.out' });
+        if (budRoot) gsap.to(budRoot.rotation, { y: budRoot.rotation.y + Math.PI * 0.6, duration: 0.9, ease: 'power2.out' });
       };
 
       const clock = new THREE.Clock();
@@ -1153,7 +1159,7 @@
       function animate() {
         requestAnimationFrame(animate);
         const t = clock.getElapsedTime();
-        bud.rotation.y += rotSpeed;
+        if (budRoot) budRoot.rotation.y += rotSpeed;
         pt.position.set(Math.sin(t * 0.7) * 2.8, Math.cos(t * 0.4) * 1.5, Math.cos(t * 0.7) * 2.8);
         pt2.position.set(Math.sin(t * 0.5 + 2) * 2.2, Math.sin(t * 0.3) * 1.2, Math.cos(t * 0.5 + 2) * 2.2);
         renderer.render(scene, camera);
