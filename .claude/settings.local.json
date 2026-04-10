@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install:*)",
+      "Bash(npm run:*)",
+      "Bash(ls -la CLAUDE.md .cursorrules)",
+      "Bash(ls -la .claude/)",
+      "Bash(ls -la docs/ specs/)",
+      "Bash(cat .claude/settings.json)",
+      "Bash(curl:*)",
+      "Bash(npx vite:*)",
+      "Bash(npx tailwindcss:*)",
+      "Read(//tmp/**)"
+    ]
+  }
+}

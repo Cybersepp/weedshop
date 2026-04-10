@@ -1,0 +1,1165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Woody Weedpecker — Cannabis Sommelier · Koh Phangan</title>
+  <meta name="description" content="Premium cannabis sommelier on Koh Phangan, Thailand. Lab-certified strains and curated selection.">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #080c08;
+      --bg-surface: #0c110c;
+      --bg-card: #101610;
+      --bg-card-hover: #141d14;
+      --text: #e8edd8;
+      --text-muted: #8a9078;
+      --text-faint: #3e4838;
+      --green-lime: #7ec850;
+      --green-accent: #3d6b33;
+      --border: #1a221a;
+      --tropicana: #d4c85a;
+      --patronus: #8850dc;
+      --topweed: #64d264;
+      --joint: #dc963c;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: Arial, 'Helvetica Neue', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4 { font-family: Georgia, 'Times New Roman', serif; }
+    a { color: inherit; text-decoration: none; }
+
+    /* ── NAVBAR ──────────────────────────────────────────────── */
+    #navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 48px;
+      height: 72px;
+      background: rgba(8,12,8,0.94);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-shrink: 0;
+    }
+
+    .nav-mascot {
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      background: var(--bg-card);
+      border: 1.5px solid rgba(126,200,80,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      color: var(--green-lime);
+      font-family: Arial, sans-serif;
+      flex-shrink: 0;
+      cursor: default;
+      title: "Woody Weedpecker mascot placeholder";
+    }
+
+    .nav-brand-name {
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      color: var(--text);
+      line-height: 1.3;
+    }
+
+    .nav-brand-tagline {
+      font-size: 9px;
+      letter-spacing: 0.13em;
+      color: var(--text-muted);
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      transition: color 0.22s;
+      cursor: pointer;
+    }
+
+    .nav-links a:hover { color: var(--text); }
+
+    .lang-toggle {
+      display: flex;
+      align-items: center;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 3px;
+      gap: 2px;
+    }
+
+    .lang-btn {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      padding: 5px 13px;
+      border-radius: 16px;
+      cursor: pointer;
+      transition: all 0.2s;
+      color: var(--text-muted);
+      border: none;
+      background: none;
+      font-family: Arial, sans-serif;
+    }
+
+    .lang-btn.active {
+      background: var(--green-accent);
+      color: #d8edd8;
+    }
+
+    .nav-right { display: flex; align-items: center; gap: 16px; flex-shrink: 0; }
+
+    /* ── HERO ─────────────────────────────────────────────────── */
+    #hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      padding-top: 72px;
+      align-items: center;
+    }
+
+    .hero-left {
+      padding: 80px 56px 80px 80px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .hero-eyebrow {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--green-lime);
+      margin-bottom: 22px;
+    }
+
+    .hero-headline {
+      font-size: clamp(40px, 4.8vw, 70px);
+      font-weight: normal;
+      line-height: 1.08;
+      color: var(--text);
+      margin-bottom: 22px;
+      letter-spacing: -0.015em;
+    }
+
+    .hero-sub {
+      font-size: 15px;
+      color: var(--text-muted);
+      max-width: 420px;
+      line-height: 1.75;
+      margin-bottom: 44px;
+    }
+
+    .hero-ctas {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+    }
+
+    .btn-primary {
+      background: var(--green-lime);
+      color: #071007;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 14px 34px;
+      border-radius: 3px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.22s;
+      font-family: Arial, sans-serif;
+    }
+
+    .btn-primary:hover {
+      background: #8fd660;
+      transform: translateY(-1px);
+      box-shadow: 0 8px 28px rgba(126,200,80,0.28);
+    }
+
+    .btn-text-link {
+      font-size: 13px;
+      color: var(--text-muted);
+      border-bottom: 1px solid var(--text-faint);
+      padding-bottom: 2px;
+      cursor: pointer;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .btn-text-link:hover { color: var(--text); border-color: var(--text-muted); }
+
+    .hero-right {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 80px 60px;
+      position: relative;
+      min-height: 540px;
+      background: radial-gradient(ellipse 70% 70% at 50% 50%, rgba(20,45,20,0.5) 0%, transparent 70%);
+    }
+
+    .model-container {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 300px;
+      height: 300px;
+    }
+
+    .ring {
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+      top: 50%; left: 50%;
+      transform: translate(-50%,-50%);
+    }
+
+    .ring-1 {
+      width: 360px; height: 360px;
+      border: 1px solid rgba(100,200,100,0.06);
+      animation: rpulse 5s ease-in-out infinite;
+    }
+    .ring-2 {
+      width: 460px; height: 460px;
+      border: 1px solid rgba(100,200,100,0.04);
+      animation: rpulse 5s ease-in-out infinite 0.6s;
+    }
+    .ring-3 {
+      width: 560px; height: 560px;
+      border: 1px solid rgba(100,200,100,0.025);
+      animation: rpulse 5s ease-in-out infinite 1.2s;
+    }
+
+    @keyframes rpulse {
+      0%, 100% { opacity: 0.5; transform: translate(-50%,-50%) scale(1); }
+      50% { opacity: 1; transform: translate(-50%,-50%) scale(1.018); }
+    }
+
+    #three-canvas {
+      border-radius: 50%;
+      display: block;
+      position: relative;
+      z-index: 2;
+    }
+
+    .strain-pills {
+      display: flex;
+      gap: 10px;
+      margin-top: 32px;
+      position: relative;
+      z-index: 3;
+    }
+
+    .strain-pill {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 8px 18px;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.24s;
+      font-family: Arial, sans-serif;
+    }
+
+    .strain-pill:hover { color: var(--text); border-color: rgba(255,255,255,0.14); }
+    .strain-pill.active-tropicana { color: var(--tropicana); border-color: rgba(212,200,90,0.5); background: rgba(212,200,90,0.07); }
+    .strain-pill.active-patronus { color: var(--patronus); border-color: rgba(136,80,220,0.5); background: rgba(136,80,220,0.07); }
+    .strain-pill.active-topweed { color: var(--topweed); border-color: rgba(100,210,100,0.5); background: rgba(100,210,100,0.07); }
+
+    /* ── CATALOG ──────────────────────────────────────────────── */
+    #catalog {
+      padding: 100px 80px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 52px;
+    }
+
+    .section-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--green-lime);
+      margin-bottom: 10px;
+    }
+
+    .section-title {
+      font-size: clamp(26px, 3.2vw, 42px);
+      font-weight: normal;
+      color: var(--text);
+      line-height: 1.2;
+    }
+
+    .certified-badge {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--green-lime);
+      border: 1px solid rgba(126,200,80,0.28);
+      padding: 7px 15px;
+      border-radius: 2px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .strain-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 4px 4px 0 0;
+      overflow: hidden;
+    }
+
+    .strain-card {
+      background: var(--bg-card);
+      padding: 32px 28px;
+      transition: background 0.22s;
+      border-top: 2px solid transparent;
+    }
+
+    .strain-card:hover { background: var(--bg-card-hover); }
+    .strain-card.tropicana { border-top-color: var(--tropicana); }
+    .strain-card.patronus { border-top-color: var(--patronus); }
+    .strain-card.topweed { border-top-color: var(--topweed); }
+    .strain-card.joint { border-top-color: var(--joint); }
+
+    .card-category {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+      font-family: Arial, sans-serif;
+    }
+
+    .card-category.tropicana { color: var(--tropicana); }
+    .card-category.patronus { color: var(--patronus); }
+    .card-category.topweed { color: var(--topweed); }
+    .card-category.joint { color: var(--joint); }
+
+    .card-name {
+      font-size: 22px;
+      font-weight: normal;
+      color: var(--text);
+      line-height: 1.2;
+      margin-bottom: 18px;
+    }
+
+    .stat-pills { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 18px; }
+
+    .stat-pill {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      padding: 5px 11px;
+      border-radius: 2px;
+      border: 1px solid;
+      font-family: Arial, sans-serif;
+    }
+
+    .stat-pill.tropicana { color: var(--tropicana); border-color: rgba(212,200,90,0.28); background: rgba(212,200,90,0.06); }
+    .stat-pill.patronus { color: var(--patronus); border-color: rgba(136,80,220,0.28); background: rgba(136,80,220,0.06); }
+    .stat-pill.topweed { color: var(--topweed); border-color: rgba(100,210,100,0.28); background: rgba(100,210,100,0.06); }
+    .stat-pill.joint { color: var(--joint); border-color: rgba(220,150,60,0.28); background: rgba(220,150,60,0.06); }
+
+    .card-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.65;
+      margin-bottom: 24px;
+    }
+
+    .lab-tag {
+      font-size: 8px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-faint);
+      border: 1px solid var(--border);
+      padding: 4px 10px;
+      border-radius: 2px;
+      display: inline-block;
+      font-family: Arial, sans-serif;
+    }
+
+    /* ── ACCESSORIES ─────────────────────────────────────────── */
+    .accessories-wrapper {
+      border: 1px solid var(--border);
+      border-top: none;
+      border-radius: 0 0 4px 4px;
+      overflow: hidden;
+    }
+
+    .accessories-header {
+      background: var(--bg-surface);
+      padding: 14px 28px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .accessories-header span {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--text-faint);
+      font-family: Arial, sans-serif;
+    }
+
+    .accessories-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--border);
+    }
+
+    .accessory-card {
+      background: var(--bg-surface);
+      padding: 22px 26px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      transition: background 0.22s;
+    }
+
+    .accessory-card:hover { background: var(--bg-card); }
+
+    .accessory-icon {
+      width: 36px; height: 36px;
+      border-radius: 4px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .accessory-icon svg { width: 17px; height: 17px; stroke: var(--text-muted); fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+
+    .accessory-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-muted);
+      letter-spacing: 0.04em;
+    }
+
+    /* ── FIND US ─────────────────────────────────────────────── */
+    #findus {
+      padding: 100px 80px;
+      background: var(--bg-surface);
+      border-top: 1px solid var(--border);
+    }
+
+    .findus-inner { max-width: 860px; margin: 0 auto; }
+
+    .findus-header { text-align: center; margin-bottom: 48px; }
+
+    .findus-title {
+      font-size: clamp(30px, 4vw, 52px);
+      font-weight: normal;
+      margin-bottom: 10px;
+      color: var(--text);
+    }
+
+    .findus-sub { font-size: 13px; color: var(--text-muted); letter-spacing: 0.06em; }
+
+    .map-wrapper {
+      border-radius: 4px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      margin-bottom: 36px;
+    }
+
+    .map-wrapper iframe {
+      width: 100%;
+      height: 380px;
+      border: none;
+      display: block;
+      filter: grayscale(0.25) brightness(0.82);
+    }
+
+    .findus-ctas {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .btn-instagram, .btn-telegram {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 13px 28px;
+      border-radius: 3px;
+      cursor: pointer;
+      transition: all 0.24s;
+      font-family: Arial, sans-serif;
+    }
+
+    .btn-instagram {
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--text-muted);
+    }
+
+    .btn-instagram:hover { border-color: rgba(255,255,255,0.18); color: var(--text); }
+
+    .btn-telegram {
+      border: 1px solid rgba(126,200,80,0.35);
+      background: rgba(126,200,80,0.08);
+      color: var(--green-lime);
+    }
+
+    .btn-telegram:hover {
+      background: rgba(126,200,80,0.16);
+      border-color: rgba(126,200,80,0.65);
+      box-shadow: 0 4px 24px rgba(126,200,80,0.14);
+    }
+
+    .btn-instagram svg, .btn-telegram svg {
+      width: 15px; height: 15px;
+      stroke: currentColor; fill: none;
+      stroke-width: 1.8;
+      stroke-linecap: round; stroke-linejoin: round;
+    }
+
+    /* ── FOOTER ──────────────────────────────────────────────── */
+    footer {
+      background: var(--bg);
+      border-top: 1px solid var(--border);
+      padding: 30px 80px;
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .footer-left { display: flex; flex-direction: column; gap: 6px; }
+
+    .footer-copy {
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+    }
+
+    .footer-disclaimer {
+      font-size: 10px;
+      color: var(--text-faint);
+      letter-spacing: 0.02em;
+    }
+
+    .footer-right { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+
+    .footer-badge {
+      font-size: 8px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-faint);
+      border: 1px solid var(--border);
+      padding: 5px 12px;
+      border-radius: 2px;
+      font-family: Arial, sans-serif;
+    }
+
+    .footer-socials { display: flex; gap: 8px; align-items: center; }
+
+    .footer-social-btn {
+      width: 32px; height: 32px;
+      border-radius: 3px;
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+    }
+
+    .footer-social-btn:hover { border-color: rgba(255,255,255,0.14); background: var(--bg-card-hover); }
+
+    .footer-social-btn svg {
+      width: 13px; height: 13px;
+      stroke: var(--text-muted); fill: none;
+      stroke-width: 1.8;
+      stroke-linecap: round; stroke-linejoin: round;
+    }
+
+    /* ── RESPONSIVE ──────────────────────────────────────────── */
+    @media (max-width: 1100px) {
+      .strain-grid, .accessories-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 900px) {
+      #hero { grid-template-columns: 1fr; }
+      .hero-right { order: -1; padding: 56px 40px 16px; min-height: auto; }
+      .hero-left { padding: 20px 40px 80px; }
+      .ring-2, .ring-3 { display: none; }
+      #navbar { padding: 0 24px; }
+      .nav-links { display: none; }
+      #catalog { padding: 80px 28px; }
+      #findus { padding: 80px 28px; }
+      footer { padding: 28px 28px; }
+    }
+
+    @media (max-width: 600px) {
+      .strain-grid, .accessories-grid { grid-template-columns: 1fr; }
+      .section-header { flex-direction: column; align-items: flex-start; gap: 14px; }
+      .hero-ctas { flex-direction: column; align-items: flex-start; }
+      .findus-ctas { flex-direction: column; width: 100%; }
+      .btn-instagram, .btn-telegram { justify-content: center; }
+      .footer-inner { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav id="navbar">
+    <div class="nav-brand">
+      <div class="nav-mascot" title="Woody Weedpecker mascot — placeholder for illustrated bird asset">WW</div>
+      <div>
+        <div class="nav-brand-name" data-i18n="brand_name">WOODY WEEDPECKER</div>
+        <div class="nav-brand-tagline" data-i18n="brand_tagline">CANNABIS SOMMELIER · KOH PHANGAN</div>
+      </div>
+    </div>
+
+    <ul class="nav-links">
+      <li><a onclick="navScroll('catalog')" data-i18n="nav_strains">STRAINS</a></li>
+      <li><a onclick="navScroll('catalog')" data-i18n="nav_accessories">ACCESSORIES</a></li>
+      <li><a onclick="navScroll('catalog')" data-i18n="nav_certifications">CERTIFICATIONS</a></li>
+      <li><a onclick="navScroll('findus')" data-i18n="nav_findus">FIND US</a></li>
+    </ul>
+
+    <div class="nav-right">
+      <div class="lang-toggle">
+        <button class="lang-btn active" id="btn-en" onclick="setLang('en')">EN</button>
+        <button class="lang-btn" id="btn-th" onclick="setLang('th')">ไทย</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-left">
+      <p class="hero-eyebrow" data-i18n="hero_eyebrow">PREMIUM · LAB CERTIFIED · PHANGAN</p>
+      <h1 class="hero-headline" data-i18n="hero_headline">The Art of Georg Cannabis</h1>
+      <p class="hero-sub" data-i18n="hero_sub">We source, curate, and certify every strain. Because connoisseurs deserve to know exactly what they're enjoying.</p>
+      <div class="hero-ctas">
+        <button class="btn-primary" onclick="navScroll('catalog')" data-i18n="cta_menu">VIEW MENU</button>
+        <span class="btn-text-link" data-i18n="cta_story">Our story</span>
+      </div>
+    </div>
+
+    <div class="hero-right">
+      <div class="model-container">
+        <div class="ring ring-1"></div>
+        <div class="ring ring-2"></div>
+        <div class="ring ring-3"></div>
+        <canvas id="three-canvas" width="300" height="300"></canvas>
+      </div>
+      <div class="strain-pills">
+        <div class="strain-pill" id="pill-tropicana" onclick="selectStrain('tropicana')" data-i18n="pill_tropicana">TROPICANA</div>
+        <div class="strain-pill" id="pill-patronus" onclick="selectStrain('patronus')" data-i18n="pill_patronus">PATRONUS</div>
+        <div class="strain-pill" id="pill-topweed" onclick="selectStrain('topweed')" data-i18n="pill_topweed">TOP WEED</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CATALOG -->
+  <section id="catalog">
+    <div class="section-header">
+      <div>
+        <p class="section-label" data-i18n="catalog_label">THE COLLECTION</p>
+        <h2 class="section-title" data-i18n="catalog_title">Curated Strains &amp; Products</h2>
+      </div>
+      <div class="certified-badge" data-i18n="all_certified">ALL PRODUCTS LAB CERTIFIED</div>
+    </div>
+
+    <div class="strain-grid">
+      <div class="strain-card tropicana">
+        <p class="card-category tropicana" data-i18n="cat_sativa">SATIVA BLEND</p>
+        <h3 class="card-name" data-i18n="strain1_name">Tropicana Cherry</h3>
+        <div class="stat-pills">
+          <span class="stat-pill tropicana" data-i18n="strain1_cbd">CBD 26%</span>
+          <span class="stat-pill tropicana" data-i18n="strain1_thc">THC 0.2%</span>
+        </div>
+        <p class="card-desc" data-i18n="strain1_desc">Bright citrus &amp; cherry. Uplifting, tropical, perfect for daytime.</p>
+        <span class="lab-tag" data-i18n="lab_certified">LAB CERTIFIED</span>
+      </div>
+
+      <div class="strain-card patronus">
+        <p class="card-category patronus" data-i18n="cat_indica">INDICA DOMINANT</p>
+        <h3 class="card-name" data-i18n="strain2_name">Black Patronus</h3>
+        <div class="stat-pills">
+          <span class="stat-pill patronus" data-i18n="strain2_thc">THC 27%</span>
+          <span class="stat-pill patronus" data-i18n="strain2_cbd">CBD 0.2%</span>
+        </div>
+        <p class="card-desc" data-i18n="strain2_desc">Deep, earthy, commanding. Heavy euphoria for experienced palates.</p>
+        <span class="lab-tag" data-i18n="lab_certified">LAB CERTIFIED</span>
+      </div>
+
+      <div class="strain-card topweed">
+        <p class="card-category topweed" data-i18n="cat_topshelf">TOP SHELF</p>
+        <h3 class="card-name" data-i18n="strain3_name">3.5 Top Weed</h3>
+        <div class="stat-pills">
+          <span class="stat-pill topweed" data-i18n="strain3_premium">PREMIUM</span>
+          <span class="stat-pill topweed" data-i18n="strain3_weight">3.5g</span>
+        </div>
+        <p class="card-desc" data-i18n="strain3_desc">Hand-trimmed, perfectly cured. Our finest flower, full stop.</p>
+        <span class="lab-tag" data-i18n="lab_certified">LAB CERTIFIED</span>
+      </div>
+
+      <div class="strain-card joint">
+        <p class="card-category joint" data-i18n="cat_preroll">PRE-ROLL</p>
+        <h3 class="card-name" data-i18n="strain4_name">Joint</h3>
+        <div class="stat-pills">
+          <span class="stat-pill joint" data-i18n="strain4_tag">READY TO LIGHT</span>
+        </div>
+        <p class="card-desc" data-i18n="strain4_desc">Premium flower, perfectly rolled. Made for the beach, the view, the moment.</p>
+        <span class="lab-tag" data-i18n="lab_certified">LAB CERTIFIED</span>
+      </div>
+    </div>
+
+    <div class="accessories-wrapper">
+      <div class="accessories-header">
+        <span data-i18n="acc_label">ACCESSORIES</span>
+      </div>
+      <div class="accessories-grid">
+        <div class="accessory-card">
+          <div class="accessory-icon">
+            <svg viewBox="0 0 24 24"><rect x="3" y="9" width="18" height="11" rx="1.5"/><path d="M7 9V7a5 5 0 0 1 10 0v2"/></svg>
+          </div>
+          <span class="accessory-name" data-i18n="acc1">Asia Papers</span>
+        </div>
+        <div class="accessory-card">
+          <div class="accessory-icon">
+            <svg viewBox="0 0 24 24"><path d="M9 4h6v9l2.5 4H6.5L9 13V4z"/><path d="M6.5 17c0 3 1.5 4 5.5 4s5.5-1 5.5-4"/><line x1="9" y1="4" x2="15" y2="4"/></svg>
+          </div>
+          <span class="accessory-name" data-i18n="acc2">Big Glass Bong</span>
+        </div>
+        <div class="accessory-card">
+          <div class="accessory-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="12" x2="15" y2="14"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+          </div>
+          <span class="accessory-name" data-i18n="acc3">Bitcoin Grinder</span>
+        </div>
+        <div class="accessory-card">
+          <div class="accessory-icon">
+            <svg viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="2"/><line x1="9" y1="7" x2="15" y2="7"/><line x1="9" y1="11" x2="15" y2="11"/><line x1="9" y1="15" x2="13" y2="15"/></svg>
+          </div>
+          <span class="accessory-name" data-i18n="acc4">Carbon Filter</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FIND US -->
+  <section id="findus">
+    <div class="findus-inner">
+      <div class="findus-header">
+        <p class="section-label" data-i18n="findus_label">LOCATION</p>
+        <h2 class="findus-title" data-i18n="findus_title">Find Us</h2>
+        <p class="findus-sub" data-i18n="findus_sub">Koh Phangan, Surat Thani, Thailand</p>
+      </div>
+      <div class="map-wrapper">
+        <iframe
+          src="https://maps.google.com/maps?q=koh+phangan+surat+thani+thailand&t=&z=13&ie=UTF8&iwloc=&output=embed"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Koh Phangan location map">
+        </iframe>
+      </div>
+      <div class="findus-ctas">
+        <a href="https://www.instagram.com/woody.phangan?igsh=MTJqMWJlamI5aGxkNw==" target="_blank" rel="noopener noreferrer" class="btn-instagram">
+          <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          <span data-i18n="btn_instagram">INSTAGRAM</span>
+        </a>
+        <a href="https://t.me/Woody_WeedPecker_bot?start=ref_8420420131" target="_blank" rel="noopener noreferrer" class="btn-telegram">
+          <svg viewBox="0 0 24 24"><path d="M22 2L11 13"/><path d="M22 2L15 22l-4-9-9-4 20-7z"/></svg>
+          <span data-i18n="btn_telegram">ORDER ON TELEGRAM</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-left">
+        <p class="footer-copy" data-i18n="footer_copy">© 2025 WOODY WEEDPECKER · KOH PHANGAN, THAILAND</p>
+        <p class="footer-disclaimer" data-i18n="footer_disclaimer">For adults only. Please consume responsibly and in accordance with local laws.</p>
+      </div>
+      <div class="footer-right">
+        <span class="footer-badge" data-i18n="footer_badge1">CERTIFICATIONS AVAILABLE IN-STORE</span>
+        <span class="footer-badge" data-i18n="footer_badge2">ALL PRODUCTS LAB CERTIFIED</span>
+        <div class="footer-socials">
+          <a href="https://www.instagram.com/woody.phangan?igsh=MTJqMWJlamI5aGxkNw==" target="_blank" rel="noopener noreferrer" class="footer-social-btn" title="Instagram">
+            <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <a href="https://t.me/Woody_WeedPecker_bot?start=ref_8420420131" target="_blank" rel="noopener noreferrer" class="footer-social-btn" title="Telegram">
+            <svg viewBox="0 0 24 24"><path d="M22 2L11 13"/><path d="M22 2L15 22l-4-9-9-4 20-7z"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    /* ── GSAP PLUGINS ─────────────────────────────────────────── */
+    gsap.registerPlugin(ScrollToPlugin);
+
+    function navScroll(id) {
+      gsap.to(window, { duration: 1.0, scrollTo: { y: '#' + id, offsetY: 72 }, ease: 'power3.inOut' });
+    }
+
+    /* ── TRANSLATIONS ─────────────────────────────────────────── */
+    const i18n = {
+      en: {
+        brand_name: 'WOODY WEEDPECKER',
+        brand_tagline: 'CANNABIS SOMMELIER · KOH PHANGAN',
+        nav_strains: 'STRAINS',
+        nav_accessories: 'ACCESSORIES',
+        nav_certifications: 'CERTIFICATIONS',
+        nav_findus: 'FIND US',
+        hero_eyebrow: 'PREMIUM · LAB CERTIFIED · PHANGAN',
+        hero_headline: 'The Art of Fine Cannabis',
+        hero_sub: "We source, curate, and certify every strain. Because connoisseurs deserve to know exactly what they're enjoying.",
+        cta_menu: 'VIEW MENU',
+        cta_story: 'Our story',
+        pill_tropicana: 'TROPICANA',
+        pill_patronus: 'PATRONUS',
+        pill_topweed: 'TOP WEED',
+        catalog_label: 'THE COLLECTION',
+        catalog_title: 'Curated Strains & Products',
+        all_certified: 'ALL PRODUCTS LAB CERTIFIED',
+        cat_sativa: 'SATIVA BLEND',
+        cat_indica: 'INDICA DOMINANT',
+        cat_topshelf: 'TOP SHELF',
+        cat_preroll: 'PRE-ROLL',
+        strain1_name: 'Tropicana Cherry',
+        strain1_cbd: 'CBD 26%',
+        strain1_thc: 'THC 0.2%',
+        strain1_desc: 'Bright citrus & cherry. Uplifting, tropical, perfect for daytime.',
+        strain2_name: 'Black Patronus',
+        strain2_thc: 'THC 27%',
+        strain2_cbd: 'CBD 0.2%',
+        strain2_desc: 'Deep, earthy, commanding. Heavy euphoria for experienced palates.',
+        strain3_name: '3.5 Top Weed',
+        strain3_premium: 'PREMIUM',
+        strain3_weight: '3.5g',
+        strain3_desc: 'Hand-trimmed, perfectly cured. Our finest flower, full stop.',
+        strain4_name: 'Joint',
+        strain4_tag: 'READY TO LIGHT',
+        strain4_desc: 'Premium flower, perfectly rolled. Made for the beach, the view, the moment.',
+        lab_certified: 'LAB CERTIFIED',
+        acc_label: 'ACCESSORIES',
+        acc1: 'Asia Papers',
+        acc2: 'Big Glass Bong',
+        acc3: 'Bitcoin Grinder',
+        acc4: 'Carbon Filter',
+        findus_label: 'LOCATION',
+        findus_title: 'Find Us',
+        findus_sub: 'Koh Phangan, Surat Thani, Thailand',
+        btn_instagram: 'INSTAGRAM',
+        btn_telegram: 'ORDER ON TELEGRAM',
+        footer_copy: '© 2025 WOODY WEEDPECKER · KOH PHANGAN, THAILAND',
+        footer_disclaimer: 'For adults only. Please consume responsibly and in accordance with local laws.',
+        footer_badge1: 'CERTIFICATIONS AVAILABLE IN-STORE',
+        footer_badge2: 'ALL PRODUCTS LAB CERTIFIED',
+      },
+      th: {
+        brand_name: 'วูดี้ วีดเพ็กเกอร์',
+        brand_tagline: 'โซมมอลิเยร์กัญชา · เกาะพะงัน',
+        nav_strains: 'สายพันธุ์',
+        nav_accessories: 'อุปกรณ์',
+        nav_certifications: 'การรับรอง',
+        nav_findus: 'หาเรา',
+        hero_eyebrow: 'พรีเมียม · ผ่านการรับรองห้องปฏิบัติการ · เกาะพะงัน',
+        hero_headline: 'ศิลปะแห่งกัญชาชั้นเลิศ',
+        hero_sub: 'เราคัดสรร จัดเตรียม และรับรองทุกสายพันธุ์ เพราะผู้รู้สมควรรู้ว่าตนเองกำลังเพลิดเพลินกับอะไร',
+        cta_menu: 'ดูเมนู',
+        cta_story: 'เรื่องราวของเรา',
+        pill_tropicana: 'โทรปิกาน่า',
+        pill_patronus: 'แพโทรนัส',
+        pill_topweed: 'ท็อปวีด',
+        catalog_label: 'คอลเลกชัน',
+        catalog_title: 'สายพันธุ์และผลิตภัณฑ์คัดสรร',
+        all_certified: 'ผลิตภัณฑ์ทุกชนิดผ่านการรับรองห้องปฏิบัติการ',
+        cat_sativa: 'ซาติวา เบลนด์',
+        cat_indica: 'อินดิกา โดมิแนนต์',
+        cat_topshelf: 'ชั้นสูงสุด',
+        cat_preroll: 'พรีโรล',
+        strain1_name: 'โทรปิกาน่า เชอร์รี่',
+        strain1_cbd: 'CBD 26%',
+        strain1_thc: 'THC 0.2%',
+        strain1_desc: 'ส้มและเชอร์รี่สดใส ให้ความรู้สึกสดชื่น เขตร้อน เหมาะสำหรับกลางวัน',
+        strain2_name: 'แบล็ค แพโทรนัส',
+        strain2_thc: 'THC 27%',
+        strain2_cbd: 'CBD 0.2%',
+        strain2_desc: 'ลึก เป็นดิน และมีพลัง ความรู้สึกเคลิ้มหนักสำหรับผู้มีประสบการณ์',
+        strain3_name: '3.5 ท็อปวีด',
+        strain3_premium: 'พรีเมียม',
+        strain3_weight: '3.5 กรัม',
+        strain3_desc: 'ตัดแต่งด้วยมือ บ่มอย่างสมบูรณ์แบบ ดอกไม้ที่ดีที่สุดของเรา',
+        strain4_name: 'จอยต์',
+        strain4_tag: 'พร้อมจุด',
+        strain4_desc: 'ดอกไม้พรีเมียม มวนอย่างสมบูรณ์แบบ เหมาะสำหรับชายหาด วิว และช่วงเวลานั้น',
+        lab_certified: 'ผ่านการรับรองห้องปฏิบัติการ',
+        acc_label: 'อุปกรณ์',
+        acc1: 'กระดาษเอเชีย',
+        acc2: 'บ้องแก้วขนาดใหญ่',
+        acc3: 'กรายเดอร์บิตคอยน์',
+        acc4: 'ฟิลเตอร์คาร์บอน',
+        findus_label: 'ที่ตั้ง',
+        findus_title: 'หาเรา',
+        findus_sub: 'เกาะพะงัน, สุราษฎร์ธานี, ประเทศไทย',
+        btn_instagram: 'อินสตาแกรม',
+        btn_telegram: 'สั่งผ่าน Telegram',
+        footer_copy: '© 2025 วูดี้ วีดเพ็กเกอร์ · เกาะพะงัน, ประเทศไทย',
+        footer_disclaimer: 'สำหรับผู้ใหญ่เท่านั้น กรุณาบริโภคอย่างมีความรับผิดชอบและสอดคล้องกับกฎหมายท้องถิ่น',
+        footer_badge1: 'ใบรับรองพร้อมให้บริการในร้าน',
+        footer_badge2: 'ผลิตภัณฑ์ทุกชนิดผ่านการรับรองห้องปฏิบัติการ',
+      }
+    };
+
+    function setLang(lang) {
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const k = el.getAttribute('data-i18n');
+        if (i18n[lang][k] !== undefined) el.textContent = i18n[lang][k];
+      });
+      document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+      document.getElementById('btn-th').classList.toggle('active', lang === 'th');
+    }
+
+    /* ── THREE.JS CANNABIS BUD ────────────────────────────────── */
+    (function initThree() {
+      const canvas = document.getElementById('three-canvas');
+      const W = 300, H = 300;
+
+      const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+      renderer.setSize(W, H);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      renderer.toneMapping = THREE.ACESFilmicToneMapping;
+      renderer.toneMappingExposure = 1.3;
+
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(42, W / H, 0.1, 100);
+      camera.position.set(0, 0, 3.4);
+
+      function valueNoise(x, y, seed) {
+        const ix = Math.floor(x), iy = Math.floor(y);
+        const fx = x - ix, fy = y - iy;
+        const ux = fx * fx * fx * (fx * (fx * 6 - 15) + 10);
+        const uy = fy * fy * fy * (fy * (fy * 6 - 15) + 10);
+        function hash(a, b) {
+          let n = (a * 1619 + b * 31337 + seed * 6971) | 0;
+          n = Math.imul(n ^ (n >>> 13), 1540483477);
+          return ((n ^ (n >>> 15)) >>> 0) / 4294967295;
+        }
+        const a = hash(ix, iy), b = hash(ix+1, iy), c = hash(ix, iy+1), d = hash(ix+1, iy+1);
+        return a + (b-a)*ux + (c-a)*uy + (a-b-c+d)*ux*uy;
+      }
+
+      function fbm(x, y) {
+        let v = 0, amp = 0.5, freq = 1, total = 0;
+        for (let i = 0; i < 8; i++) {
+          v += valueNoise(x * freq, y * freq, i * 73 + 17) * amp;
+          total += amp; amp *= 0.52; freq *= 2.07;
+        }
+        return v / total;
+      }
+
+      function createDispTex() {
+        const sz = 512;
+        const cv = document.createElement('canvas');
+        cv.width = cv.height = sz;
+        const ctx = cv.getContext('2d');
+        const img = ctx.createImageData(sz, sz);
+        for (let y = 0; y < sz; y++) {
+          for (let x = 0; x < sz; x++) {
+            let v = fbm(x / sz * 5, y / sz * 5);
+            v = Math.pow(Math.max(0, Math.min(1, v)), 1.3);
+            const px = Math.floor(v * 255);
+            const i = (y * sz + x) * 4;
+            img.data[i] = px; img.data[i+1] = px; img.data[i+2] = px; img.data[i+3] = 255;
+          }
+        }
+        ctx.putImageData(img, 0, 0);
+        return new THREE.CanvasTexture(cv);
+      }
+
+      const dispTex = createDispTex();
+
+      const geo = new THREE.SphereBufferGeometry(1, 128, 128);
+      const mat = new THREE.MeshStandardMaterial({
+        color: new THREE.Color(0x1e3a1e),
+        roughness: 0.80,
+        metalness: 0.06,
+        displacementMap: dispTex,
+        displacementScale: 0.20,
+        emissive: new THREE.Color(0x0d200d),
+        emissiveIntensity: 1.0,
+      });
+
+      const bud = new THREE.Mesh(geo, mat);
+      scene.add(bud);
+
+      const ambient = new THREE.AmbientLight(0x182418, 0.7);
+      scene.add(ambient);
+
+      const keyLight = new THREE.DirectionalLight(0x4a7a4a, 0.5);
+      keyLight.position.set(2, 3, 2);
+      scene.add(keyLight);
+
+      const rimLight = new THREE.DirectionalLight(0x3a6a3a, 0.35);
+      rimLight.position.set(-3, 0, -2);
+      scene.add(rimLight);
+
+      const pt = new THREE.PointLight(0x64d264, 3.5, 9);
+      pt.position.set(2, 2, 2);
+      scene.add(pt);
+
+      const pt2 = new THREE.PointLight(0x307830, 1.8, 7);
+      pt2.position.set(-2, -1, -2);
+      scene.add(pt2);
+
+      let rotSpeed = 0.003;
+
+      const strains = {
+        tropicana: {
+          ptColor: new THREE.Color(0xd4c85a),
+          pt2Color: new THREE.Color(0xb89820),
+          rimColor: new THREE.Color(0xd0aa18),
+          matColor: new THREE.Color(0x2e2808),
+          emissive: new THREE.Color(0x1a1604),
+          speed: 0.008,
+          ptIntensity: 4.5,
+        },
+        patronus: {
+          ptColor: new THREE.Color(0x8850dc),
+          pt2Color: new THREE.Color(0x4828a0),
+          rimColor: new THREE.Color(0x5030a0),
+          matColor: new THREE.Color(0x180828),
+          emissive: new THREE.Color(0x0c0418),
+          speed: 0.0018,
+          ptIntensity: 3.2,
+        },
+        topweed: {
+          ptColor: new THREE.Color(0x64d264),
+          pt2Color: new THREE.Color(0x30a030),
+          rimColor: new THREE.Color(0x3a8a3a),
+          matColor: new THREE.Color(0x1e3a1e),
+          emissive: new THREE.Color(0x0d200d),
+          speed: 0.005,
+          ptIntensity: 3.5,
+        },
+      };
+
+      window.selectStrain = function(name) {
+        document.querySelectorAll('.strain-pill').forEach(p => { p.className = 'strain-pill'; });
+        const pill = document.getElementById('pill-' + name);
+        if (pill) pill.classList.add('active-' + name);
+
+        const s = strains[name];
+
+        function animColor(obj, prop, target, dur) {
+          const cur = obj[prop];
+          const tmp = { r: cur.r, g: cur.g, b: cur.b };
+          gsap.to(tmp, { r: target.r, g: target.g, b: target.b, duration: dur, ease: 'power2.inOut',
+            onUpdate: () => { obj[prop].setRGB(tmp.r, tmp.g, tmp.b); } });
+        }
+
+        const dur = 1.2;
+        animColor(pt, 'color', s.ptColor, dur);
+        animColor(pt2, 'color', s.pt2Color, dur);
+        animColor(rimLight, 'color', s.rimColor, dur);
+        animColor(mat, 'color', s.matColor, dur);
+        animColor(mat, 'emissive', s.emissive, dur);
+
+        const iObj = { v: pt.intensity };
+        gsap.to(iObj, { v: s.ptIntensity, duration: dur, ease: 'power2.inOut', onUpdate: () => { pt.intensity = iObj.v; } });
+
+        const spObj = { v: rotSpeed };
+        gsap.to(spObj, { v: s.speed, duration: dur, ease: 'power2.inOut', onUpdate: () => { rotSpeed = spObj.v; } });
+
+        gsap.to(bud.rotation, { y: bud.rotation.y + Math.PI * 0.6, duration: 0.9, ease: 'power2.out' });
+      };
+
+      const clock = new THREE.Clock();
+
+      function animate() {
+        requestAnimationFrame(animate);
+        const t = clock.getElapsedTime();
+        bud.rotation.y += rotSpeed;
+        pt.position.set(Math.sin(t * 0.7) * 2.8, Math.cos(t * 0.4) * 1.5, Math.cos(t * 0.7) * 2.8);
+        pt2.position.set(Math.sin(t * 0.5 + 2) * 2.2, Math.sin(t * 0.3) * 1.2, Math.cos(t * 0.5 + 2) * 2.2);
+        renderer.render(scene, camera);
+      }
+      animate();
+    })();
+  </script>
+</body>
+</html>
