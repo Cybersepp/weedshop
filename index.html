@@ -249,6 +249,7 @@
       padding-bottom: 2px;
       cursor: pointer;
       transition: color 0.2s, border-color 0.2s;
+      text-decoration: none;
     }
 
     .btn-text-link:hover { color: var(--text); border-color: var(--text-muted); }
@@ -258,9 +259,9 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 80px 60px;
+      padding: 80px 40px;
       position: relative;
-      min-height: 540px;
+      min-height: 600px;
       background: radial-gradient(ellipse 70% 70% at 50% 50%, rgba(30,38,26,0.5) 0%, transparent 70%);
     }
 
@@ -460,67 +461,6 @@
       font-family: Arial, sans-serif;
     }
 
-    /* ── ACCESSORIES ─────────────────────────────────────────── */
-    .accessories-wrapper {
-      border: 1px solid var(--border);
-      border-top: none;
-      border-radius: 0 0 4px 4px;
-      overflow: hidden;
-    }
-
-    .accessories-header {
-      background: var(--bg-surface);
-      padding: 14px 28px;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .accessories-header span {
-      font-size: 9px;
-      font-weight: 700;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--text-faint);
-      font-family: Arial, sans-serif;
-    }
-
-    .accessories-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1px;
-      background: var(--border);
-    }
-
-    .accessory-card {
-      background: var(--bg-surface);
-      padding: 22px 26px;
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      transition: background 0.22s;
-    }
-
-    .accessory-card:hover { background: var(--bg-card); }
-
-    .accessory-icon {
-      width: 36px; height: 36px;
-      border-radius: 4px;
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-
-    .accessory-icon svg { width: 17px; height: 17px; stroke: var(--text-muted); fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
-
-    .accessory-name {
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--text-muted);
-      letter-spacing: 0.04em;
-    }
-
     /* ── FIND US ─────────────────────────────────────────────── */
     #findus {
       padding: 100px 80px;
@@ -670,30 +610,146 @@
       stroke-linecap: round; stroke-linejoin: round;
     }
 
+    /* ── STRAIN STATS PANEL ──────────────────────────────────── */
+    .strain-stats {
+      margin-top: 20px;
+      width: min(420px, 90vw);
+      background: rgba(12, 14, 10, 0.92);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 22px 26px 20px;
+      position: relative;
+      z-index: 3;
+      font-family: 'Courier New', Courier, monospace;
+      transition: border-color 0.8s ease;
+    }
+
+    .ss-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 16px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .ss-name {
+      font-size: 14px;
+      font-weight: bold;
+      letter-spacing: 0.08em;
+      color: var(--text);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      transition: color 0.5s;
+    }
+
+    .ss-type {
+      font-size: 9px;
+      letter-spacing: 0.18em;
+      color: var(--text-muted);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .ss-chem {
+      display: flex;
+      gap: 28px;
+      margin-bottom: 20px;
+      align-items: flex-start;
+    }
+
+    .ss-chem-item { display: flex; flex-direction: column; gap: 5px; }
+
+    .ss-chem-flavor { flex: 1; }
+
+    .ss-chem-label {
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      color: #6a7860;
+    }
+
+    .ss-chem-value {
+      font-size: 13px;
+      font-weight: bold;
+      color: var(--text);
+      letter-spacing: 0.04em;
+      transition: color 0.5s;
+    }
+
+    .ss-bar-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+
+    .ss-bar-label {
+      font-size: 9px;
+      letter-spacing: 0.12em;
+      color: #6a7860;
+      width: 88px;
+      flex-shrink: 0;
+      text-align: right;
+    }
+
+    .ss-bar-track {
+      flex: 1;
+      height: 6px;
+      background: rgba(255,255,255,0.07);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .ss-bar-fill {
+      height: 100%;
+      width: 0%;
+      border-radius: 2px;
+      transition: background-color 0.6s;
+    }
+
+    .ss-bar-value {
+      font-size: 13px;
+      font-weight: bold;
+      color: var(--text);
+      width: 28px;
+      text-align: right;
+      flex-shrink: 0;
+    }
+
     /* ── RESPONSIVE ──────────────────────────────────────────── */
     @media (max-width: 1100px) {
-      .strain-grid, .accessories-grid { grid-template-columns: repeat(2, 1fr); }
+      .strain-grid { grid-template-columns: repeat(2, 1fr); }
     }
 
     @media (max-width: 900px) {
       #hero { grid-template-columns: 1fr; }
-      .hero-right { order: -1; padding: 56px 40px 16px; min-height: auto; }
-      .hero-left { padding: 20px 40px 80px; }
+      .hero-right { order: -1; padding: 56px 28px 16px; min-height: auto; align-items: center; }
+      .hero-left { padding: 20px 28px 80px; }
       .ring-2, .ring-3 { display: none; }
       #navbar { padding: 0 24px; }
       .nav-links { display: none; }
       #catalog { padding: 80px 28px; }
       #findus { padding: 80px 28px; }
       footer { padding: 28px 28px; }
+      .strain-stats { width: min(420px, calc(100vw - 56px)); }
     }
 
     @media (max-width: 600px) {
-      .strain-grid, .accessories-grid { grid-template-columns: 1fr; }
+      .strain-grid { grid-template-columns: 1fr; }
       .section-header { flex-direction: column; align-items: flex-start; gap: 14px; }
       .hero-ctas { flex-direction: column; align-items: flex-start; }
       .findus-ctas { flex-direction: column; width: 100%; }
       .btn-instagram, .btn-telegram { justify-content: center; }
       .footer-inner { flex-direction: column; align-items: flex-start; }
+      .hero-right { padding: 48px 20px 16px; }
+      .strain-stats { width: calc(100vw - 40px); padding: 18px 18px 16px; }
+      .ss-name { font-size: 13px; }
+      .ss-bar-label { width: 72px; font-size: 8px; }
+      .ss-bar-value { font-size: 12px; }
+      .ss-chem { gap: 16px; }
+      .ss-chem-value { font-size: 12px; }
     }
   </style>
 </head>
@@ -711,7 +767,6 @@
 
     <ul class="nav-links">
       <li><a onclick="navScroll('catalog')" data-i18n="nav_strains">STRAINS</a></li>
-      <li><a onclick="navScroll('catalog')" data-i18n="nav_accessories">ACCESSORIES</a></li>
       <li><a onclick="navScroll('catalog')" data-i18n="nav_certifications">CERTIFICATIONS</a></li>
       <li><a onclick="navScroll('findus')" data-i18n="nav_findus">FIND US</a></li>
     </ul>
@@ -720,6 +775,7 @@
       <div class="lang-toggle">
         <button class="lang-btn active" id="btn-en" onclick="setLang('en')">EN</button>
         <button class="lang-btn" id="btn-th" onclick="setLang('th')">ไทย</button>
+        <button class="lang-btn" id="btn-ru" onclick="setLang('ru')">RU</button>
       </div>
     </div>
   </nav>
@@ -732,7 +788,7 @@
       <p class="hero-sub" data-i18n="hero_sub">We source, curate, and certify every strain. Because connoisseurs deserve to know exactly what they're enjoying.</p>
       <div class="hero-ctas">
         <button class="btn-primary" onclick="navScroll('catalog')" data-i18n="cta_menu">VIEW MENU</button>
-        <span class="btn-text-link" style="color:var(--gold);border-color:rgba(212,148,10,0.35)" data-i18n="cta_story">Our story</span>
+        <a href="https://www.instagram.com/woody.phangan?igsh=MTJqMWJlamI5aGxkNw==" target="_blank" rel="noopener noreferrer" class="btn-text-link" style="color:var(--gold);border-color:rgba(212,148,10,0.35)" data-i18n="cta_story">Our story</a>
       </div>
     </div>
 
@@ -747,6 +803,54 @@
         <div class="strain-pill" id="pill-tropicana" onclick="selectStrain('tropicana')" data-i18n="pill_tropicana">TROPICANA</div>
         <div class="strain-pill" id="pill-patronus" onclick="selectStrain('patronus')" data-i18n="pill_patronus">PATRONUS</div>
         <div class="strain-pill" id="pill-topweed" onclick="selectStrain('topweed')" data-i18n="pill_topweed">TOP WEED</div>
+      </div>
+
+      <div class="strain-stats" id="strain-stats">
+        <div class="ss-header">
+          <span class="ss-name" id="ss-name">SELECT A STRAIN</span>
+          <span class="ss-type" id="ss-type">——</span>
+        </div>
+        <div class="ss-chem">
+          <div class="ss-chem-item">
+            <span class="ss-chem-label">THC</span>
+            <span class="ss-chem-value" id="ss-thc">—</span>
+          </div>
+          <div class="ss-chem-item">
+            <span class="ss-chem-label">CBD</span>
+            <span class="ss-chem-value" id="ss-cbd">—</span>
+          </div>
+          <div class="ss-chem-item ss-chem-flavor">
+            <span class="ss-chem-label">FLAVOR</span>
+            <span class="ss-chem-value" id="ss-flavor">—</span>
+          </div>
+        </div>
+        <div id="ss-bars">
+          <div class="ss-bar-row">
+            <span class="ss-bar-label">CLARITY</span>
+            <div class="ss-bar-track"><div class="ss-bar-fill" id="bar-clarity"></div></div>
+            <span class="ss-bar-value" id="val-clarity">—</span>
+          </div>
+          <div class="ss-bar-row">
+            <span class="ss-bar-label">EUPHORIA</span>
+            <div class="ss-bar-track"><div class="ss-bar-fill" id="bar-euphoria"></div></div>
+            <span class="ss-bar-value" id="val-euphoria">—</span>
+          </div>
+          <div class="ss-bar-row">
+            <span class="ss-bar-label">BODY LIFT</span>
+            <div class="ss-bar-track"><div class="ss-bar-fill" id="bar-bodylift"></div></div>
+            <span class="ss-bar-value" id="val-bodylift">—</span>
+          </div>
+          <div class="ss-bar-row">
+            <span class="ss-bar-label">POTENCY</span>
+            <div class="ss-bar-track"><div class="ss-bar-fill" id="bar-potency"></div></div>
+            <span class="ss-bar-value" id="val-potency">—</span>
+          </div>
+          <div class="ss-bar-row">
+            <span class="ss-bar-label">RELAXATION</span>
+            <div class="ss-bar-track"><div class="ss-bar-fill" id="bar-relaxation"></div></div>
+            <span class="ss-bar-value" id="val-relaxation">—</span>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -806,37 +910,6 @@
       </div>
     </div>
 
-    <div class="accessories-wrapper">
-      <div class="accessories-header">
-        <span data-i18n="acc_label">ACCESSORIES</span>
-      </div>
-      <div class="accessories-grid">
-        <div class="accessory-card">
-          <div class="accessory-icon">
-            <svg viewBox="0 0 24 24"><rect x="3" y="9" width="18" height="11" rx="1.5"/><path d="M7 9V7a5 5 0 0 1 10 0v2"/></svg>
-          </div>
-          <span class="accessory-name" data-i18n="acc1">Asia Papers</span>
-        </div>
-        <div class="accessory-card">
-          <div class="accessory-icon">
-            <svg viewBox="0 0 24 24"><path d="M9 4h6v9l2.5 4H6.5L9 13V4z"/><path d="M6.5 17c0 3 1.5 4 5.5 4s5.5-1 5.5-4"/><line x1="9" y1="4" x2="15" y2="4"/></svg>
-          </div>
-          <span class="accessory-name" data-i18n="acc2">Big Glass Bong</span>
-        </div>
-        <div class="accessory-card">
-          <div class="accessory-icon">
-            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="12" x2="15" y2="14"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
-          </div>
-          <span class="accessory-name" data-i18n="acc3">Bitcoin Grinder</span>
-        </div>
-        <div class="accessory-card">
-          <div class="accessory-icon">
-            <svg viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="2"/><line x1="9" y1="7" x2="15" y2="7"/><line x1="9" y1="11" x2="15" y2="11"/><line x1="9" y1="15" x2="13" y2="15"/></svg>
-          </div>
-          <span class="accessory-name" data-i18n="acc4">Carbon Filter</span>
-        </div>
-      </div>
-    </div>
   </section>
 
   <!-- FIND US -->
@@ -905,7 +978,6 @@
         brand_name: 'WOODY WEEDPECKER',
         brand_tagline: 'CANNABIS SOMMELIER · KOH PHANGAN',
         nav_strains: 'STRAINS',
-        nav_accessories: 'ACCESSORIES',
         nav_certifications: 'CERTIFICATIONS',
         nav_findus: 'FIND US',
         hero_eyebrow: 'PREMIUM · LAB CERTIFIED · PHANGAN',
@@ -939,17 +1011,12 @@
         strain4_tag: 'READY TO LIGHT',
         strain4_desc: 'Premium flower, perfectly rolled. Made for the beach, the view, the moment.',
         lab_certified: 'LAB CERTIFIED',
-        acc_label: 'ACCESSORIES',
-        acc1: 'Asia Papers',
-        acc2: 'Big Glass Bong',
-        acc3: 'Bitcoin Grinder',
-        acc4: 'Carbon Filter',
         findus_label: 'LOCATION',
         findus_title: 'Find Us',
         findus_sub: 'Koh Phangan, Surat Thani, Thailand',
         btn_instagram: 'INSTAGRAM',
         btn_telegram: 'ORDER ON TELEGRAM',
-        footer_copy: '© 2025 WOODY WEEDPECKER · KOH PHANGAN, THAILAND',
+        footer_copy: '© 2026 WOODY WEEDPECKER · KOH PHANGAN, THAILAND',
         footer_disclaimer: 'For adults only. Please consume responsibly and in accordance with local laws.',
         footer_badge1: 'CERTIFICATIONS AVAILABLE IN-STORE',
         footer_badge2: 'ALL PRODUCTS LAB CERTIFIED',
@@ -958,7 +1025,6 @@
         brand_name: 'วูดี้ วีดเพ็กเกอร์',
         brand_tagline: 'โซมมอลิเยร์กัญชา · เกาะพะงัน',
         nav_strains: 'สายพันธุ์',
-        nav_accessories: 'อุปกรณ์',
         nav_certifications: 'การรับรอง',
         nav_findus: 'หาเรา',
         hero_eyebrow: 'พรีเมียม · ผ่านการรับรองห้องปฏิบัติการ · เกาะพะงัน',
@@ -992,11 +1058,6 @@
         strain4_tag: 'พร้อมจุด',
         strain4_desc: 'ดอกไม้พรีเมียม มวนอย่างสมบูรณ์แบบ เหมาะสำหรับชายหาด วิว และช่วงเวลานั้น',
         lab_certified: 'ผ่านการรับรองห้องปฏิบัติการ',
-        acc_label: 'อุปกรณ์',
-        acc1: 'กระดาษเอเชีย',
-        acc2: 'บ้องแก้วขนาดใหญ่',
-        acc3: 'กรายเดอร์บิตคอยน์',
-        acc4: 'ฟิลเตอร์คาร์บอน',
         findus_label: 'ที่ตั้ง',
         findus_title: 'หาเรา',
         findus_sub: 'เกาะพะงัน, สุราษฎร์ธานี, ประเทศไทย',
@@ -1006,6 +1067,53 @@
         footer_disclaimer: 'สำหรับผู้ใหญ่เท่านั้น กรุณาบริโภคอย่างมีความรับผิดชอบและสอดคล้องกับกฎหมายท้องถิ่น',
         footer_badge1: 'ใบรับรองพร้อมให้บริการในร้าน',
         footer_badge2: 'ผลิตภัณฑ์ทุกชนิดผ่านการรับรองห้องปฏิบัติการ',
+      },
+      ru: {
+        brand_name: 'WOODY WEEDPECKER',
+        brand_tagline: 'СОМЕЛЬЕ ПО КАННАБИСУ · КО ПАНГАН',
+        nav_strains: 'СОРТА',
+        nav_certifications: 'СЕРТИФИКАТЫ',
+        nav_findus: 'КАК НАС НАЙТИ',
+        hero_eyebrow: 'ПРЕМИУМ · С ЛАБОРАТОРИЕЙ · ПАНГАН',
+        hero_headline: 'Искусство изысканного каннабиса',
+        hero_sub: 'Мы отбираем, курируем и сертифицируем каждый сорт — чтобы ценители точно знали, что пробуют.',
+        cta_menu: 'МЕНЮ',
+        cta_story: 'О нас',
+        pill_tropicana: 'TROPICANA',
+        pill_patronus: 'PATRONUS',
+        pill_topweed: 'TOP WEED',
+        catalog_label: 'КОЛЛЕКЦИЯ',
+        catalog_title: 'Отобранные сорта и продукты',
+        all_certified: 'ВСЕ ПРОДУКТЫ С ЛАБОРАТОРНЫМ СЕРТИФИКАТОМ',
+        cat_sativa: 'САТИВА-БЛЕНД',
+        cat_indica: 'ИНДИКА-ДОМИНАНТ',
+        cat_topshelf: 'ТОП-ШЕЛЬФ',
+        cat_preroll: 'ПРЕРОЛЛ',
+        strain1_name: 'Tropicana Cherry',
+        strain1_cbd: 'CBD 26%',
+        strain1_thc: 'THC 0.2%',
+        strain1_desc: 'Цитрус и вишня. Бодрящий тропический характер — для дня.',
+        strain2_name: 'Black Patronus',
+        strain2_thc: 'THC 27%',
+        strain2_cbd: 'CBD 0.2%',
+        strain2_desc: 'Глубокий землистый профиль. Плотная эйфория для опытных.',
+        strain3_name: '3.5 Top Weed',
+        strain3_premium: 'ПРЕМИУМ',
+        strain3_weight: '3,5 г',
+        strain3_desc: 'Ручной трим, идеальная сушка. Наш лучший цветок.',
+        strain4_name: 'Joint',
+        strain4_tag: 'ГОТОВ К ЗАЖИГАНИЮ',
+        strain4_desc: 'Премиальная трава, идеально скручена. Для пляжа, вида и момента.',
+        lab_certified: 'СЕРТИФИКАТ ЛАБОРАТОРИИ',
+        findus_label: 'ЛОКАЦИЯ',
+        findus_title: 'Как нас найти',
+        findus_sub: 'Ко Панган, Сурат Тани, Таиланд',
+        btn_instagram: 'INSTAGRAM',
+        btn_telegram: 'ЗАКАЗ В TELEGRAM',
+        footer_copy: '© 2026 WOODY WEEDPECKER · КО ПАНГАН, ТАИЛАНД',
+        footer_disclaimer: 'Только для совершеннолетних. Употребляйте ответственно и в соответствии с местными законами.',
+        footer_badge1: 'СЕРТИФИКАТЫ В МАГАЗИНЕ',
+        footer_badge2: 'ВСЕ ПРОДУКТЫ С ЛАБОРАТОРНЫМ СЕРТИФИКАТОМ',
       }
     };
 
@@ -1016,6 +1124,8 @@
       });
       document.getElementById('btn-en').classList.toggle('active', lang === 'en');
       document.getElementById('btn-th').classList.toggle('active', lang === 'th');
+      document.getElementById('btn-ru').classList.toggle('active', lang === 'ru');
+      document.documentElement.lang = lang === 'en' ? 'en' : lang === 'th' ? 'th' : 'ru';
     }
 
     /* ── THREE.JS CANNABIS BUD ────────────────────────────────── */
@@ -1122,6 +1232,65 @@
         },
       };
 
+      const strainStats = {
+        tropicana: {
+          name: 'TROPICANA CHERRY',
+          type: 'SATIVA BLEND',
+          thc: '0.2%',
+          cbd: '26%',
+          flavor: 'CITRUS · CHERRY',
+          accent: '#d4c85a',
+          bars: { clarity: 90, euphoria: 72, bodylift: 55, potency: 18, relaxation: 38 },
+        },
+        patronus: {
+          name: 'BLACK PATRONUS',
+          type: 'INDICA DOMINANT',
+          thc: '27%',
+          cbd: '0.2%',
+          flavor: 'EARTH · PINE · DARK FRUIT',
+          accent: '#8850dc',
+          bars: { clarity: 18, euphoria: 85, bodylift: 40, potency: 95, relaxation: 90 },
+        },
+        topweed: {
+          name: '3.5 TOP WEED',
+          type: 'TOP SHELF',
+          thc: 'N/A',
+          cbd: 'N/A',
+          flavor: 'COMPLEX · RICH · CURATED',
+          accent: '#5a9a48',
+          bars: { clarity: 75, euphoria: 80, bodylift: 70, potency: 78, relaxation: 65 },
+        },
+      };
+
+      const BAR_KEYS = ['clarity', 'euphoria', 'bodylift', 'potency', 'relaxation'];
+
+      function updateStrainStats(name) {
+        const d = strainStats[name];
+        if (!d) return;
+        document.getElementById('ss-name').textContent = d.name;
+        document.getElementById('ss-type').textContent = d.type;
+        document.getElementById('ss-thc').textContent = d.thc;
+        document.getElementById('ss-cbd').textContent = d.cbd;
+        document.getElementById('ss-flavor').textContent = d.flavor;
+        document.getElementById('strain-stats').style.borderColor = d.accent + '55';
+        BAR_KEYS.forEach((key, i) => {
+          const fill = document.getElementById('bar-' + key);
+          const valEl = document.getElementById('val-' + key);
+          if (!fill || !valEl) return;
+          fill.style.backgroundColor = d.accent;
+          const target = d.bars[key];
+          const proxy = { pct: parseFloat(fill.style.width) || 0 };
+          gsap.to(proxy, {
+            pct: target,
+            duration: 0.65,
+            delay: i * 0.07,
+            ease: 'power3.out',
+            onUpdate: () => { fill.style.width = proxy.pct + '%'; },
+            onComplete: () => { valEl.textContent = target; },
+          });
+        });
+      }
+
       window.selectStrain = function(name) {
         document.querySelectorAll('.strain-pill').forEach(p => { p.className = 'strain-pill'; });
         const pill = document.getElementById('pill-' + name);
@@ -1152,6 +1321,8 @@
         gsap.to(spObj, { v: s.speed, duration: dur, ease: 'power2.inOut', onUpdate: () => { rotSpeed = spObj.v; } });
 
         if (budRoot) gsap.to(budRoot.rotation, { y: budRoot.rotation.y + Math.PI * 0.6, duration: 0.9, ease: 'power2.out' });
+
+        updateStrainStats(name);
       };
 
       const clock = new THREE.Clock();
@@ -1165,6 +1336,8 @@
         renderer.render(scene, camera);
       }
       animate();
+
+      setTimeout(() => { window.selectStrain('tropicana'); }, 400);
     })();
   </script>
 </body>
