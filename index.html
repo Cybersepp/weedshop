@@ -179,7 +179,7 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       padding-top: 76px;
-      align-items: center;
+      align-items: start;
     }
 
     .hero-left {
@@ -614,14 +614,10 @@
     .strain-stats {
       margin-top: 20px;
       width: min(420px, 90vw);
-      background: rgba(12, 14, 10, 0.92);
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      padding: 22px 26px 20px;
+      padding: 22px 0 20px;
       position: relative;
       z-index: 3;
       font-family: 'Courier New', Courier, monospace;
-      transition: border-color 0.8s ease;
     }
 
     .ss-header {
@@ -724,9 +720,9 @@
     }
 
     @media (max-width: 900px) {
-      #hero { grid-template-columns: 1fr; }
-      .hero-right { order: -1; padding: 56px 28px 16px; min-height: auto; align-items: center; }
-      .hero-left { padding: 20px 28px 80px; }
+      #hero { grid-template-columns: 1fr; align-items: start; }
+      .hero-right { padding: 56px 28px 16px; min-height: auto; align-items: center; }
+      .hero-left { padding: 48px 28px 60px; }
       .ring-2, .ring-3 { display: none; }
       #navbar { padding: 0 24px; }
       .nav-links { display: none; }
@@ -1272,7 +1268,6 @@
         document.getElementById('ss-thc').textContent = d.thc;
         document.getElementById('ss-cbd').textContent = d.cbd;
         document.getElementById('ss-flavor').textContent = d.flavor;
-        document.getElementById('strain-stats').style.borderColor = d.accent + '55';
         BAR_KEYS.forEach((key, i) => {
           const fill = document.getElementById('bar-' + key);
           const valEl = document.getElementById('val-' + key);

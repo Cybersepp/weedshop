@@ -4,33 +4,25 @@ Premium cannabis shop and cannabis sommelier mockup website based in Koh Phangan
 
 ## Quick Reference
 
-- Dev: `npm run dev`
-- Build: `npm run build`
-- Lint: `npm run lint`
-- Preview: `npm run preview`
-- Typecheck: `npm run typecheck`
+- Dev: `npm run dev` (runs `npx serve .`)
+- Or just open `index.html` directly in a browser
 
-## Directory Structure
+## Project Structure
 
 ```
-src/
-  components/      # Reusable UI components
-  pages/           # Page-level components (Home, Products, Sommelier, etc.)
-  data/            # Static product/strain data (JSON or TS)
-  assets/          # Images, icons
-  types/           # TypeScript interfaces and types
-  App.tsx          # Root component with routing
-  main.tsx         # Entry point
-  index.css        # Tailwind base styles
+index.html      # Single-file app — all HTML, CSS, and JS inline
+logo.png        # Navbar mascot image
+weed_bud.glb    # 3D model for the hero section
+docs/           # Documentation
+specs/          # Requirements and specs
 ```
 
 ## Tech Stack
 
-- Framework: React 18 + TypeScript
-- Build: Vite
-- Styling: Tailwind CSS
-- Icons: Lucide React
-- Routing: React Router DOM (add if needed)
+- Pure HTML/CSS/JS — no framework, no build step
+- Three.js + GLTFLoader (CDN) — 3D hero model
+- GSAP (CDN) — scroll animations
+- Google Fonts — Outfit typeface
 
 ## Key Product Categories
 
@@ -50,20 +42,15 @@ Always show these CTAs prominently on product pages and in the navbar/footer.
 
 ## Conventions
 
-- Components in `PascalCase.tsx`
-- Data files in `camelCase.ts`
-- Tailwind only — no custom CSS unless strictly necessary
+- All code lives in `index.html` — keep it organized with clear section comments
 - Mobile-first responsive design
-- Keep components small and focused; business logic stays out of leaf components
-- All product data lives in `src/data/` as static TypeScript files
+- No external CSS/JS files unless strictly necessary — keep it self-contained
 
 ## What NOT to Do
 
 - NEVER add a real payment system — ordering is via Instagram/Telegram links only
 - NEVER add a backend or database — this is a static mockup
-- NEVER add eslint-disable comments — fix the actual issue
-- NEVER create abstractions that aren't needed yet
-- NEVER silence TypeScript errors with `as any` — fix the types properly
+- NEVER split into a framework project unless explicitly requested
 
 ## Age Verification
 
