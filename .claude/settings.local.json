@@ -10,7 +10,13 @@
       "Bash(curl:*)",
       "Bash(npx vite:*)",
       "Bash(npx tailwindcss:*)",
-      "Read(//tmp/**)"
+      "Read(//tmp/**)",
+      "Bash(ls -la /c/code/weedshop/project/*.glb)",
+      "Bash(ls -la C:/code/weedshop/project/*.glb)",
+      "Bash(npx gltf-transform:*)",
+      "Bash(gltf-transform:*)",
+      "Bash(node:*)",
+      "Bash(ls:*)"
     ]
   }
 }

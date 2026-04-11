@@ -3,5 +3,12 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "npx browser-sync start --server --files '**/*.html, **/*.css, **/*.js' --no-notify"
+  },
+  "devDependencies": {
+    "@gltf-transform/core": "^4.3.0",
+    "@gltf-transform/extensions": "^4.3.0",
+    "@gltf-transform/functions": "^4.3.0",
+    "draco3dgltf": "^1.5.7",
+    "meshoptimizer": "^1.1.0"
   }
 }
