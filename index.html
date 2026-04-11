@@ -160,7 +160,6 @@
       text-decoration: none;
       transition: all 0.24s;
       white-space: nowrap;
-      font-family: Arial, sans-serif;
     }
     .nav-order-btn:hover {
       background: rgba(90,154,72,0.18);
@@ -183,7 +182,6 @@
       letter-spacing: 0.08em;
       padding: 5px 9px;
       cursor: pointer;
-      font-family: Arial, sans-serif;
       transition: border-color 0.2s, color 0.2s;
       white-space: nowrap;
     }
@@ -229,7 +227,6 @@
       font-size: 10px;
       font-weight: 700;
       letter-spacing: 0.08em;
-      font-family: Arial, sans-serif;
       cursor: pointer;
       border-radius: 4px;
       width: 100%;
@@ -374,7 +371,6 @@
       border: none;
       cursor: pointer;
       transition: all 0.22s;
-      font-family: Arial, sans-serif;
     }
 
     .btn-primary:hover {
@@ -471,13 +467,12 @@
       color: var(--text-muted);
       cursor: pointer;
       transition: all 0.24s;
-      font-family: Arial, sans-serif;
     }
 
     .strain-pill:hover { color: var(--text); border-color: rgba(255,255,255,0.14); }
     .strain-pill.active-tropicana { color: var(--tropicana); border-color: rgba(212,200,90,0.5); background: rgba(212,200,90,0.07); }
     .strain-pill.active-patronus { color: var(--patronus); border-color: rgba(136,80,220,0.5); background: rgba(136,80,220,0.07); }
-    .strain-pill.active-topweed { color: var(--topweed); border-color: rgba(90,154,72,0.5); background: rgba(90,154,72,0.07); }
+    .strain-pill.active-topweed { color: var(--green-lime); border-color: rgba(90,154,72,0.5); background: rgba(90,154,72,0.07); }
 
     /* ── SHOWCASE ─────────────────────────────────────────────── */
     #our-story {
@@ -557,7 +552,6 @@
       letter-spacing: 0.22em;
       text-transform: uppercase;
       margin-bottom: 18px;
-      font-family: Arial, sans-serif;
     }
 
     .sf-gold .showcase-feature-label      { color: var(--gold); }
@@ -580,7 +574,6 @@
       font-size: 12px;
       color: var(--text-muted);
       line-height: 1.7;
-      font-family: Arial, sans-serif;
     }
 
     .section-header {
@@ -639,7 +632,7 @@
     .strain-card:hover { background: var(--bg-card-hover); }
     .strain-card.tropicana { border-top-color: var(--tropicana); }
     .strain-card.patronus { border-top-color: var(--patronus); }
-    .strain-card.topweed { border-top-color: var(--topweed); }
+    .strain-card.topweed { border-top-color: var(--green-lime); }
     .strain-card.joint { border-top-color: var(--joint); }
 
     .card-category {
@@ -648,12 +641,11 @@
       letter-spacing: 0.18em;
       text-transform: uppercase;
       margin-bottom: 14px;
-      font-family: Arial, sans-serif;
     }
 
     .card-category.tropicana { color: var(--tropicana); }
     .card-category.patronus { color: var(--patronus); }
-    .card-category.topweed { color: var(--topweed); }
+    .card-category.topweed { color: var(--green-lime); }
     .card-category.joint { color: var(--joint); }
 
     .card-name {
@@ -673,12 +665,11 @@
       padding: 5px 11px;
       border-radius: 2px;
       border: 1px solid;
-      font-family: Arial, sans-serif;
     }
 
     .stat-pill.tropicana { color: var(--tropicana); border-color: rgba(212,200,90,0.28); background: rgba(212,200,90,0.06); }
     .stat-pill.patronus { color: var(--patronus); border-color: rgba(136,80,220,0.28); background: rgba(136,80,220,0.06); }
-    .stat-pill.topweed { color: var(--topweed); border-color: rgba(90,154,72,0.28); background: rgba(90,154,72,0.06); }
+    .stat-pill.topweed { color: var(--green-lime); border-color: rgba(90,154,72,0.28); background: rgba(90,154,72,0.06); }
     .stat-pill.joint { color: var(--joint); border-color: rgba(220,150,60,0.28); background: rgba(220,150,60,0.06); }
 
     .card-desc {
@@ -698,7 +689,6 @@
       padding: 4px 10px;
       border-radius: 2px;
       display: inline-block;
-      font-family: Arial, sans-serif;
     }
 
     /* ── FIND US ─────────────────────────────────────────────── */
@@ -755,7 +745,6 @@
       border-radius: 3px;
       cursor: pointer;
       transition: all 0.24s;
-      font-family: Arial, sans-serif;
     }
 
     .btn-instagram {
@@ -825,7 +814,6 @@
       border: 1px solid var(--border);
       padding: 5px 12px;
       border-radius: 2px;
-      font-family: Arial, sans-serif;
     }
 
     .footer-socials { display: flex; gap: 8px; align-items: center; }
@@ -857,7 +845,7 @@
       padding: 22px 0 20px;
       position: relative;
       z-index: 3;
-      font-family: 'Courier New', Courier, monospace;
+      font-family: 'Outfit', sans-serif;
     }
 
     .ss-header {
@@ -1017,7 +1005,6 @@
         text-transform: uppercase;
         color: var(--text-muted);
         text-decoration: none;
-        font-family: Arial, sans-serif;
         transition: color 0.22s;
       }
       .nav-mobile-order-btn:hover { color: var(--text); }
@@ -1033,7 +1020,7 @@
     }
 
     @media (max-width: 600px) {
-      .showcase-features { grid-template-columns: 1fr 1fr; }
+      .showcase-features { grid-template-columns: 1fr; }
       .hero-ctas { flex-direction: column; align-items: flex-start; }
       .findus-ctas { flex-direction: column; width: 100%; }
       .btn-instagram, .btn-telegram { justify-content: center; }
@@ -1051,6 +1038,102 @@
       .nav-brand-tagline { display: none; }
       .nav-right { gap: 10px; }
     }
+
+    /* -- AGE GATE -------------------------------------------- */
+    #age-gate {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: var(--bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+    #age-gate.hidden { display: none; }
+
+    .age-gate-card { text-align: center; max-width: 400px; width: 100%; }
+
+    .age-gate-eyebrow {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 14px;
+    }
+
+    .age-gate-brand {
+      font-family: 'Outfit', system-ui, sans-serif;
+      font-size: clamp(20px, 4vw, 30px);
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    .age-gate-sub {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 44px;
+    }
+
+    .age-gate-question {
+      font-size: 17px;
+      color: var(--text);
+      line-height: 1.5;
+      margin-bottom: 28px;
+    }
+
+    .age-gate-btns {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      margin-bottom: 24px;
+    }
+
+    .age-gate-confirm {
+      background: var(--green-lime);
+      color: #071007;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 13px 36px;
+      border-radius: 3px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.22s;
+    }
+    .age-gate-confirm:hover {
+      background: var(--green-lime-hover);
+      transform: translateY(-1px);
+      box-shadow: 0 8px 28px rgba(90,154,72,0.28);
+    }
+
+    .age-gate-decline {
+      background: transparent;
+      color: var(--text-muted);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 13px 28px;
+      border-radius: 3px;
+      border: 1px solid var(--border);
+      cursor: pointer;
+      transition: all 0.22s;
+    }
+    .age-gate-decline:hover { border-color: rgba(255,255,255,0.14); color: var(--text); }
+
+    .age-gate-disclaimer {
+      font-size: 10px;
+      color: var(--text-faint);
+      letter-spacing: 0.04em;
+    }
   </style>
 </head>
 <body>
@@ -1066,8 +1149,8 @@
     </div>
 
     <ul class="nav-links">
-      <li><a onclick="navScroll('our-story')" data-i18n="nav_experience">EXPERIENCE</a></li>
-      <li><a onclick="navScroll('findus')" data-i18n="nav_findus">FIND US</a></li>
+      <li><a href="#our-story" onclick="event.preventDefault(); navScroll('our-story')" data-i18n="nav_experience">EXPERIENCE</a></li>
+      <li><a href="#findus" onclick="event.preventDefault(); navScroll('findus')" data-i18n="nav_findus">FIND US</a></li>
       <li class="nav-mobile-order">
         <a href="https://t.me/Woody_WeedPecker_bot?start=ref_8420420131" target="_blank" rel="noopener noreferrer" class="nav-mobile-order-btn">
           <svg viewBox="0 0 24 24"><path d="M22 2L11 13"/><path d="M22 2L15 22l-4-9-9-4 20-7z"/></svg>
@@ -1105,7 +1188,7 @@
       <h1 class="hero-headline" data-i18n="hero_headline">The Art of Fine Cannabis</h1>
       <p class="hero-sub" data-i18n="hero_sub">We source, curate, and certify every strain. Because connoisseurs deserve to know exactly what they're enjoying.</p>
       <div class="hero-ctas">
-        <button class="btn-primary" onclick="navScroll('catalog')" data-i18n="cta_menu">VIEW MENU</button>
+        <button class="btn-primary" onclick="navScroll('hero')" data-i18n="cta_menu">VIEW MENU</button>
         <a href="https://www.instagram.com/woody.phangan?igsh=MTJqMWJlamI5aGxkNw==" target="_blank" rel="noopener noreferrer" class="btn-text-link" style="color:var(--gold);border-color:rgba(212,148,10,0.35)" data-i18n="cta_story">Our story</a>
       </div>
 
@@ -1115,11 +1198,11 @@
           <div class="hero-trust-label">Google Rating</div>
         </div>
         <div class="hero-trust-stat">
-          <div class="hero-trust-number">200<span>+</span></div>
+          <div class="hero-trust-number">150<span>+</span></div>
           <div class="hero-trust-label">Reviews</div>
         </div>
         <div class="hero-trust-stat">
-          <div class="hero-trust-number">15<span>+</span></div>
+          <div class="hero-trust-number">12<span>+</span></div>
           <div class="hero-trust-label">Unique Strains</div>
         </div>
       </div>
@@ -1133,9 +1216,9 @@
         <canvas id="three-canvas" width="220" height="220"></canvas>
       </div>
       <div class="strain-pills">
-        <div class="strain-pill" id="pill-tropicana" onclick="selectStrain('tropicana')" data-i18n="pill_tropicana">TROPICANA</div>
-        <div class="strain-pill" id="pill-patronus" onclick="selectStrain('patronus')" data-i18n="pill_patronus">PATRONUS</div>
-        <div class="strain-pill" id="pill-topweed" onclick="selectStrain('topweed')" data-i18n="pill_topweed">TOP WEED</div>
+        <button class="strain-pill" id="pill-tropicana" onclick="selectStrain('tropicana')" data-i18n="pill_tropicana">TROPICANA</button>
+        <button class="strain-pill" id="pill-patronus" onclick="selectStrain('patronus')" data-i18n="pill_patronus">PATRONUS</button>
+        <button class="strain-pill" id="pill-topweed" onclick="selectStrain('topweed')" data-i18n="pill_topweed">TOP WEED</button>
       </div>
 
       <div class="strain-stats" id="strain-stats">
@@ -1307,29 +1390,6 @@
         pill_tropicana: 'TROPICANA',
         pill_patronus: 'PATRONUS',
         pill_topweed: 'TOP WEED',
-        catalog_label: 'THE COLLECTION',
-        catalog_title: 'Curated Strains & Products',
-        all_certified: 'ALL PRODUCTS LAB CERTIFIED',
-        cat_sativa: 'SATIVA BLEND',
-        cat_indica: 'INDICA DOMINANT',
-        cat_topshelf: 'TOP SHELF',
-        cat_preroll: 'PRE-ROLL',
-        strain1_name: 'Tropicana Cherry',
-        strain1_cbd: 'CBD 26%',
-        strain1_thc: 'THC 0.2%',
-        strain1_desc: 'Bright citrus & cherry. Uplifting, tropical, perfect for daytime.',
-        strain2_name: 'Black Patronus',
-        strain2_thc: 'THC 27%',
-        strain2_cbd: 'CBD 0.2%',
-        strain2_desc: 'Deep, earthy, commanding. Heavy euphoria for experienced palates.',
-        strain3_name: '3.5 Top Weed',
-        strain3_premium: 'PREMIUM',
-        strain3_weight: '3.5g',
-        strain3_desc: 'Hand-trimmed, perfectly cured. Our finest flower, full stop.',
-        strain4_name: 'Joint',
-        strain4_tag: 'READY TO LIGHT',
-        strain4_desc: 'Premium flower, perfectly rolled. Made for the beach, the view, the moment.',
-        lab_certified: 'LAB CERTIFIED',
         findus_label: 'LOCATION',
         findus_title: 'Find Us',
         findus_sub: 'Koh Phangan, Surat Thani, Thailand',
@@ -1354,35 +1414,12 @@
         pill_tropicana: 'โทรปิกาน่า',
         pill_patronus: 'แพโทรนัส',
         pill_topweed: 'ท็อปวีด',
-        catalog_label: 'คอลเลกชัน',
-        catalog_title: 'สายพันธุ์และผลิตภัณฑ์คัดสรร',
-        all_certified: 'ผลิตภัณฑ์ทุกชนิดผ่านการรับรองห้องปฏิบัติการ',
-        cat_sativa: 'ซาติวา เบลนด์',
-        cat_indica: 'อินดิกา โดมิแนนต์',
-        cat_topshelf: 'ชั้นสูงสุด',
-        cat_preroll: 'พรีโรล',
-        strain1_name: 'โทรปิกาน่า เชอร์รี่',
-        strain1_cbd: 'CBD 26%',
-        strain1_thc: 'THC 0.2%',
-        strain1_desc: 'ส้มและเชอร์รี่สดใส ให้ความรู้สึกสดชื่น เขตร้อน เหมาะสำหรับกลางวัน',
-        strain2_name: 'แบล็ค แพโทรนัส',
-        strain2_thc: 'THC 27%',
-        strain2_cbd: 'CBD 0.2%',
-        strain2_desc: 'ลึก เป็นดิน และมีพลัง ความรู้สึกเคลิ้มหนักสำหรับผู้มีประสบการณ์',
-        strain3_name: '3.5 ท็อปวีด',
-        strain3_premium: 'พรีเมียม',
-        strain3_weight: '3.5 กรัม',
-        strain3_desc: 'ตัดแต่งด้วยมือ บ่มอย่างสมบูรณ์แบบ ดอกไม้ที่ดีที่สุดของเรา',
-        strain4_name: 'จอยต์',
-        strain4_tag: 'พร้อมจุด',
-        strain4_desc: 'ดอกไม้พรีเมียม มวนอย่างสมบูรณ์แบบ เหมาะสำหรับชายหาด วิว และช่วงเวลานั้น',
-        lab_certified: 'ผ่านการรับรองห้องปฏิบัติการ',
         findus_label: 'ที่ตั้ง',
         findus_title: 'หาเรา',
         findus_sub: 'เกาะพะงัน, สุราษฎร์ธานี, ประเทศไทย',
         btn_instagram: 'อินสตาแกรม',
         btn_telegram: 'สั่งผ่าน Telegram',
-        footer_copy: '© 2025 วูดี้ วีดเพ็กเกอร์ · เกาะพะงัน, ประเทศไทย',
+        footer_copy: '© 2026 วูดี้ วีดเพ็กเกอร์ · เกาะพะงัน, ประเทศไทย',
         footer_disclaimer: 'สำหรับผู้ใหญ่เท่านั้น กรุณาบริโภคอย่างมีความรับผิดชอบและสอดคล้องกับกฎหมายท้องถิ่น',
         footer_badge1: 'ใบรับรองพร้อมให้บริการในร้าน',
         footer_badge2: 'ผลิตภัณฑ์ทุกชนิดผ่านการรับรองห้องปฏิบัติการ',
@@ -1401,29 +1438,6 @@
         pill_tropicana: 'TROPICANA',
         pill_patronus: 'PATRONUS',
         pill_topweed: 'TOP WEED',
-        catalog_label: 'КОЛЛЕКЦИЯ',
-        catalog_title: 'Отобранные сорта и продукты',
-        all_certified: 'ВСЕ ПРОДУКТЫ С ЛАБОРАТОРНЫМ СЕРТИФИКАТОМ',
-        cat_sativa: 'САТИВА-БЛЕНД',
-        cat_indica: 'ИНДИКА-ДОМИНАНТ',
-        cat_topshelf: 'ТОП-ШЕЛЬФ',
-        cat_preroll: 'ПРЕРОЛЛ',
-        strain1_name: 'Tropicana Cherry',
-        strain1_cbd: 'CBD 26%',
-        strain1_thc: 'THC 0.2%',
-        strain1_desc: 'Цитрус и вишня. Бодрящий тропический характер — для дня.',
-        strain2_name: 'Black Patronus',
-        strain2_thc: 'THC 27%',
-        strain2_cbd: 'CBD 0.2%',
-        strain2_desc: 'Глубокий землистый профиль. Плотная эйфория для опытных.',
-        strain3_name: '3.5 Top Weed',
-        strain3_premium: 'ПРЕМИУМ',
-        strain3_weight: '3,5 г',
-        strain3_desc: 'Ручной трим, идеальная сушка. Наш лучший цветок.',
-        strain4_name: 'Joint',
-        strain4_tag: 'ГОТОВ К ЗАЖИГАНИЮ',
-        strain4_desc: 'Премиальная трава, идеально скручена. Для пляжа, вида и момента.',
-        lab_certified: 'СЕРТИФИКАТ ЛАБОРАТОРИИ',
         findus_label: 'ЛОКАЦИЯ',
         findus_title: 'Как нас найти',
         findus_sub: 'Ко Панган, Сурат Тани, Таиланд',
