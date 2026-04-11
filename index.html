@@ -14,6 +14,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    button, input, select, textarea { font-family: inherit; }
 
     :root {
       --bg: #1a1c18;
@@ -24,13 +25,13 @@
       --text-muted: #8a9078;
       --text-faint: #3e4838;
       --green-lime: #5a9a48;
+      --green-lime-hover: #6db058;
       --green-accent: #4a7a38;
       --border: #282b24;
       --gold: #d4940a;
       --red-dusty: #c85040;
       --tropicana: #d4c85a;
       --patronus: #8850dc;
-      --topweed: #5a9a48;
       --joint: #dc963c;
     }
 
@@ -142,34 +143,131 @@
 
     .nav-links a:hover { color: var(--text); }
 
-    .lang-toggle {
-      display: flex;
+    .nav-order-btn {
+      display: inline-flex;
       align-items: center;
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 3px;
-      gap: 2px;
-    }
-
-    .lang-btn {
+      gap: 7px;
+      padding: 7px 14px;
+      border: 1px solid rgba(90,154,72,0.4);
+      background: rgba(90,154,72,0.09);
+      color: var(--green-lime);
       font-size: 10px;
       font-weight: 700;
-      letter-spacing: 0.06em;
-      padding: 5px 13px;
-      border-radius: 16px;
-      cursor: pointer;
-      transition: all 0.2s;
-      color: var(--text-muted);
-      border: none;
-      background: none;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      border-radius: 3px;
+      text-decoration: none;
+      transition: all 0.24s;
+      white-space: nowrap;
       font-family: Arial, sans-serif;
     }
-
-    .lang-btn.active {
-      background: var(--green-accent);
-      color: #d8edd8;
+    .nav-order-btn:hover {
+      background: rgba(90,154,72,0.18);
+      border-color: rgba(90,154,72,0.7);
+      box-shadow: 0 4px 16px rgba(90,154,72,0.14);
     }
+
+    .lang-dropdown { position: relative; }
+
+    .lang-trigger {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      color: var(--text-muted);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      padding: 5px 9px;
+      cursor: pointer;
+      font-family: Arial, sans-serif;
+      transition: border-color 0.2s, color 0.2s;
+      white-space: nowrap;
+    }
+    .lang-trigger:hover { border-color: rgba(90,154,72,0.4); color: var(--text); }
+    .lang-trigger svg { width: 9px; height: 9px; flex-shrink: 0; transition: transform 0.28s cubic-bezier(0.23,1,0.32,1); }
+    .lang-dropdown.open .lang-trigger { border-color: rgba(90,154,72,0.35); color: var(--text); }
+    .lang-dropdown.open .lang-trigger svg { transform: rotate(180deg); }
+
+    .lang-panel {
+      position: absolute;
+      top: calc(100% + 8px);
+      right: 0;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 4px;
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+      min-width: 110px;
+      opacity: 0;
+      transform: translateY(-6px) scale(0.96);
+      pointer-events: none;
+      visibility: hidden;
+      transition: opacity 0.22s cubic-bezier(0.23,1,0.32,1), transform 0.22s cubic-bezier(0.23,1,0.32,1), visibility 0.22s;
+      z-index: 200;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+    }
+    .lang-dropdown.open .lang-panel {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      pointer-events: auto;
+      visibility: visible;
+    }
+    .lang-option {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 7px 10px;
+      border: none;
+      background: none;
+      color: var(--text-muted);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      font-family: Arial, sans-serif;
+      cursor: pointer;
+      border-radius: 4px;
+      width: 100%;
+      text-align: left;
+      transition: background 0.15s, color 0.15s;
+    }
+    .lang-option:hover { background: rgba(90,154,72,0.1); color: var(--text); }
+    .lang-option.active { color: var(--green-lime); }
+    .lang-option-full { font-size: 8px; font-weight: 500; color: var(--text-faint); letter-spacing: 0.06em; }
+
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+      width: 30px;
+      height: 30px;
+      flex-shrink: 0;
+    }
+    .nav-hamburger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--text-muted);
+      border-radius: 2px;
+      transform-origin: center;
+      transition: transform 0.38s cubic-bezier(0.23,1,0.32,1), opacity 0.25s, width 0.3s cubic-bezier(0.23,1,0.32,1), background 0.2s;
+    }
+    .nav-hamburger:hover span { background: var(--text); }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); background: var(--text); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); background: var(--text); }
+
+    .nav-mobile-order { display: none; }
 
     .nav-right { display: flex; align-items: center; gap: 16px; flex-shrink: 0; }
 
@@ -221,6 +319,48 @@
       gap: 30px;
     }
 
+    .hero-trust {
+      display: flex;
+      align-items: flex-start;
+      gap: 0;
+      margin-top: 48px;
+      padding-top: 28px;
+      border-top: 1px solid var(--border);
+    }
+
+    .hero-trust-stat {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      flex: 1;
+      padding: 0 24px 0 0;
+    }
+
+    .hero-trust-stat + .hero-trust-stat {
+      padding-left: 24px;
+      border-left: 1px solid var(--border);
+    }
+
+    .hero-trust-number {
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: -0.02em;
+      line-height: 1;
+    }
+
+    .hero-trust-number span {
+      color: var(--gold);
+    }
+
+    .hero-trust-label {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
     .btn-primary {
       background: var(--green-lime);
       color: #071007;
@@ -237,7 +377,7 @@
     }
 
     .btn-primary:hover {
-      background: #6db058;
+      background: var(--green-lime-hover);
       transform: translateY(-1px);
       box-shadow: 0 8px 28px rgba(90,154,72,0.28);
     }
@@ -270,8 +410,8 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 300px;
-      height: 300px;
+      width: 220px;
+      height: 220px;
     }
 
     .ring {
@@ -338,9 +478,108 @@
     .strain-pill.active-patronus { color: var(--patronus); border-color: rgba(136,80,220,0.5); background: rgba(136,80,220,0.07); }
     .strain-pill.active-topweed { color: var(--topweed); border-color: rgba(90,154,72,0.5); background: rgba(90,154,72,0.07); }
 
-    /* ── CATALOG ──────────────────────────────────────────────── */
-    #catalog {
+    /* ── SHOWCASE ─────────────────────────────────────────────── */
+    #our-story {
       padding: 100px 80px;
+      border-top: 1px solid var(--border);
+    }
+
+    .showcase-header {
+      margin-bottom: 56px;
+    }
+
+    .showcase-header .section-title {
+      max-width: 560px;
+    }
+
+    .showcase-photo-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr;
+      grid-template-rows: 260px 260px;
+      gap: 4px;
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .showcase-photo-main {
+      grid-row: 1 / 3;
+    }
+
+    .showcase-photo {
+      overflow: hidden;
+    }
+
+    .showcase-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.6s ease;
+    }
+
+    .showcase-photo:hover img {
+      transform: scale(1.04);
+    }
+
+    .showcase-features {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+      margin-top: 32px;
+    }
+
+    .showcase-feature {
+      background: var(--bg-card);
+      padding: 32px 26px;
+      display: flex;
+      flex-direction: column;
+      transition: background 0.22s;
+      border-top: 2px solid transparent;
+    }
+
+    .showcase-feature:hover { background: var(--bg-card-hover); }
+
+    .showcase-feature.sf-gold      { border-top-color: var(--gold); }
+    .showcase-feature.sf-joint     { border-top-color: var(--joint); }
+    .showcase-feature.sf-patronus  { border-top-color: var(--patronus); }
+    .showcase-feature.sf-green     { border-top-color: var(--green-lime); }
+    .showcase-feature.sf-tropicana { border-top-color: var(--tropicana); }
+    .showcase-feature.sf-red       { border-top-color: var(--red-dusty); }
+
+    .showcase-feature-label {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+      font-family: Arial, sans-serif;
+    }
+
+    .sf-gold .showcase-feature-label      { color: var(--gold); }
+    .sf-joint .showcase-feature-label     { color: var(--joint); }
+    .sf-patronus .showcase-feature-label  { color: var(--patronus); }
+    .sf-green .showcase-feature-label     { color: var(--green-lime); }
+    .sf-tropicana .showcase-feature-label { color: var(--tropicana); }
+    .sf-red .showcase-feature-label       { color: var(--red-dusty); }
+
+    .showcase-feature-title {
+      font-size: 17px;
+      font-family: Georgia, 'Times New Roman', serif;
+      font-weight: normal;
+      color: var(--text);
+      line-height: 1.25;
+      margin-bottom: 14px;
+    }
+
+    .showcase-feature-desc {
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.7;
+      font-family: Arial, sans-serif;
     }
 
     .section-header {
@@ -538,7 +777,7 @@
       box-shadow: 0 4px 24px rgba(90,154,72,0.16);
     }
 
-    .btn-instagram svg, .btn-telegram svg {
+    .btn-instagram svg, .btn-telegram svg, .nav-order-btn svg {
       width: 15px; height: 15px;
       stroke: currentColor; fill: none;
       stroke-width: 1.8;
@@ -663,7 +902,7 @@
     .ss-chem-label {
       font-size: 9px;
       letter-spacing: 0.2em;
-      color: #6a7860;
+      color: var(--text-muted);
     }
 
     .ss-chem-value {
@@ -684,7 +923,7 @@
     .ss-bar-label {
       font-size: 9px;
       letter-spacing: 0.12em;
-      color: #6a7860;
+      color: var(--text-muted);
       width: 88px;
       flex-shrink: 0;
       text-align: right;
@@ -716,7 +955,8 @@
 
     /* ── RESPONSIVE ──────────────────────────────────────────── */
     @media (max-width: 1100px) {
-      .strain-grid { grid-template-columns: repeat(2, 1fr); }
+      .showcase-features { grid-template-columns: repeat(3, 1fr); }
+
     }
 
     @media (max-width: 900px) {
@@ -724,17 +964,75 @@
       .hero-right { padding: 56px 28px 16px; min-height: auto; align-items: center; }
       .hero-left { padding: 48px 28px 60px; }
       .ring-2, .ring-3 { display: none; }
-      #navbar { padding: 0 24px; }
-      .nav-links { display: none; }
-      #catalog { padding: 80px 28px; }
+      #navbar { padding: 0 20px; }
+      .nav-hamburger { display: flex; }
+      .nav-order-btn { display: none; }
+      .nav-mobile-order { display: block; }
+
+      .nav-links {
+        position: fixed;
+        top: 76px; left: 0; right: 0;
+        background: rgba(22,24,20,0.98);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-bottom: 1px solid var(--border);
+        flex-direction: column;
+        padding: 8px 20px 20px;
+        gap: 0;
+        opacity: 0;
+        transform: translateY(-10px);
+        pointer-events: none;
+        visibility: hidden;
+        transition: opacity 0.32s cubic-bezier(0.23,1,0.32,1), transform 0.32s cubic-bezier(0.23,1,0.32,1), visibility 0.32s;
+      }
+      .nav-links.open {
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
+        visibility: visible;
+      }
+
+      .nav-links > li {
+        border-bottom: 1px solid var(--border);
+        opacity: 0;
+        transform: translateX(-10px);
+        transition: opacity 0.28s, transform 0.28s cubic-bezier(0.23,1,0.32,1);
+      }
+      .nav-links > li:last-child { border-bottom: none; }
+      .nav-links.open > li { opacity: 1; transform: translateX(0); }
+      .nav-links.open > li:nth-child(1) { transition-delay: 0.06s; }
+      .nav-links.open > li:nth-child(2) { transition-delay: 0.11s; }
+      .nav-links.open > li:nth-child(3) { transition-delay: 0.16s; }
+
+      .nav-links a { display: block; padding: 14px 0; font-size: 11px; letter-spacing: 0.16em; }
+      .nav-links a:hover { color: var(--green-lime); }
+
+      .nav-mobile-order-btn {
+        display: block;
+        padding: 14px 0;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--text-muted);
+        text-decoration: none;
+        font-family: Arial, sans-serif;
+        transition: color 0.22s;
+      }
+      .nav-mobile-order-btn:hover { color: var(--text); }
+      .nav-mobile-order-btn svg { display: none; }
+
+      #our-story { padding: 80px 28px; }
+      .showcase-photo-grid { grid-template-columns: 1fr; grid-template-rows: 280px 220px 220px; }
+      .showcase-photo-main { grid-row: auto; }
+      .showcase-features { grid-template-columns: repeat(2, 1fr); }
       #findus { padding: 80px 28px; }
       footer { padding: 28px 28px; }
       .strain-stats { width: min(420px, calc(100vw - 56px)); }
     }
 
     @media (max-width: 600px) {
-      .strain-grid { grid-template-columns: 1fr; }
-      .section-header { flex-direction: column; align-items: flex-start; gap: 14px; }
+      .showcase-features { grid-template-columns: 1fr 1fr; }
       .hero-ctas { flex-direction: column; align-items: flex-start; }
       .findus-ctas { flex-direction: column; width: 100%; }
       .btn-instagram, .btn-telegram { justify-content: center; }
@@ -746,6 +1044,11 @@
       .ss-bar-value { font-size: 12px; }
       .ss-chem { gap: 16px; }
       .ss-chem-value { font-size: 12px; }
+    }
+
+    @media (max-width: 480px) {
+      .nav-brand-tagline { display: none; }
+      .nav-right { gap: 10px; }
     }
   </style>
 </head>
@@ -762,17 +1065,35 @@
     </div>
 
     <ul class="nav-links">
-      <li><a onclick="navScroll('catalog')" data-i18n="nav_strains">STRAINS</a></li>
-      <li><a onclick="navScroll('catalog')" data-i18n="nav_certifications">CERTIFICATIONS</a></li>
+      <li><a onclick="navScroll('our-story')" data-i18n="nav_experience">EXPERIENCE</a></li>
       <li><a onclick="navScroll('findus')" data-i18n="nav_findus">FIND US</a></li>
+      <li class="nav-mobile-order">
+        <a href="https://t.me/Woody_WeedPecker_bot?start=ref_8420420131" target="_blank" rel="noopener noreferrer" class="nav-mobile-order-btn">
+          <svg viewBox="0 0 24 24"><path d="M22 2L11 13"/><path d="M22 2L15 22l-4-9-9-4 20-7z"/></svg>
+          <span data-i18n="nav_order">ORDER</span>
+        </a>
+      </li>
     </ul>
 
     <div class="nav-right">
-      <div class="lang-toggle">
-        <button class="lang-btn active" id="btn-en" onclick="setLang('en')">EN</button>
-        <button class="lang-btn" id="btn-th" onclick="setLang('th')">ไทย</button>
-        <button class="lang-btn" id="btn-ru" onclick="setLang('ru')">RU</button>
+      <a href="https://t.me/Woody_WeedPecker_bot?start=ref_8420420131" target="_blank" rel="noopener noreferrer" class="nav-order-btn">
+        <svg viewBox="0 0 24 24"><path d="M22 2L11 13"/><path d="M22 2L15 22l-4-9-9-4 20-7z"/></svg>
+        <span data-i18n="nav_order">ORDER</span>
+      </a>
+      <div class="lang-dropdown" id="lang-dropdown">
+        <button class="lang-trigger" id="lang-trigger" aria-haspopup="listbox" aria-expanded="false">
+          <span id="lang-current">EN</span>
+          <svg viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M1 1l4 4 4-4"/></svg>
+        </button>
+        <div class="lang-panel" role="listbox">
+          <button class="lang-option active" data-lang="en" onclick="setLang('en')">EN <span class="lang-option-full">English</span></button>
+          <button class="lang-option" data-lang="th" onclick="setLang('th')">ไทย <span class="lang-option-full">Thai</span></button>
+          <button class="lang-option" data-lang="ru" onclick="setLang('ru')">RU <span class="lang-option-full">Русский</span></button>
+        </div>
       </div>
+      <button class="nav-hamburger" id="nav-hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </nav>
 
@@ -786,6 +1107,21 @@
         <button class="btn-primary" onclick="navScroll('catalog')" data-i18n="cta_menu">VIEW MENU</button>
         <a href="https://www.instagram.com/woody.phangan?igsh=MTJqMWJlamI5aGxkNw==" target="_blank" rel="noopener noreferrer" class="btn-text-link" style="color:var(--gold);border-color:rgba(212,148,10,0.35)" data-i18n="cta_story">Our story</a>
       </div>
+
+      <div class="hero-trust">
+        <div class="hero-trust-stat">
+          <div class="hero-trust-number">5.0<span>★</span></div>
+          <div class="hero-trust-label">Google Rating</div>
+        </div>
+        <div class="hero-trust-stat">
+          <div class="hero-trust-number">200<span>+</span></div>
+          <div class="hero-trust-label">Reviews</div>
+        </div>
+        <div class="hero-trust-stat">
+          <div class="hero-trust-number">15<span>+</span></div>
+          <div class="hero-trust-label">Unique Strains</div>
+        </div>
+      </div>
     </div>
 
     <div class="hero-right">
@@ -793,7 +1129,7 @@
         <div class="ring ring-1"></div>
         <div class="ring ring-2"></div>
         <div class="ring ring-3"></div>
-        <canvas id="three-canvas" width="300" height="300"></canvas>
+        <canvas id="three-canvas" width="220" height="220"></canvas>
       </div>
       <div class="strain-pills">
         <div class="strain-pill" id="pill-tropicana" onclick="selectStrain('tropicana')" data-i18n="pill_tropicana">TROPICANA</div>
@@ -822,16 +1158,6 @@
         </div>
         <div id="ss-bars">
           <div class="ss-bar-row">
-            <span class="ss-bar-label">CLARITY</span>
-            <div class="ss-bar-track"><div class="ss-bar-fill" id="bar-clarity"></div></div>
-            <span class="ss-bar-value" id="val-clarity">—</span>
-          </div>
-          <div class="ss-bar-row">
-            <span class="ss-bar-label">EUPHORIA</span>
-            <div class="ss-bar-track"><div class="ss-bar-fill" id="bar-euphoria"></div></div>
-            <span class="ss-bar-value" id="val-euphoria">—</span>
-          </div>
-          <div class="ss-bar-row">
             <span class="ss-bar-label">BODY LIFT</span>
             <div class="ss-bar-track"><div class="ss-bar-fill" id="bar-bodylift"></div></div>
             <span class="ss-bar-value" id="val-bodylift">—</span>
@@ -851,61 +1177,55 @@
     </div>
   </section>
 
-  <!-- CATALOG -->
-  <section id="catalog">
-    <div class="section-header">
-      <div>
-        <p class="section-label" data-i18n="catalog_label">THE COLLECTION</p>
-        <h2 class="section-title" data-i18n="catalog_title">Curated Strains &amp; Products</h2>
-      </div>
-      <div class="certified-badge" data-i18n="all_certified">ALL PRODUCTS LAB CERTIFIED</div>
+  <!-- SHOWCASE -->
+  <section id="our-story">
+    <div class="showcase-header">
+      <p class="section-label">THE EXPERIENCE</p>
+      <h2 class="section-title">More Than a Shop.<br>A Place to Be.</h2>
     </div>
-
-    <div class="strain-grid">
-      <div class="strain-card tropicana">
-        <p class="card-category tropicana" data-i18n="cat_sativa">SATIVA BLEND</p>
-        <h3 class="card-name" data-i18n="strain1_name">Tropicana Cherry</h3>
-        <div class="stat-pills">
-          <span class="stat-pill tropicana" data-i18n="strain1_cbd">CBD 26%</span>
-          <span class="stat-pill tropicana" data-i18n="strain1_thc">THC 0.2%</span>
-        </div>
-        <p class="card-desc" data-i18n="strain1_desc">Bright citrus &amp; cherry. Uplifting, tropical, perfect for daytime.</p>
-        <span class="lab-tag" data-i18n="lab_certified">LAB CERTIFIED</span>
+    <div class="showcase-photo-grid">
+      <div class="showcase-photo showcase-photo-main">
+        <img src="store.png" alt="Woody Weedpecker store">
       </div>
-
-      <div class="strain-card patronus">
-        <p class="card-category patronus" data-i18n="cat_indica">INDICA DOMINANT</p>
-        <h3 class="card-name" data-i18n="strain2_name">Black Patronus</h3>
-        <div class="stat-pills">
-          <span class="stat-pill patronus" data-i18n="strain2_thc">THC 27%</span>
-          <span class="stat-pill patronus" data-i18n="strain2_cbd">CBD 0.2%</span>
-        </div>
-        <p class="card-desc" data-i18n="strain2_desc">Deep, earthy, commanding. Heavy euphoria for experienced palates.</p>
-        <span class="lab-tag" data-i18n="lab_certified">LAB CERTIFIED</span>
+      <div class="showcase-photo">
+        <img src="lounge.png" alt="Lounge area">
       </div>
-
-      <div class="strain-card topweed">
-        <p class="card-category topweed" data-i18n="cat_topshelf">TOP SHELF</p>
-        <h3 class="card-name" data-i18n="strain3_name">3.5 Top Weed</h3>
-        <div class="stat-pills">
-          <span class="stat-pill topweed" data-i18n="strain3_premium">PREMIUM</span>
-          <span class="stat-pill topweed" data-i18n="strain3_weight">3.5g</span>
-        </div>
-        <p class="card-desc" data-i18n="strain3_desc">Hand-trimmed, perfectly cured. Our finest flower, full stop.</p>
-        <span class="lab-tag" data-i18n="lab_certified">LAB CERTIFIED</span>
-      </div>
-
-      <div class="strain-card joint">
-        <p class="card-category joint" data-i18n="cat_preroll">PRE-ROLL</p>
-        <h3 class="card-name" data-i18n="strain4_name">Joint</h3>
-        <div class="stat-pills">
-          <span class="stat-pill joint" data-i18n="strain4_tag">READY TO LIGHT</span>
-        </div>
-        <p class="card-desc" data-i18n="strain4_desc">Premium flower, perfectly rolled. Made for the beach, the view, the moment.</p>
-        <span class="lab-tag" data-i18n="lab_certified">LAB CERTIFIED</span>
+      <div class="showcase-photo">
+        <img src="lounge_2.png" alt="Chill lounge">
       </div>
     </div>
-
+    <div class="showcase-features">
+      <div class="showcase-feature sf-gold">
+        <span class="showcase-feature-label">Guided Selection</span>
+        <span class="showcase-feature-title">Know What You're Smoking</span>
+        <span class="showcase-feature-desc">Taste, compare, ask. Our sommelier is on the floor — not behind a counter.</span>
+      </div>
+      <div class="showcase-feature sf-joint">
+        <span class="showcase-feature-label">Full Bar</span>
+        <span class="showcase-feature-title">Drinks While You Browse</span>
+        <span class="showcase-feature-desc">Cold drinks served all day. No minimum, no rush, no upsell.</span>
+      </div>
+      <div class="showcase-feature sf-patronus">
+        <span class="showcase-feature-label">Gaming Lounge</span>
+        <span class="showcase-feature-title">Stay as Long as You Want</span>
+        <span class="showcase-feature-desc">Consoles, screens, real seats. The longer you stay, the better it gets.</span>
+      </div>
+      <div class="showcase-feature sf-green">
+        <span class="showcase-feature-label">Chill Zone</span>
+        <span class="showcase-feature-title">No Rush. Ever.</span>
+        <span class="showcase-feature-desc">Low lights, comfortable couches, island pace. Nobody's watching the clock.</span>
+      </div>
+      <div class="showcase-feature sf-gold">
+        <span class="showcase-feature-label">Trusted</span>
+        <span class="showcase-feature-title">5.0 ★ · 150+ Reviews</span>
+        <span class="showcase-feature-desc">Guests from over 40 countries — and they keep coming back. The reviews speak for themselves.</span>
+      </div>
+      <div class="showcase-feature sf-red">
+        <span class="showcase-feature-label">Events</span>
+        <span class="showcase-feature-title">Something's Always On</span>
+        <span class="showcase-feature-desc">Chess club, movie nights, art sessions, sommelier evenings. Check the board when you walk in.</span>
+      </div>
+    </div>
   </section>
 
   <!-- FIND US -->
@@ -918,11 +1238,11 @@
       </div>
       <div class="map-wrapper">
         <iframe
-          src="https://maps.google.com/maps?q=koh+phangan+surat+thani+thailand&t=&z=13&ie=UTF8&iwloc=&output=embed"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15730.525539207503!2d99.98773419999999!3d9.7124677!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3054ffe9f6df4edf%3A0xf8735a84f5193e1a!2sWoody%20Weed%20Pecker!5e0!3m2!1sen!2sde!4v1775913185928!5m2!1sen!2sde"
           allowfullscreen=""
           loading="lazy"
           referrerpolicy="no-referrer-when-downgrade"
-          title="Koh Phangan location map">
+          title="Woody Weed Pecker location">
         </iframe>
       </div>
       <div class="findus-ctas">
@@ -942,7 +1262,7 @@
   <footer>
     <div class="footer-inner">
       <div class="footer-left">
-        <p class="footer-copy" data-i18n="footer_copy">© 2025 WOODY WEEDPECKER · KOH PHANGAN, THAILAND</p>
+        <p class="footer-copy" data-i18n="footer_copy">© 2026 WOODY WEEDPECKER · KOH PHANGAN, THAILAND</p>
         <p class="footer-disclaimer" data-i18n="footer_disclaimer">For adults only. Please consume responsibly and in accordance with local laws.</p>
       </div>
       <div class="footer-right">
@@ -965,6 +1285,8 @@
     gsap.registerPlugin(ScrollToPlugin);
 
     function navScroll(id) {
+      document.querySelector('.nav-links').classList.remove('open');
+      document.getElementById('nav-hamburger').classList.remove('open');
       gsap.to(window, { duration: 1.0, scrollTo: { y: '#' + id, offsetY: 76 }, ease: 'power3.inOut' });
     }
 
@@ -973,14 +1295,14 @@
       en: {
         brand_name: 'WOODY WEEDPECKER',
         brand_tagline: 'CANNABIS SOMMELIER · KOH PHANGAN',
-        nav_strains: 'STRAINS',
-        nav_certifications: 'CERTIFICATIONS',
+        nav_experience: 'EXPERIENCE',
         nav_findus: 'FIND US',
+        nav_order: 'ORDER',
         hero_eyebrow: 'PREMIUM · LAB CERTIFIED · PHANGAN',
         hero_headline: 'The Art of Fine Cannabis',
         hero_sub: "We source, curate, and certify every strain. Because connoisseurs deserve to know exactly what they're enjoying.",
         cta_menu: 'VIEW MENU',
-        cta_story: 'Our story',
+        cta_story: 'The experience',
         pill_tropicana: 'TROPICANA',
         pill_patronus: 'PATRONUS',
         pill_topweed: 'TOP WEED',
@@ -1020,14 +1342,14 @@
       th: {
         brand_name: 'วูดี้ วีดเพ็กเกอร์',
         brand_tagline: 'โซมมอลิเยร์กัญชา · เกาะพะงัน',
-        nav_strains: 'สายพันธุ์',
-        nav_certifications: 'การรับรอง',
+        nav_experience: 'ประสบการณ์',
         nav_findus: 'หาเรา',
+        nav_order: 'สั่งซื้อ',
         hero_eyebrow: 'พรีเมียม · ผ่านการรับรองห้องปฏิบัติการ · เกาะพะงัน',
         hero_headline: 'ศิลปะแห่งกัญชาชั้นเลิศ',
         hero_sub: 'เราคัดสรร จัดเตรียม และรับรองทุกสายพันธุ์ เพราะผู้รู้สมควรรู้ว่าตนเองกำลังเพลิดเพลินกับอะไร',
         cta_menu: 'ดูเมนู',
-        cta_story: 'เรื่องราวของเรา',
+        cta_story: 'ประสบการณ์',
         pill_tropicana: 'โทรปิกาน่า',
         pill_patronus: 'แพโทรนัส',
         pill_topweed: 'ท็อปวีด',
@@ -1067,14 +1389,14 @@
       ru: {
         brand_name: 'WOODY WEEDPECKER',
         brand_tagline: 'СОМЕЛЬЕ ПО КАННАБИСУ · КО ПАНГАН',
-        nav_strains: 'СОРТА',
-        nav_certifications: 'СЕРТИФИКАТЫ',
+        nav_experience: 'АТМОСФЕРА',
         nav_findus: 'КАК НАС НАЙТИ',
+        nav_order: 'ЗАКАЗАТЬ',
         hero_eyebrow: 'ПРЕМИУМ · С ЛАБОРАТОРИЕЙ · ПАНГАН',
         hero_headline: 'Искусство изысканного каннабиса',
         hero_sub: 'Мы отбираем, курируем и сертифицируем каждый сорт — чтобы ценители точно знали, что пробуют.',
         cta_menu: 'МЕНЮ',
-        cta_story: 'О нас',
+        cta_story: 'Атмосфера',
         pill_tropicana: 'TROPICANA',
         pill_patronus: 'PATRONUS',
         pill_topweed: 'TOP WEED',
@@ -1118,16 +1440,52 @@
         const k = el.getAttribute('data-i18n');
         if (i18n[lang][k] !== undefined) el.textContent = i18n[lang][k];
       });
-      document.getElementById('btn-en').classList.toggle('active', lang === 'en');
-      document.getElementById('btn-th').classList.toggle('active', lang === 'th');
-      document.getElementById('btn-ru').classList.toggle('active', lang === 'ru');
-      document.documentElement.lang = lang === 'en' ? 'en' : lang === 'th' ? 'th' : 'ru';
+      const labels = { en: 'EN', th: 'ไทย', ru: 'RU' };
+      document.getElementById('lang-current').textContent = labels[lang];
+      document.querySelectorAll('.lang-option').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.lang === lang);
+      });
+      closeLangDropdown();
+      document.documentElement.lang = lang;
     }
+
+    function closeLangDropdown() {
+      const dd = document.getElementById('lang-dropdown');
+      dd.classList.remove('open');
+      document.getElementById('lang-trigger').setAttribute('aria-expanded', 'false');
+    }
+
+    (function initNav() {
+      const hamburger = document.getElementById('nav-hamburger');
+      const navLinks = document.querySelector('.nav-links');
+      const langTrigger = document.getElementById('lang-trigger');
+      const langDropdown = document.getElementById('lang-dropdown');
+
+      hamburger.addEventListener('click', () => {
+        const isOpen = navLinks.classList.toggle('open');
+        hamburger.classList.toggle('open', isOpen);
+        if (isOpen) closeLangDropdown();
+      });
+
+      langTrigger.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isOpen = langDropdown.classList.toggle('open');
+        langTrigger.setAttribute('aria-expanded', String(isOpen));
+      });
+
+      document.addEventListener('click', (e) => {
+        if (!langDropdown.contains(e.target)) closeLangDropdown();
+        if (!navLinks.contains(e.target) && !hamburger.contains(e.target)) {
+          navLinks.classList.remove('open');
+          hamburger.classList.remove('open');
+        }
+      });
+    })();
 
     /* ── THREE.JS CANNABIS BUD ────────────────────────────────── */
     (function initThree() {
       const canvas = document.getElementById('three-canvas');
-      const W = 300, H = 300;
+      const W = 220, H = 220;
 
       const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
       renderer.setSize(W, H);
@@ -1198,6 +1556,40 @@
 
       let rotSpeed = 0.003;
 
+      const PARTICLE_COUNT = 90;
+      const particleGeo = new THREE.BufferGeometry();
+      const particlePos = new Float32Array(PARTICLE_COUNT * 3);
+      const particleData = [];
+
+      for (let i = 0; i < PARTICLE_COUNT; i++) {
+        const r = 0.7 + Math.random() * 0.9;
+        const theta = Math.random() * Math.PI * 2;
+        const phi = Math.acos(2 * Math.random() - 1);
+        particleData.push({
+          r,
+          theta,
+          phi,
+          phaseX: Math.random() * Math.PI * 2,
+          phaseY: Math.random() * Math.PI * 2,
+          speed: 0.08 + Math.random() * 0.12,
+        });
+        particlePos[i * 3]     = r * Math.sin(phi) * Math.cos(theta);
+        particlePos[i * 3 + 1] = r * Math.cos(phi);
+        particlePos[i * 3 + 2] = r * Math.sin(phi) * Math.sin(theta);
+      }
+
+      particleGeo.setAttribute('position', new THREE.BufferAttribute(particlePos, 3));
+      const particleMat = new THREE.PointsMaterial({
+        color: 0xd4c85a,
+        size: 0.018,
+        sizeAttenuation: true,
+        transparent: true,
+        opacity: 0.65,
+        depthWrite: false,
+      });
+      const particleMesh = new THREE.Points(particleGeo, particleMat);
+      scene.add(particleMesh);
+
       const strains = {
         tropicana: {
           ptColor: new THREE.Color(0xd4c85a),
@@ -1258,7 +1650,7 @@
         },
       };
 
-      const BAR_KEYS = ['clarity', 'euphoria', 'bodylift', 'potency', 'relaxation'];
+      const BAR_KEYS = ['bodylift', 'potency', 'relaxation'];
 
       function updateStrainStats(name) {
         const d = strainStats[name];
@@ -1315,6 +1707,8 @@
         const spObj = { v: rotSpeed };
         gsap.to(spObj, { v: s.speed, duration: dur, ease: 'power2.inOut', onUpdate: () => { rotSpeed = spObj.v; } });
 
+        animColor(particleMat, 'color', s.ptColor, dur);
+
         if (budRoot) gsap.to(budRoot.rotation, { y: budRoot.rotation.y + Math.PI * 0.6, duration: 0.9, ease: 'power2.out' });
 
         updateStrainStats(name);
@@ -1328,6 +1722,21 @@
         if (budRoot) budRoot.rotation.y += rotSpeed;
         pt.position.set(Math.sin(t * 0.7) * 2.8, Math.cos(t * 0.4) * 1.5, Math.cos(t * 0.7) * 2.8);
         pt2.position.set(Math.sin(t * 0.5 + 2) * 2.2, Math.sin(t * 0.3) * 1.2, Math.cos(t * 0.5 + 2) * 2.2);
+
+        const pAttr = particleGeo.attributes.position;
+        for (let i = 0; i < PARTICLE_COUNT; i++) {
+          const d = particleData[i];
+          const tl = t * d.speed;
+          const dynPhi   = d.phi   + Math.sin(tl + d.phaseX) * 0.28;
+          const dynTheta = d.theta + tl + Math.sin(tl * 0.6 + d.phaseY) * 0.2;
+          pAttr.setXYZ(i,
+            d.r * Math.sin(dynPhi) * Math.cos(dynTheta),
+            d.r * Math.cos(dynPhi),
+            d.r * Math.sin(dynPhi) * Math.sin(dynTheta)
+          );
+        }
+        pAttr.needsUpdate = true;
+
         renderer.render(scene, camera);
       }
       animate();
