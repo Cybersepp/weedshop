@@ -47,10 +47,13 @@ const i18n = {
     findus_label: 'LOCATION',
     findus_title: 'Find Us',
     findus_sub: 'Koh Phangan, Surat Thani, Thailand',
+    contact_instagram_label: 'Instagram',
+    contact_phone_label: 'Phone',
+    contact_whatsapp_label: 'WhatsApp',
+    contact_email_label: 'Email',
     btn_instagram: 'INSTAGRAM',
     btn_whatsapp: 'WHATSAPP',
     btn_email: 'EMAIL',
-    btn_telegram: 'ORDER ON TELEGRAM',
     funfacts_label: 'FUN FACTS',
     funfacts_title: 'Did you know?',
     funfact_1: 'Cannabis contains over 100 distinct cannabinoids — THC and CBD are just the two most famous.',
@@ -96,7 +99,13 @@ const i18n = {
     partners_cta_title: 'Get the full proposal',
     partners_cta_text: 'The complete proposal covers financials, terms, and everything you need to decide.',
     partners_download: 'DOWNLOAD FULL PROPOSAL',
-    partners_contact: 'TALK ON TELEGRAM',
+    partners_contact: "Let's talk",
+    age_eyebrow: 'BEFORE YOU COME IN',
+    age_question: 'Old enough for the good stuff?',
+    age_subtext: "Thai law starts cannabis at 20. Quick yes and you're in.",
+    age_confirm: "YES, I'M 20+",
+    age_decline: 'NOT YET',
+    age_disclaimer: "Not for those who are pregnant or breastfeeding. Please enjoy responsibly — for everyone's sake.",
   },
   th: {
     brand_name: 'วูดี้ วีดเพ็กเกอร์',
@@ -145,10 +154,13 @@ const i18n = {
     findus_label: 'ที่ตั้ง',
     findus_title: 'หาเรา',
     findus_sub: 'เกาะพะงัน, สุราษฎร์ธานี, ประเทศไทย',
+    contact_instagram_label: 'อินสตาแกรม',
+    contact_phone_label: 'โทรศัพท์',
+    contact_whatsapp_label: 'WhatsApp',
+    contact_email_label: 'อีเมล',
     btn_instagram: 'INSTAGRAM',
     btn_whatsapp: 'WHATSAPP',
     btn_email: 'EMAIL',
-    btn_telegram: 'สั่งผ่าน Telegram',
     funfacts_label: 'เกร็ดน่ารู้',
     funfacts_title: 'รู้หรือไม่?',
     funfact_1: 'กัญชาประกอบด้วยแคนนาบินอยด์มากกว่า 100 ชนิด — THC และ CBD เป็นเพียงสองตัวที่มีชื่อเสียงที่สุด',
@@ -194,7 +206,13 @@ const i18n = {
     partners_cta_title: 'รับข้อเสนอฉบับเต็ม',
     partners_cta_text: 'ข้อเสนอฉบับเต็มครอบคลุมเรื่องการเงิน เงื่อนไข และทุกสิ่งที่คุณต้องใช้ในการตัดสินใจ',
     partners_download: 'ดาวน์โหลดข้อเสนอฉบับเต็ม',
-    partners_contact: 'พูดคุยทาง TELEGRAM',
+    partners_contact: 'มาคุยกัน',
+    age_eyebrow: 'ก่อนเข้ามา',
+    age_question: 'อายุครบ 20 ปีหรือยัง?',
+    age_subtext: 'กฎหมายไทยกำหนดอายุของผู้บริโภคกัญชาที่ 20 ปี ตอบใช่แล้วเข้ามาได้เลย',
+    age_confirm: 'ใช่ ครบ 20 แล้ว',
+    age_decline: 'ยังก่อน',
+    age_disclaimer: 'ไม่เหมาะสำหรับผู้ตั้งครรภ์หรือให้นมบุตร โปรดบริโภคอย่างมีความรับผิดชอบ — เพื่อคุณและคนรอบข้าง',
   },
   ru: {
     brand_name: 'WOODY WEEDPECKER',
@@ -243,10 +261,13 @@ const i18n = {
     findus_label: 'ЛОКАЦИЯ',
     findus_title: 'Как нас найти',
     findus_sub: 'Ко Панган, Сурат Тани, Таиланд',
+    contact_instagram_label: 'Instagram',
+    contact_phone_label: 'Телефон',
+    contact_whatsapp_label: 'WhatsApp',
+    contact_email_label: 'Email',
     btn_instagram: 'INSTAGRAM',
     btn_whatsapp: 'WHATSAPP',
     btn_email: 'EMAIL',
-    btn_telegram: 'ЗАКАЗ В TELEGRAM',
     funfacts_label: 'ИНТЕРЕСНЫЕ ФАКТЫ',
     funfacts_title: 'А вы знали?',
     funfact_1: 'Каннабис содержит более 100 различных каннабиноидов — THC и CBD лишь два самых известных.',
@@ -292,7 +313,13 @@ const i18n = {
     partners_cta_title: 'Получите полное предложение',
     partners_cta_text: 'Полное предложение включает финансовые условия, требования и всё, что нужно для решения.',
     partners_download: 'СКАЧАТЬ ПОЛНОЕ ПРЕДЛОЖЕНИЕ',
-    partners_contact: 'НАПИСАТЬ В TELEGRAM',
+    partners_contact: 'Давайте обсудим',
+    age_eyebrow: 'ПРЕЖДЕ ЧЕМ ВОЙТИ',
+    age_question: 'Вам уже 20 или больше?',
+    age_subtext: 'По законам Таиланда каннабис — с 20 лет. Одно «да» — и заходите.',
+    age_confirm: 'ДА, МНЕ 20+',
+    age_decline: 'ПОКА НЕТ',
+    age_disclaimer: 'Не для беременных и кормящих. Употребляйте с умом — это важно.',
   }
 };
 
@@ -343,5 +370,29 @@ function closeLangDropdown() {
       navLinks.classList.remove('open');
       hamburger.classList.remove('open');
     }
+  });
+})();
+
+/* ── AGE GATE ─────────────────────────────────────────────── */
+(function initAgeGate() {
+  const gate = document.getElementById('age-gate');
+  if (!gate) return;
+  const KEY = 'wwp-age-confirmed';
+  let stored = null;
+  try { stored = localStorage.getItem(KEY); } catch (e) {}
+  if (stored === '1') {
+    gate.classList.add('hidden');
+    return;
+  }
+  document.body.style.overflow = 'hidden';
+  const confirmBtn = gate.querySelector('.age-gate-confirm');
+  const declineBtn = gate.querySelector('.age-gate-decline');
+  if (confirmBtn) confirmBtn.addEventListener('click', () => {
+    try { localStorage.setItem(KEY, '1'); } catch (e) {}
+    gate.classList.add('hidden');
+    document.body.style.overflow = '';
+  });
+  if (declineBtn) declineBtn.addEventListener('click', () => {
+    window.location.href = 'https://www.google.com/';
   });
 })();

@@ -62,7 +62,7 @@ Always show these CTAs prominently on product pages and in the navbar/footer.
 
 ## Age Verification
 
-Show a simple age gate modal on first visit (localStorage to remember). User must confirm they are 18+ to enter.
+Modal shown on first visit (localStorage to remember). Thai cannabis law requires **20+**, not 18 — the gate uses 20. Markup duplicated in each HTML page; behavior in `app.js` `initAgeGate`. Decline redirects away. Includes a pregnant/breastfeeding-exclusion disclaimer per Thai regulations.
 
 ## Design Direction
 

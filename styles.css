@@ -752,15 +752,49 @@ a { color: inherit; text-decoration: none; }
   filter: grayscale(0.25) brightness(0.82);
 }
 
-.findus-ctas {
+.findus-contact {
+  list-style: none;
+  margin: 0;
+  padding: 0;
   display: flex;
-  gap: 14px;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
+  flex-direction: column;
+  gap: 18px;
+  max-width: 420px;
+  margin-inline: auto;
 }
 
-.btn-instagram, .btn-telegram, .btn-whatsapp, .btn-email {
+.findus-contact-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  text-align: center;
+}
+
+.findus-contact-label {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+
+.findus-contact-link {
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--gold);
+  text-decoration: none;
+  user-select: all;
+  transition: color 0.2s, opacity 0.2s;
+}
+
+.findus-contact-link:hover {
+  color: var(--text);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.btn-instagram, .btn-whatsapp, .btn-email {
   display: flex;
   align-items: center;
   gap: 10px;
@@ -782,19 +816,7 @@ a { color: inherit; text-decoration: none; }
 
 .btn-instagram:hover, .btn-whatsapp:hover, .btn-email:hover { border-color: rgba(255,255,255,0.18); color: var(--text); }
 
-.btn-telegram {
-  border: 1px solid rgba(90,154,72,0.4);
-  background: rgba(90,154,72,0.09);
-  color: var(--green-lime);
-}
-
-.btn-telegram:hover {
-  background: rgba(90,154,72,0.18);
-  border-color: rgba(90,154,72,0.7);
-  box-shadow: 0 4px 24px rgba(90,154,72,0.16);
-}
-
-.btn-instagram svg, .btn-telegram svg, .btn-whatsapp svg, .btn-email svg, .nav-order-btn svg {
+.btn-instagram svg, .btn-whatsapp svg, .btn-email svg, .nav-order-btn svg {
   width: 15px; height: 15px;
   stroke: currentColor; fill: none;
   stroke-width: 1.8;
@@ -1049,8 +1071,8 @@ footer {
 @media (max-width: 600px) {
   .showcase-features { grid-template-columns: 1fr; }
   .hero-ctas { flex-direction: column; align-items: flex-start; }
-  .findus-ctas { flex-direction: column; width: 100%; }
-  .btn-instagram, .btn-telegram, .btn-whatsapp, .btn-email { justify-content: center; }
+  .findus-contact { width: 100%; }
+  .btn-instagram, .btn-whatsapp, .btn-email { justify-content: center; width: 100%; }
   .footer-inner { flex-direction: column; align-items: flex-start; }
   .hero-right { padding: 48px 20px 16px; }
   .strain-stats { width: calc(100vw - 40px); padding: 18px 18px 16px; }
@@ -1071,15 +1093,24 @@ footer {
   position: fixed;
   inset: 0;
   z-index: 9999;
-  background: var(--bg);
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 35%, rgba(90,154,72,0.08) 0%, transparent 65%),
+    var(--bg);
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 24px;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.45s ease, visibility 0.45s ease;
 }
-#age-gate.hidden { display: none; }
+#age-gate.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
 
-.age-gate-card { text-align: center; max-width: 400px; width: 100%; }
+.age-gate-card { text-align: center; max-width: 440px; width: 100%; }
 
 .age-gate-eyebrow {
   font-size: 10px;
@@ -1109,10 +1140,12 @@ footer {
 }
 
 .age-gate-question {
-  font-size: 17px;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(22px, 3vw, 28px);
+  font-weight: normal;
   color: var(--text);
-  line-height: 1.5;
-  margin-bottom: 28px;
+  line-height: 1.35;
+  margin-bottom: 14px;
 }
 
 .age-gate-btns {
@@ -1160,6 +1193,28 @@ footer {
   font-size: 10px;
   color: var(--text-faint);
   letter-spacing: 0.04em;
+  line-height: 1.7;
+  max-width: 360px;
+  margin: 0 auto;
+}
+
+.age-gate-mascot {
+  display: block;
+  width: 60px;
+  height: 60px;
+  margin: 0 auto 22px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(90,154,72,0.3);
+  background: var(--bg-card);
+  object-fit: cover;
+}
+
+.age-gate-subtext {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.55;
+  max-width: 340px;
+  margin: 0 auto 32px;
 }
 
 /* ── ABOUT PAGE ──────────────────────────────────────────── */
@@ -1296,7 +1351,7 @@ footer {
 @media (max-width: 600px) {
   .about-cta-btns { flex-direction: column; width: 100%; }
   .about-cta-btns .btn-instagram,
-  .about-cta-btns .btn-telegram { justify-content: center; width: 100%; }
+  .about-cta-btns .btn-instagram { justify-content: center; width: 100%; }
 }
 
 /* ── PARTNERSHIPS PAGE ───────────────────────────────────── */
@@ -1497,12 +1552,41 @@ footer {
   margin: 0 auto 32px;
 }
 
+.partners-cta-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+}
+
 .partners-cta-btns {
   display: flex;
   gap: 16px;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
+}
+
+.partners-talk-btn {
+  border: 1px solid var(--border);
+  background: transparent;
+  font-family: inherit;
+}
+
+.partners-talk-btn.is-active {
+  border-color: rgba(255,255,255,0.18);
+  color: var(--text);
+}
+
+.partners-talk-panel {
+  width: 100%;
+  max-width: 420px;
+  margin-top: 28px;
+  padding-top: 4px;
+}
+
+.partners-talk-panel .findus-contact {
+  margin-inline: auto;
 }
 
 @media (max-width: 900px) {
@@ -1519,7 +1603,8 @@ footer {
 @media (max-width: 600px) {
   .partners-cta-btns { flex-direction: column; width: 100%; }
   .partners-cta-btns .btn-primary,
-  .partners-cta-btns .btn-telegram { justify-content: center; width: 100%; }
+  .partners-cta-btns .btn-email,
+  .partners-talk-btn { justify-content: center; width: 100%; }
 }
 
 /* ── FUN FACTS ───────────────────────────────────────────── */
