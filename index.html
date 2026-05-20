@@ -41,10 +41,6 @@
     </ul>
 
     <div class="nav-right">
-      <a href="https://t.me/Woody_WeedPecker_bot?start=ref_8420420131" target="_blank" rel="noopener noreferrer" class="nav-order-btn">
-        <svg viewBox="0 0 24 24"><path d="M22 2L11 13"/><path d="M22 2L15 22l-4-9-9-4 20-7z"/></svg>
-        <span data-i18n="nav_order">ORDER</span>
-      </a>
       <div class="lang-dropdown" id="lang-dropdown">
         <button class="lang-trigger" id="lang-trigger" aria-haspopup="listbox" aria-expanded="false">
           <span id="lang-current">EN</span>
@@ -200,6 +196,23 @@
     </div>
   </section>
 
+  <!-- FUN FACTS -->
+  <section id="funfacts">
+    <div class="funfacts-inner">
+      <p class="section-label" data-i18n="funfacts_label">FUN FACTS</p>
+      <h2 class="section-title" data-i18n="funfacts_title">Did you know?</h2>
+      <div class="funfacts-card">
+        <div class="funfacts-stage">
+          <p class="funfact is-active" data-i18n="funfact_1">Cannabis contains over 100 distinct cannabinoids — THC and CBD are just the two most famous.</p>
+          <p class="funfact" data-i18n="funfact_2">Terpenes — the same compounds that scent pine, citrus, and lavender — shape how a strain actually feels.</p>
+          <p class="funfact" data-i18n="funfact_3">Sativa, indica, hybrid is the classic shorthand. Most modern strains are crossbreeds — the lineage matters more than the label.</p>
+          <p class="funfact" data-i18n="funfact_4">A slow cure — drying flower in sealed jars for weeks — can change the smoke more than the strain itself.</p>
+          <p class="funfact" data-i18n="funfact_5">Thai cannabis culture runs deep. Long before legalization, it was a quiet staple in northern Thai kitchens.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- FIND US -->
   <section id="findus">
     <div class="findus-inner">
@@ -222,9 +235,13 @@
           <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
           <span data-i18n="btn_instagram">INSTAGRAM</span>
         </a>
-        <a href="https://t.me/Woody_WeedPecker_bot?start=ref_8420420131" target="_blank" rel="noopener noreferrer" class="btn-telegram">
-          <svg viewBox="0 0 24 24"><path d="M22 2L11 13"/><path d="M22 2L15 22l-4-9-9-4 20-7z"/></svg>
-          <span data-i18n="btn_telegram">ORDER ON TELEGRAM</span>
+        <a href="https://wa.me/66994093571" target="_blank" rel="noopener noreferrer" class="btn-whatsapp">
+          <svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+          <span data-i18n="btn_whatsapp">WHATSAPP</span>
+        </a>
+        <a href="mailto:woodyweedpeckerkpg@proton.me" class="btn-email">
+          <svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2 6 12 13 22 6"/></svg>
+          <span data-i18n="btn_email">EMAIL</span>
         </a>
       </div>
     </div>
@@ -283,6 +300,7 @@
 
       let budRoot = null;
       let woodyBaseScale = 1;
+      let woodyBaseY = 0;
       const budMaterials = [];
 
       function collectMaterials(root) {
@@ -316,7 +334,8 @@
           const box2 = new THREE.Box3().setFromObject(budRoot);
           const c = box2.getCenter(new THREE.Vector3());
           budRoot.position.sub(c);
-          budRoot.rotation.y = -0.45;
+          woodyBaseY = budRoot.position.y;
+          budRoot.rotation.y = IDLE_BASE_Y;
           collectMaterials(budRoot);
           woodyBaseScale = budRoot.scale.x;
           budRoot.add(glowHalo);
@@ -346,7 +365,10 @@
       scene.add(pt2);
 
       let rotSpeed = 0.003;
+      let idleTempo = 1;
       let buffPulse = 0;
+      const IDLE_BASE_Y = -0.45;
+      let strainTween = null;
 
       const glowHalo = new THREE.Mesh(
         new THREE.SphereGeometry(1.12, 32, 32),
@@ -413,9 +435,9 @@
           rimColor: new THREE.Color(0xfff8e0),
           emissiveFlash: new THREE.Color(0xffee88),
           ringCss: '#ffe066',
-          speed: 0.005,
+          speed: 0.0034,
           ptIntensity: 5.2,
-          scaleBoost: 1.1,
+          scaleBoost: 1.04,
         },
         patronus: {
           label: '🛡 POWER UP',
@@ -427,9 +449,9 @@
           rimColor: new THREE.Color(0xf5e8ff),
           emissiveFlash: new THREE.Color(0xddb0ff),
           ringCss: '#d8a8ff',
-          speed: 0.0025,
+          speed: 0.0029,
           ptIntensity: 4.8,
-          scaleBoost: 1.14,
+          scaleBoost: 1.04,
         },
         topweed: {
           label: '✦ MAX POWER',
@@ -441,9 +463,9 @@
           rimColor: new THREE.Color(0xe8ffe0),
           emissiveFlash: new THREE.Color(0xa8ff70),
           ringCss: '#9dff6a',
-          speed: 0.0035,
+          speed: 0.0032,
           ptIntensity: 5,
-          scaleBoost: 1.12,
+          scaleBoost: 1.04,
         },
       };
 
@@ -551,20 +573,18 @@
         gsap.to(iObj, { v: s.ptIntensity, duration: dur, ease: 'power2.out', onUpdate: () => { pt.intensity = iObj.v; } });
 
         const spObj = { v: rotSpeed };
-        gsap.to(spObj, { v: s.speed, duration: dur, ease: 'power2.out', onUpdate: () => { rotSpeed = spObj.v; } });
+        gsap.to(spObj, { v: s.speed, duration: 1.15, ease: 'power1.inOut', onUpdate: () => { rotSpeed = spObj.v; } });
 
-        buffPulse = 1;
+        buffPulse = 0.55;
         triggerBurst(s.burstColor);
 
         if (budRoot) {
           const baseScale = woodyBaseScale;
-          gsap.fromTo(budRoot.scale,
-            { x: baseScale * 0.92, y: baseScale * 0.92, z: baseScale * 0.92 },
-            { x: baseScale * s.scaleBoost, y: baseScale * s.scaleBoost, z: baseScale * s.scaleBoost,
-              duration: 0.35, ease: 'power2.out',
-              onComplete: () => {
-                gsap.to(budRoot.scale, { x: baseScale, y: baseScale, z: baseScale, duration: 0.55, ease: 'elastic.out(1, 0.5)' });
-              } });
+          const peak = baseScale * s.scaleBoost;
+          if (strainTween) strainTween.kill();
+          strainTween = gsap.timeline({ onComplete: () => { strainTween = null; } })
+            .to(budRoot.scale, { x: peak, y: peak, z: peak, duration: 0.42, ease: 'power2.out' })
+            .to(budRoot.scale, { x: baseScale, y: baseScale, z: baseScale, duration: 0.5, ease: 'power2.inOut' });
         }
 
         updateStrainStats(name);
@@ -575,11 +595,28 @@
       function animate() {
         requestAnimationFrame(animate);
         const t = clock.getElapsedTime();
-        if (budRoot) budRoot.rotation.y += rotSpeed;
+        if (budRoot) {
+          const targetTempo = rotSpeed / 0.003;
+          idleTempo += (targetTempo - idleTempo) * 0.035;
+          const tempo = idleTempo;
+          const yaw =
+            IDLE_BASE_Y
+            + Math.sin(t * 0.52 * tempo) * 0.10 * tempo
+            + Math.sin(t * 0.31 * tempo + 1.15) * 0.04 * tempo;
+          const pitch =
+            Math.sin(t * 0.44 * tempo + 0.6) * 0.05 * tempo
+            + Math.sin(t * 0.71 * tempo) * 0.022 * tempo;
+          const roll = Math.sin(t * 0.36 * tempo + 2.0) * 0.032 * tempo;
+          const bob =
+            Math.sin(t * 0.47 * tempo) * 0.011 * tempo
+            + Math.sin(t * 0.89 * tempo + 0.9) * 0.006 * tempo;
+          budRoot.rotation.set(pitch, yaw, roll);
+          budRoot.position.y = woodyBaseY + bob;
+        }
 
         if (buffPulse > 0) {
-          buffPulse -= 0.02;
-          const pulse = 1 + Math.sin(t * 14) * 0.04 * buffPulse;
+          buffPulse -= 0.028;
+          const pulse = 1 + Math.sin(t * 9) * 0.018 * buffPulse;
           glowHalo.scale.setScalar(pulse);
           glowHalo.material.opacity = 0.06 + buffPulse * 0.12;
         }
@@ -615,6 +652,22 @@
       animate();
 
       setTimeout(() => { window.selectStrain('tropicana'); }, 400);
+    })();
+
+    /* ── FUN FACTS ROTATION ───────────────────────────────────── */
+    (function initFunfacts() {
+      const facts = document.querySelectorAll('.funfact');
+      if (facts.length < 2) return;
+      let current = 0;
+      setInterval(() => {
+        const prev = facts[current];
+        current = (current + 1) % facts.length;
+        prev.classList.remove('is-active');
+        prev.classList.add('is-prev');
+        facts[current].classList.remove('is-prev');
+        facts[current].classList.add('is-active');
+        setTimeout(() => prev.classList.remove('is-prev'), 700);
+      }, 5000);
     })();
   </script>
 </body>

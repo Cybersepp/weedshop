@@ -754,12 +754,13 @@ a { color: inherit; text-decoration: none; }
 
 .findus-ctas {
   display: flex;
-  gap: 16px;
+  gap: 14px;
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
 }
 
-.btn-instagram, .btn-telegram {
+.btn-instagram, .btn-telegram, .btn-whatsapp, .btn-email {
   display: flex;
   align-items: center;
   gap: 10px;
@@ -773,13 +774,13 @@ a { color: inherit; text-decoration: none; }
   transition: all 0.24s;
 }
 
-.btn-instagram {
+.btn-instagram, .btn-whatsapp, .btn-email {
   border: 1px solid var(--border);
   background: transparent;
   color: var(--text-muted);
 }
 
-.btn-instagram:hover { border-color: rgba(255,255,255,0.18); color: var(--text); }
+.btn-instagram:hover, .btn-whatsapp:hover, .btn-email:hover { border-color: rgba(255,255,255,0.18); color: var(--text); }
 
 .btn-telegram {
   border: 1px solid rgba(90,154,72,0.4);
@@ -793,7 +794,7 @@ a { color: inherit; text-decoration: none; }
   box-shadow: 0 4px 24px rgba(90,154,72,0.16);
 }
 
-.btn-instagram svg, .btn-telegram svg, .nav-order-btn svg {
+.btn-instagram svg, .btn-telegram svg, .btn-whatsapp svg, .btn-email svg, .nav-order-btn svg {
   width: 15px; height: 15px;
   stroke: currentColor; fill: none;
   stroke-width: 1.8;
@@ -1049,7 +1050,7 @@ footer {
   .showcase-features { grid-template-columns: 1fr; }
   .hero-ctas { flex-direction: column; align-items: flex-start; }
   .findus-ctas { flex-direction: column; width: 100%; }
-  .btn-instagram, .btn-telegram { justify-content: center; }
+  .btn-instagram, .btn-telegram, .btn-whatsapp, .btn-email { justify-content: center; }
   .footer-inner { flex-direction: column; align-items: flex-start; }
   .hero-right { padding: 48px 20px 16px; }
   .strain-stats { width: calc(100vw - 40px); padding: 18px 18px 16px; }
@@ -1519,4 +1520,90 @@ footer {
   .partners-cta-btns { flex-direction: column; width: 100%; }
   .partners-cta-btns .btn-primary,
   .partners-cta-btns .btn-telegram { justify-content: center; width: 100%; }
+}
+
+/* ── FUN FACTS ───────────────────────────────────────────── */
+#funfacts {
+  padding: 90px 80px;
+  background: var(--bg);
+  border-top: 1px solid var(--border);
+}
+
+.funfacts-inner {
+  max-width: 880px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+#funfacts .section-title {
+  margin-bottom: 44px;
+}
+
+.funfacts-card {
+  position: relative;
+  max-width: 720px;
+  margin: 0 auto;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 56px 44px;
+  overflow: hidden;
+}
+
+.funfacts-card::before {
+  content: '\201C';
+  position: absolute;
+  top: -56px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 280px;
+  line-height: 1;
+  color: var(--gold);
+  opacity: 0.08;
+  pointer-events: none;
+  user-select: none;
+}
+
+.funfacts-stage {
+  position: relative;
+  min-height: 140px;
+  z-index: 1;
+}
+
+.funfact {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(20px, 2.4vw, 26px);
+  line-height: 1.55;
+  color: var(--text);
+  opacity: 0;
+  transform: translateX(40px);
+  transition: opacity 0.6s cubic-bezier(0.4,0,0.2,1), transform 0.6s cubic-bezier(0.4,0,0.2,1);
+}
+
+.funfact.is-active {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.funfact.is-prev {
+  opacity: 0;
+  transform: translateX(-40px);
+}
+
+@media (max-width: 900px) {
+  #funfacts { padding: 72px 28px; }
+  .funfacts-card { padding: 44px 28px; }
+  .funfacts-card::before { font-size: 200px; top: -40px; }
+  .funfacts-stage { min-height: 180px; }
+}
+
+@media (max-width: 600px) {
+  .funfacts-card { padding: 36px 22px; }
+  .funfacts-card::before { font-size: 160px; top: -32px; }
+  .funfacts-stage { min-height: 240px; }
 }
