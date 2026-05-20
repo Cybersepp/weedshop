@@ -1692,3 +1692,110 @@ footer {
   .funfacts-card::before { font-size: 160px; top: -32px; }
   .funfacts-stage { min-height: 240px; }
 }
+
+/* ── PRIVACY PAGE ────────────────────────────────────────── */
+.privacy-header {
+  padding: 120px 28px 36px;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+}
+
+.privacy-eyebrow {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 14px;
+}
+
+.privacy-title {
+  font-size: clamp(28px, 3.6vw, 44px);
+  font-weight: normal;
+  line-height: 1.15;
+  color: var(--text);
+  letter-spacing: -0.01em;
+}
+
+.privacy-body {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 64px 28px 88px;
+}
+
+.privacy-lead {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(18px, 2.1vw, 22px);
+  line-height: 1.55;
+  color: var(--text);
+  margin-bottom: 24px;
+}
+
+.privacy-section {
+  margin-top: 36px;
+}
+
+.privacy-section-title {
+  font-size: 17px;
+  font-weight: normal;
+  color: var(--text);
+  letter-spacing: 0.01em;
+  margin-bottom: 12px;
+}
+
+.privacy-section p {
+  font-size: 15px;
+  line-height: 1.8;
+  color: #c2c8b4;
+}
+
+.privacy-section p + p {
+  margin-top: 14px;
+}
+
+.privacy-contact {
+  margin-top: 14px;
+}
+
+.privacy-contact a {
+  color: var(--green-lime);
+  border-bottom: 1px solid rgba(90,154,72,0.3);
+  padding-bottom: 1px;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.privacy-contact a:hover {
+  color: var(--green-lime-hover);
+  border-color: rgba(90,154,72,0.6);
+}
+
+.privacy-updated {
+  margin-top: 52px;
+  font-size: 11px;
+  color: var(--text-faint);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.footer-link {
+  font-size: 10px;
+  color: var(--text-faint);
+  letter-spacing: 0.06em;
+  text-decoration: underline;
+  text-decoration-color: rgba(255,255,255,0.1);
+  text-underline-offset: 3px;
+  display: inline-block;
+  margin-top: 4px;
+  transition: color 0.2s, text-decoration-color 0.2s;
+}
+
+.footer-link:hover {
+  color: var(--text-muted);
+  text-decoration-color: rgba(255,255,255,0.3);
+}
+
+@media (max-width: 900px) {
+  .privacy-header { padding: 96px 24px 30px; }
+  .privacy-body { padding: 48px 24px 72px; }
+}

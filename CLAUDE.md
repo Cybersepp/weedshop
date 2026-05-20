@@ -13,6 +13,7 @@ Premium cannabis shop and cannabis sommelier mockup website based in Koh Phangan
 index.html                       # Homepage — hero, showcase, Find Us
 about.html                       # Brand story
 partnerships.html                # Franchise opportunity (links partnerships_ru.pdf)
+privacy.html                     # Privacy / PDPA notice (linked from footer)
 styles.css                       # Shared theme — every page links this
 app.js                           # Shared logic — i18n, navbar, language dropdown
 logo.png                         # Navbar mascot
