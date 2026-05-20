@@ -10,11 +10,17 @@ Premium cannabis shop and cannabis sommelier mockup website based in Koh Phangan
 ## Project Structure
 
 ```
-index.html      # Single-file app — all HTML, CSS, and JS inline
-logo.png        # Navbar mascot image
-weed_bud.glb    # 3D model for the hero section
-docs/           # Documentation
-specs/          # Requirements and specs
+index.html                       # Homepage — hero, showcase, Find Us
+about.html                       # Brand story
+partnerships.html                # Franchise opportunity (links partnerships_ru.pdf)
+styles.css                       # Shared theme — every page links this
+app.js                           # Shared logic — i18n, navbar, language dropdown
+logo.png                         # Navbar mascot
+woody_woodpecker_movie_head.glb  # 3D hero model
+pics/                            # Photos used in showcase and page heroes
+partnerships_ru.pdf              # Franchise proposal (linked from partnerships.html)
+docs/                            # Documentation
+specs/                           # Requirements and specs
 ```
 
 ## Tech Stack
@@ -42,9 +48,11 @@ Always show these CTAs prominently on product pages and in the navbar/footer.
 
 ## Conventions
 
-- All code lives in `index.html` — keep it organized with clear section comments
-- Mobile-first responsive design
-- No external CSS/JS files unless strictly necessary — keep it self-contained
+- Shared theme in `styles.css`; shared JS (i18n, navbar, language dropdown) in `app.js`. Page-specific code (Three.js, GSAP scroll, strain interactions) stays inline in the page.
+- Each HTML page duplicates the navbar and footer markup — there is no template/include system.
+- i18n is a single dictionary in `app.js` covering all pages, with `data-i18n` attributes on translatable elements.
+- Mobile-first responsive design.
+- Add new shared files only when content is truly shared across pages.
 
 ## What NOT to Do
 

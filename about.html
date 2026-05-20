@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About — Woody Weedpecker</title>
+  <meta name="description" content="The story of Woody Weedpecker — a cannabis community, culture, and curated collection of the finest strains on Koh Phangan, Thailand.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav id="navbar">
+    <a class="nav-brand" href="index.html">
+      <div class="nav-mascot" title="Woody Weedpecker mascot"><img src="logo.png" alt="Woody Weedpecker" width="44" height="44" /></div>
+      <div>
+        <div class="nav-brand-name"><span class="nav-brand-piece nav-brand-piece--woody">WOODY</span> <span class="nav-brand-piece nav-brand-piece--weed">WEED</span><span class="nav-brand-piece nav-brand-piece--pecker">PECKER</span></div>
+        <div class="nav-brand-tagline" data-i18n="brand_tagline">CANNABIS SOMMELIER · KOH PHANGAN</div>
+      </div>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="index.html#our-story" data-i18n="nav_experience">EXPERIENCE</a></li>
+      <li><a href="about.html" class="active" data-i18n="nav_about">ABOUT</a></li>
+      <li><a href="partnerships.html" data-i18n="nav_partnerships">PARTNERSHIPS</a></li>
+      <li><a href="index.html#findus" data-i18n="nav_findus">FIND US</a></li>
+      <li class="nav-mobile-order">
+        <a href="https://t.me/Woody_WeedPecker_bot?start=ref_8420420131" target="_blank" rel="noopener noreferrer" class="nav-mobile-order-btn">
+          <svg viewBox="0 0 24 24"><path d="M22 2L11 13"/><path d="M22 2L15 22l-4-9-9-4 20-7z"/></svg>
+          <span data-i18n="nav_order">ORDER</span>
+        </a>
+      </li>
+    </ul>
+
+    <div class="nav-right">
+      <a href="https://t.me/Woody_WeedPecker_bot?start=ref_8420420131" target="_blank" rel="noopener noreferrer" class="nav-order-btn">
+        <svg viewBox="0 0 24 24"><path d="M22 2L11 13"/><path d="M22 2L15 22l-4-9-9-4 20-7z"/></svg>
+        <span data-i18n="nav_order">ORDER</span>
+      </a>
+      <div class="lang-dropdown" id="lang-dropdown">
+        <button class="lang-trigger" id="lang-trigger" aria-haspopup="listbox" aria-expanded="false">
+          <span id="lang-current">EN</span>
+          <svg viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M1 1l4 4 4-4"/></svg>
+        </button>
+        <div class="lang-panel" role="listbox">
+          <button class="lang-option active" data-lang="en" onclick="setLang('en')">EN <span class="lang-option-full">English</span></button>
+          <button class="lang-option" data-lang="th" onclick="setLang('th')">ไทย <span class="lang-option-full">Thai</span></button>
+          <button class="lang-option" data-lang="ru" onclick="setLang('ru')">RU <span class="lang-option-full">Русский</span></button>
+        </div>
+      </div>
+      <button class="nav-hamburger" id="nav-hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ABOUT HERO -->
+  <header class="about-hero">
+    <div class="about-hero-inner">
+      <p class="about-hero-eyebrow" data-i18n="about_eyebrow">ABOUT US</p>
+      <h1 class="about-hero-title" data-i18n="about_title">The Woody Weedpecker Story</h1>
+    </div>
+  </header>
+
+  <!-- ABOUT ARTICLE -->
+  <article class="about-article">
+    <p class="about-lead" data-i18n="about_lead">Woody Weedpecker is not just a cannabis shop. It's a community, a culture, and a carefully assembled collection of the finest cannabis strains from across Thailand.</p>
+    <div class="about-divider"></div>
+    <div class="about-body">
+      <p data-i18n="about_p1">In a short time our brand has become one of the most talked-about and recognizable names on the island — thanks to one guiding principle: quality always comes first.</p>
+      <p data-i18n="about_p2">We work with Thailand's top farms and professional cannabis companies that grow to modern standards. Our partners include farms using organic and living-soil methods, medical companies, and winners and competitors of the largest cannabis cup competitions.</p>
+      <p data-i18n="about_p3">Every strain goes through careful selection before it reaches our shelves. We pay attention not only to THC, but also to flavor, terpene profile, product purity, proper drying, curing, and the overall quality of the effect. It matters to us that a product is not only potent, but genuinely clean, safe, and enjoyable.</p>
+      <p data-i18n="about_p4">Woody Weedpecker is a brand that brings people together from all over the world. In just six months we have built a large international community, gathered a loyal audience, and proven that quality service, an honest approach, and a love for the culture are truly valued.</p>
+    </div>
+    <blockquote class="about-quote" data-i18n="about_quote">But Woody isn't only about cannabis.</blockquote>
+    <div class="about-body">
+      <p data-i18n="about_p5">We create an atmosphere. We host events, tastings, themed nights, gaming tournaments, movie nights, cannabis sommelier evenings, and other activities where people can meet, connect, and become part of our community.</p>
+      <p data-i18n="about_p6">Our shop is a place people come to not just for a product, but for the emotions, the atmosphere, and the people.</p>
+      <p data-i18n="about_p7">Woody Weedpecker keeps growing every day. We develop the brand, build a strong community, search for the best strains, and create a new level of cannabis culture in Thailand.</p>
+    </div>
+  </article>
+
+  <!-- ABOUT CTA -->
+  <section class="about-cta">
+    <p class="about-cta-eyebrow" data-i18n="about_cta_label">VISIT US</p>
+    <h2 class="about-cta-title" data-i18n="about_cta_title">Best Experienced in Person</h2>
+    <div class="about-cta-btns">
+      <a href="https://www.instagram.com/woody.phangan?igsh=MTJqMWJlamI5aGxkNw==" target="_blank" rel="noopener noreferrer" class="btn-instagram">
+        <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        <span data-i18n="btn_instagram">INSTAGRAM</span>
+      </a>
+      <a href="https://t.me/Woody_WeedPecker_bot?start=ref_8420420131" target="_blank" rel="noopener noreferrer" class="btn-telegram">
+        <svg viewBox="0 0 24 24"><path d="M22 2L11 13"/><path d="M22 2L15 22l-4-9-9-4 20-7z"/></svg>
+        <span data-i18n="btn_telegram">ORDER ON TELEGRAM</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-left">
+        <p class="footer-copy" data-i18n="footer_copy">© 2026 WOODY WEEDPECKER · KOH PHANGAN, THAILAND</p>
+        <p class="footer-disclaimer" data-i18n="footer_disclaimer">For adults only. Please consume responsibly and in accordance with local laws.</p>
+      </div>
+      <div class="footer-right">
+        <span class="footer-badge" data-i18n="footer_badge1">CERTIFICATIONS AVAILABLE IN-STORE</span>
+        <span class="footer-badge" data-i18n="footer_badge2">ALL PRODUCTS LAB CERTIFIED</span>
+        <div class="footer-socials">
+          <a href="https://www.instagram.com/woody.phangan?igsh=MTJqMWJlamI5aGxkNw==" target="_blank" rel="noopener noreferrer" class="footer-social-btn" title="Instagram">
+            <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <a href="https://t.me/Woody_WeedPecker_bot?start=ref_8420420131" target="_blank" rel="noopener noreferrer" class="footer-social-btn" title="Telegram">
+            <svg viewBox="0 0 24 24"><path d="M22 2L11 13"/><path d="M22 2L15 22l-4-9-9-4 20-7z"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
