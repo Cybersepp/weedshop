@@ -15,14 +15,13 @@ const i18n = {
     trust_rating: 'Google Rating',
     trust_reviews: 'Reviews',
     trust_strains: 'Unique Strains',
-    pill_tropicana: 'TROPICANA',
-    pill_patronus: 'PATRONUS',
-    pill_topweed: 'STRAWBERRY',
+    pill_tropicana: 'CHERRY BEANS',
+    pill_patronus: 'SOUR LEMON Z',
+    pill_topweed: 'ALIEN OG',
     ss_placeholder: 'PICK A STRAIN',
+    ss_effects_label: 'EFFECTS',
     ss_flavor_label: 'FLAVOR',
-    ss_bodylift: 'BODY LIFT',
-    ss_potency: 'POTENCY',
-    ss_relaxation: 'RELAXATION',
+    ss_vibe_label: 'VIBE',
     exp_label: 'THE EXPERIENCE',
     exp_title_1: 'More Than a Shop.',
     exp_title_2: 'A Place Worth Pecking Into.',
@@ -44,6 +43,15 @@ const i18n = {
     feat6_label: 'Events',
     feat6_title: "Something's Always On",
     feat6_desc: 'Chess club, movie nights, art sessions, sommelier evenings. Check the board when you walk in.',
+    photo_storefront: 'The lane-facing shop — Koh Phangan sun, Woody out front, room to linger',
+    photo_lounge: 'Sommelier lounge — browse the menu at your pace, drink in hand',
+    photo_lounge2: 'Chill zone — low lights, real couches, island pace',
+    photo_storefront_dusk: 'Glass front at dusk — the sign, the glow, worth pecking in',
+    photo_view_storefront: 'View the shop from the street',
+    photo_view_lounge: 'View the sommelier lounge',
+    photo_view_chill: 'View the chill zone',
+    photo_view_dusk: 'View the storefront at dusk',
+    photo_lightbox_close: 'Close image viewer',
     findus_label: 'LOCATION',
     findus_title: 'Come Peck In',
     findus_sub: 'Koh Phangan, Surat Thani, Thailand',
@@ -133,14 +141,13 @@ const i18n = {
     trust_rating: 'คะแนน Google',
     trust_reviews: 'รีวิว',
     trust_strains: 'สายพันธุ์คัดสรร',
-    pill_tropicana: 'โทรปิกาน่า',
-    pill_patronus: 'แพโทรนัส',
-    pill_topweed: 'สตรอว์เบอร์รี่',
+    pill_tropicana: 'เชอร์รี่บีนส์',
+    pill_patronus: 'ซาวร์เลมอน Z',
+    pill_topweed: 'เอเลี่ยน OG',
     ss_placeholder: 'เลือกสายพันธุ์',
+    ss_effects_label: 'เอฟเฟกต์',
     ss_flavor_label: 'กลิ่น',
-    ss_bodylift: 'พลังร่างกาย',
-    ss_potency: 'ความแรง',
-    ss_relaxation: 'ความผ่อนคลาย',
+    ss_vibe_label: 'วайบ์',
     exp_label: 'ประสบการณ์',
     exp_title_1: 'มากกว่าแค่ร้านค้า',
     exp_title_2: 'สถานที่ที่คุ้มค่ากับการแวะเวียน',
@@ -162,6 +169,15 @@ const i18n = {
     feat6_label: 'กิจกรรม',
     feat6_title: 'มีอะไรเสมอ',
     feat6_desc: 'ชมรมหมากรุก คืนหนัง เซสชั่นศิลปะ ค่ำคืนโซมมอลิเยร์ ดูกระดานตอนเข้าร้าน',
+    photo_storefront: 'ร้านหันหน้าสู่ถนน — แดดพะงัน ป้ายวูดี้ มีที่นั่งยืดเวลาได้',
+    photo_lounge: 'เลานจ์โซมมอลิเยร์ — ไล่เมนูไปทีละสายพันธุ์ จิบเครื่องดื่มไปด้วย',
+    photo_lounge2: 'โซนชิล — แสงสลัว โซฟาจริงๆ จังหวะเกาะ',
+    photo_storefront_dusk: 'หน้าร้านยามเย็น — ป้าย แสง และความคุ้มที่จะแวะเข้า',
+    photo_view_storefront: 'ดูร้านจากถนน',
+    photo_view_lounge: 'ดูเลานจ์โซมมอลิเยร์',
+    photo_view_chill: 'ดูโซนชิล',
+    photo_view_dusk: 'ดูหน้าร้านยามเย็น',
+    photo_lightbox_close: 'ปิดตัวดูรูป',
     findus_label: 'ที่ตั้ง',
     findus_title: 'แวะมาหาเรา',
     findus_sub: 'เกาะพะงัน, สุราษฎร์ธานี, ประเทศไทย',
@@ -251,14 +267,13 @@ const i18n = {
     trust_rating: 'Рейтинг Google',
     trust_reviews: 'Отзывы',
     trust_strains: 'Уникальных сортов',
-    pill_tropicana: 'TROPICANA',
-    pill_patronus: 'PATRONUS',
-    pill_topweed: 'STRAWBERRY',
+    pill_tropicana: 'CHERRY BEANS',
+    pill_patronus: 'SOUR LEMON Z',
+    pill_topweed: 'ALIEN OG',
     ss_placeholder: 'ПОДБЕРИ СОРТ',
+    ss_effects_label: 'ЭФФЕКТ',
     ss_flavor_label: 'АРОМАТ',
-    ss_bodylift: 'ТОНУС',
-    ss_potency: 'КРЕПОСТЬ',
-    ss_relaxation: 'РАССЛАБЛЕНИЕ',
+    ss_vibe_label: 'ВАЙБ',
     exp_label: 'АТМОСФЕРА',
     exp_title_1: 'Больше, чем магазин.',
     exp_title_2: 'Место, куда хочется зайти.',
@@ -280,6 +295,15 @@ const i18n = {
     feat6_label: 'События',
     feat6_title: 'Всегда что-то происходит',
     feat6_desc: 'Шахматный клуб, киновечера, арт-сессии, вечера сомелье. Смотри на доску при входе.',
+    photo_storefront: 'Магазин с улицы — солнце Пангана, вывеска Woody, можно задержаться',
+    photo_lounge: 'Лаунж сомелье — напиточки все дела',
+    photo_lounge2: 'Зона chill — приглушённый свет, диванчики',
+    photo_storefront_dusk: 'Ну чисто кайф пацаны, не?',
+    photo_view_storefront: 'Открыть фото магазина с улицы',
+    photo_view_lounge: 'Открыть фото лаунжа сомелье',
+    photo_view_chill: 'Открыть фото зоны отдыха',
+    photo_view_dusk: 'Открыть фото фасада на закате',
+    photo_lightbox_close: 'Закрыть просмотр фото',
     findus_label: 'ЛОКАЦИЯ',
     findus_title: 'Заходите к нам',
     findus_sub: 'Ко Панган, Сурат Тани, Таиланд',
@@ -356,6 +380,16 @@ const i18n = {
   }
 };
 
+function getLang() {
+  return document.documentElement.lang || 'en';
+}
+
+function t(key) {
+  const lang = getLang();
+  if (i18n[lang]?.[key] !== undefined) return i18n[lang][key];
+  return i18n.en[key] ?? '';
+}
+
 function setLang(lang) {
   if (!i18n[lang]) return;
   try { localStorage.setItem('wwp-lang', lang); } catch (e) {}
@@ -364,6 +398,24 @@ function setLang(lang) {
     const k = el.getAttribute('data-i18n');
     if (i18n[lang][k] !== undefined) el.textContent = i18n[lang][k];
   });
+  document.querySelectorAll('[data-i18n-alt]').forEach(el => {
+    const k = el.getAttribute('data-i18n-alt');
+    if (i18n[lang][k] !== undefined) el.alt = i18n[lang][k];
+  });
+  document.querySelectorAll('[data-i18n-aria]').forEach(el => {
+    const k = el.getAttribute('data-i18n-aria');
+    if (i18n[lang][k] !== undefined) el.setAttribute('aria-label', i18n[lang][k]);
+  });
+  const lightbox = document.getElementById('photo-lightbox');
+  if (lightbox && !lightbox.classList.contains('hidden')) {
+    const key = lightbox.dataset.activePhotoKey;
+    if (key && i18n[lang][key] !== undefined) {
+      const lbImg = lightbox.querySelector('.photo-lightbox-content img');
+      const lbCaption = lightbox.querySelector('.photo-lightbox-caption');
+      if (lbImg) lbImg.alt = i18n[lang][key];
+      if (lbCaption) lbCaption.textContent = i18n[lang][key];
+    }
+  }
   if (window.currentStrain && window.updateStrainStats) {
     window.updateStrainStats(window.currentStrain);
   }
@@ -455,4 +507,85 @@ function isHomePage() {
   if (declineBtn) declineBtn.addEventListener('click', () => {
     window.location.href = 'https://www.google.com/';
   });
+})();
+
+/* ── PHOTO LIGHTBOX (showcase grid) ─────────────────────── */
+(function initPhotoLightbox() {
+  const lightbox = document.getElementById('photo-lightbox');
+  const grid = document.querySelector('.showcase-photo-grid');
+  if (!lightbox || !grid) return;
+
+  const lbImg = lightbox.querySelector('.photo-lightbox-content img');
+  const lbCaption = lightbox.querySelector('.photo-lightbox-caption');
+  const closeBtn = lightbox.querySelector('.photo-lightbox-close');
+  let lastFocus = null;
+  let scrollLock = '';
+
+  function photoCaption(img) {
+    const key = img.getAttribute('data-i18n-alt');
+    return key ? t(key) : (img.alt || '');
+  }
+
+  function open(src, img) {
+    const key = img.getAttribute('data-i18n-alt') || '';
+    const alt = photoCaption(img);
+    lastFocus = document.activeElement;
+    lightbox.dataset.activePhotoKey = key;
+    lbImg.src = src;
+    lbImg.alt = alt;
+    lbCaption.textContent = alt;
+    lightbox.classList.remove('hidden');
+    lightbox.setAttribute('aria-hidden', 'false');
+    scrollLock = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    closeBtn.focus();
+  }
+
+  function close() {
+    lightbox.classList.add('hidden');
+    lightbox.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = scrollLock;
+    lbImg.removeAttribute('src');
+    lbImg.alt = '';
+    lbCaption.textContent = '';
+    delete lightbox.dataset.activePhotoKey;
+    if (lastFocus && typeof lastFocus.focus === 'function') lastFocus.focus();
+  }
+
+  grid.querySelectorAll('.showcase-photo').forEach((photo) => {
+    photo.addEventListener('click', () => {
+      const img = photo.querySelector('img');
+      if (img?.src) open(img.currentSrc || img.src, img);
+    });
+  });
+
+  closeBtn.addEventListener('click', close);
+  lightbox.addEventListener('click', (e) => {
+    if (lightbox.classList.contains('hidden')) return;
+    if (e.target === lbImg) return;
+    close();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !lightbox.classList.contains('hidden')) close();
+  });
+})();
+
+(function initSineBackground() {
+  const layer = document.createElement('div');
+  layer.className = 'bg-sine';
+  layer.setAttribute('aria-hidden', 'true');
+  layer.innerHTML =
+    '<svg viewBox="0 0 2400 600" preserveAspectRatio="none">' +
+      '<defs>' +
+        '<path id="bg-sine-shape" d="M 0 0 Q 60 -45 120 0 T 240 0 T 360 0 T 480 0 T 600 0 T 720 0 T 840 0 T 960 0 T 1080 0 T 1200 0 T 1320 0 T 1440 0 T 1560 0 T 1680 0 T 1800 0 T 1920 0 T 2040 0 T 2160 0 T 2280 0 T 2400 0 T 2520 0 T 2640 0 T 2760 0 T 2880 0"/>' +
+      '</defs>' +
+      '<g class="bg-sine-train">' +
+        '<use class="bg-sine-wave" href="#bg-sine-shape" y="250"/>' +
+        '<use class="bg-sine-wave" href="#bg-sine-shape" y="285"/>' +
+        '<use class="bg-sine-wave" href="#bg-sine-shape" y="320"/>' +
+        '<use class="bg-sine-wave" href="#bg-sine-shape" y="355"/>' +
+        '<use class="bg-sine-wave" href="#bg-sine-shape" y="390"/>' +
+      '</g>' +
+    '</svg>';
+  document.body.insertBefore(layer, document.body.firstChild);
 })();
