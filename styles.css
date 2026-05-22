@@ -1797,23 +1797,33 @@ footer {
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: 6px;
-  padding: 56px 44px;
+  padding: 52px clamp(52px, 10vw, 72px) 48px;
   overflow: hidden;
+}
+
+.funfacts-card::before,
+.funfacts-card::after {
+  position: absolute;
+  font-family: Georgia, 'Times New Roman', serif;
+  line-height: 1;
+  color: var(--gold);
+  opacity: 0.1;
+  pointer-events: none;
+  user-select: none;
 }
 
 .funfacts-card::before {
   content: '\201C';
-  position: absolute;
-  top: -56px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-family: Georgia, 'Times New Roman', serif;
-  font-size: 280px;
-  line-height: 1;
-  color: var(--gold);
-  opacity: 0.08;
-  pointer-events: none;
-  user-select: none;
+  top: 14px;
+  left: 16px;
+  font-size: clamp(44px, 10vw, 72px);
+}
+
+.funfacts-card::after {
+  content: '\201D';
+  right: 16px;
+  bottom: 10px;
+  font-size: clamp(36px, 8vw, 60px);
 }
 
 .funfacts-stage {
@@ -1832,8 +1842,14 @@ footer {
   line-height: 1.55;
   color: var(--text);
   opacity: 0;
+  visibility: hidden;
   transform: translateX(40px);
-  transition: opacity 0.6s cubic-bezier(0.4,0,0.2,1), transform 0.6s cubic-bezier(0.4,0,0.2,1);
+  transition: opacity 0.6s cubic-bezier(0.4,0,0.2,1), transform 0.6s cubic-bezier(0.4,0,0.2,1), visibility 0.6s;
+}
+
+.funfact.is-active,
+.funfact.is-prev {
+  visibility: visible;
 }
 
 .funfact.is-active {
@@ -1848,15 +1864,28 @@ footer {
 
 @media (max-width: 900px) {
   #funfacts { padding: 72px 28px; }
-  .funfacts-card { padding: 44px 28px; }
-  .funfacts-card::before { font-size: 200px; top: -40px; }
-  .funfacts-stage { min-height: 180px; }
+  .funfacts-card { padding: 44px 40px 40px; }
+  .funfacts-stage { min-height: 160px; }
 }
 
 @media (max-width: 600px) {
-  .funfacts-card { padding: 36px 22px; }
-  .funfacts-card::before { font-size: 160px; top: -32px; }
-  .funfacts-stage { min-height: 240px; }
+  .funfacts-card {
+    padding: 40px 36px 36px;
+  }
+
+  .funfacts-card::before {
+    top: 10px;
+    left: 12px;
+    font-size: 40px;
+  }
+
+  .funfacts-card::after {
+    right: 12px;
+    bottom: 8px;
+    font-size: 34px;
+  }
+
+  .funfacts-stage { min-height: 200px; }
 }
 
 /* ── PRIVACY PAGE ────────────────────────────────────────── */
