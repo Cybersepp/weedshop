@@ -110,10 +110,11 @@
     </div>
 
     <div class="hero-right">
-      <div class="model-container" id="model-container">
+      <div class="model-container is-loading" id="model-container">
         <div class="ring ring-1"></div>
         <div class="ring ring-2"></div>
         <div class="ring ring-3"></div>
+        <div class="model-loader" id="model-loader" aria-hidden="true"></div>
         <div class="woody-buff" id="woody-buff" aria-hidden="true"></div>
         <canvas id="three-canvas" width="220" height="220"></canvas>
       </div>
@@ -336,6 +337,47 @@
       const gltfLoader = new THREE.GLTFLoader();
       gltfLoader.setDRACOLoader(dracoLoader);
 
+      const HALO_OPACITY = 0.08;
+      const HALO_SCALE = 1;
+      let initialStrainPicked = false;
+
+      function pickInitialStrain() {
+        if (initialStrainPicked) return;
+        initialStrainPicked = true;
+        window.selectStrain('tropicana');
+      }
+
+      function revealModel() {
+        if (!modelContainer.classList.contains('is-loading')) return;
+        renderer.render(scene, camera);
+        modelContainer.classList.remove('is-loading');
+        modelContainer.classList.add('is-ready');
+      }
+
+      function animateHaloIn(onComplete) {
+        glowHalo.material.opacity = 0;
+        glowHalo.scale.setScalar(0.68);
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+          glowHalo.material.opacity = HALO_OPACITY;
+          glowHalo.scale.setScalar(HALO_SCALE);
+          if (onComplete) onComplete();
+          return;
+        }
+        gsap.to(glowHalo.material, {
+          opacity: HALO_OPACITY,
+          duration: 0.95,
+          ease: 'power2.out',
+        });
+        gsap.to(glowHalo.scale, {
+          x: HALO_SCALE,
+          y: HALO_SCALE,
+          z: HALO_SCALE,
+          duration: 0.95,
+          ease: 'power2.out',
+          onComplete,
+        });
+      }
+
       const modelUrl = new URL('woody_woodpecker_movie_head.glb', window.location.href).href;
       gltfLoader.load(
         modelUrl,
@@ -357,9 +399,15 @@
           woodyBaseScale = budRoot.scale.x;
           budRoot.add(glowHalo);
           scene.add(budRoot);
+          revealModel();
+          animateHaloIn(pickInitialStrain);
         },
         undefined,
-        (err) => { console.error('woody_woodpecker_movie_head.glb', err); }
+        (err) => {
+          console.error('woody_woodpecker_movie_head.glb', err);
+          revealModel();
+          pickInitialStrain();
+        }
       );
 
       const ambient = new THREE.AmbientLight(0xfff8ee, 0.85);
@@ -653,8 +701,8 @@
         if (buffPulse > 0) {
           buffPulse -= 0.028;
           const pulse = 1 + Math.sin(t * 9) * 0.018 * buffPulse;
-          glowHalo.scale.setScalar(pulse);
-          glowHalo.material.opacity = 0.06 + buffPulse * 0.12;
+          glowHalo.scale.setScalar(HALO_SCALE * pulse);
+          glowHalo.material.opacity = HALO_OPACITY - 0.02 + buffPulse * 0.12;
         }
 
         pt.position.set(Math.sin(t * 0.7) * 2.2, 1.2 + Math.cos(t * 0.4) * 0.6, Math.cos(t * 0.7) * 2.2);
@@ -687,7 +735,6 @@
       }
       animate();
 
-      setTimeout(() => { window.selectStrain('tropicana'); }, 400);
     })();
 
     /* ── SCROLL REVEAL ────────────────────────────────────────── */
