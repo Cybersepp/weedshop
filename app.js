@@ -387,11 +387,30 @@ function closeLangDropdown() {
   document.getElementById('lang-trigger').setAttribute('aria-expanded', 'false');
 }
 
+function isHomePage() {
+  const page = window.location.pathname.split('/').pop() || 'index.html';
+  return page === '' || page === 'index.html';
+}
+
 (function initNav() {
   const hamburger = document.getElementById('nav-hamburger');
   const navLinks = document.querySelector('.nav-links');
   const langTrigger = document.getElementById('lang-trigger');
   const langDropdown = document.getElementById('lang-dropdown');
+  const navBrand = document.querySelector('.nav-brand');
+
+  if (navBrand) {
+    navBrand.addEventListener('click', (e) => {
+      if (!isHomePage()) return;
+      e.preventDefault();
+      if (window.location.hash) {
+        history.replaceState(null, '', window.location.pathname + window.location.search);
+      }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      navLinks.classList.remove('open');
+      hamburger.classList.remove('open');
+    });
+  }
 
   hamburger.addEventListener('click', () => {
     const isOpen = navLinks.classList.toggle('open');
