@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Font Previews — Woody Weedpecker</title>
+<link rel="icon" href="logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700&family=Bagel+Fat+One&family=Lilita+One&family=Bowlby+One&family=Fraunces:opsz,wght,SOFT,WONK@9..144,400..900,0..100,0..1&family=Abril+Fatface&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #1a1c18;
+    --bg-surface: #1e2019;
+    --bg-card: #222420;
+    --text: #e8edd8;
+    --text-muted: #8a9078;
+    --green-lime: #5a9a48;
+    --gold: #d4940a;
+    --border: #282b24;
+    --woody: #e87062;
+    --weed: #72c85a;
+    --pecker: #e8ac28;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Outfit', Arial, sans-serif;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  .page-header {
+    padding: 64px 32px 32px;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg-surface);
+  }
+  .page-header h1 { font-family: Georgia, serif; font-size: 32px; letter-spacing: 0.5px; margin-bottom: 12px; }
+  .page-header p { color: var(--text-muted); max-width: 700px; margin: 0 auto; font-size: 15px; }
+  .page-header .pill {
+    display: inline-block;
+    margin-bottom: 16px;
+    padding: 6px 14px;
+    border: 1px solid var(--green-lime);
+    border-radius: 999px;
+    color: var(--green-lime);
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+  }
+
+  .font-section {
+    padding: 80px 48px;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+    background-color: var(--bg);
+    overflow: hidden;
+  }
+  .font-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'><g fill='none' stroke='%235a9a48' stroke-width='0.7' opacity='0.18' stroke-linecap='round'><g transform='translate(40 45) rotate(15)'><ellipse cx='0' cy='-14' rx='2.5' ry='12'/><ellipse cx='0' cy='-12' rx='2' ry='10' transform='rotate(38)'/><ellipse cx='0' cy='-12' rx='2' ry='10' transform='rotate(-38)'/><ellipse cx='0' cy='-9' rx='1.5' ry='7' transform='rotate(72)'/><ellipse cx='0' cy='-9' rx='1.5' ry='7' transform='rotate(-72)'/><line x1='0' y1='0' x2='0' y2='14'/></g><g transform='translate(115 110) rotate(-25)'><ellipse cx='0' cy='-14' rx='2.5' ry='12'/><ellipse cx='0' cy='-12' rx='2' ry='10' transform='rotate(38)'/><ellipse cx='0' cy='-12' rx='2' ry='10' transform='rotate(-38)'/><ellipse cx='0' cy='-9' rx='1.5' ry='7' transform='rotate(72)'/><ellipse cx='0' cy='-9' rx='1.5' ry='7' transform='rotate(-72)'/><line x1='0' y1='0' x2='0' y2='14'/></g></g></svg>");
+    background-repeat: repeat;
+    -webkit-mask-image: radial-gradient(ellipse 80% 90% at center, black 35%, transparent 100%);
+            mask-image: radial-gradient(ellipse 80% 90% at center, black 35%, transparent 100%);
+    z-index: 0;
+  }
+
+  .font-inner {
+    position: relative; z-index: 2;
+    max-width: 980px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+  }
+
+  .meta {
+    display: flex; align-items: center; gap: 14px;
+  }
+  .meta .label {
+    font-family: 'Outfit', sans-serif;
+    display: inline-block;
+    font-size: 11px; letter-spacing: 2px;
+    color: var(--green-lime);
+    text-transform: uppercase;
+  }
+  .meta .font-name {
+    font-family: 'Outfit', sans-serif;
+    font-size: 14px;
+    color: var(--text-muted);
+    letter-spacing: 0.5px;
+  }
+
+  /* Each section gets its own font for these elements */
+  .brand-mark {
+    font-size: clamp(48px, 7vw, 96px);
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    line-height: 1;
+    text-transform: uppercase;
+  }
+  .brand-mark .w1 { color: var(--woody); text-shadow: 0 0 28px rgba(232, 112, 98, 0.45), 0 2px 4px rgba(0,0,0,0.45); }
+  .brand-mark .w2 { color: var(--weed);  text-shadow: 0 0 28px rgba(114, 200, 90, 0.42), 0 2px 4px rgba(0,0,0,0.45); }
+  .brand-mark .w3 { color: var(--pecker);text-shadow: 0 0 28px rgba(232, 172, 40, 0.48), 0 2px 4px rgba(0,0,0,0.45); }
+
+  .hero-headline {
+    font-size: clamp(36px, 5vw, 64px);
+    line-height: 1.05;
+    letter-spacing: -0.005em;
+  }
+  .hero-eyebrow {
+    font-family: 'Outfit', sans-serif;
+    font-size: 11px;
+    color: var(--green-lime);
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    margin-bottom: -22px;
+  }
+
+  .strain-card {
+    background: rgba(26, 28, 24, 0.78);
+    backdrop-filter: blur(2px);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 28px 32px;
+    display: flex; gap: 24px; align-items: baseline; flex-wrap: wrap;
+    max-width: 560px;
+  }
+  .strain-card .strain-name { font-size: 28px; line-height: 1; }
+  .strain-card .thc { font-family: 'Outfit', sans-serif; font-size: 13px; color: var(--gold); letter-spacing: 1px; }
+  .strain-card .badge {
+    font-family: 'Outfit', sans-serif;
+    font-size: 11px; padding: 4px 10px;
+    border: 1px solid var(--green-lime); border-radius: 999px;
+    color: var(--green-lime); letter-spacing: 1px;
+  }
+
+  .desc {
+    font-family: 'Outfit', sans-serif;
+    color: var(--text-muted);
+    max-width: 620px;
+    font-size: 14px;
+  }
+
+  /* ── A · Bagel Fat One ── */
+  .font-bagel .brand-mark,
+  .font-bagel .hero-headline,
+  .font-bagel .strain-name { font-family: 'Bagel Fat One', cursive; font-weight: 400; }
+
+  /* ── B · Lilita One ── */
+  .font-lilita .brand-mark,
+  .font-lilita .hero-headline,
+  .font-lilita .strain-name { font-family: 'Lilita One', cursive; font-weight: 400; }
+
+  /* ── C · Bowlby One ── */
+  .font-bowlby .brand-mark,
+  .font-bowlby .hero-headline,
+  .font-bowlby .strain-name { font-family: 'Bowlby One', sans-serif; font-weight: 400; }
+
+  /* ── D · Fraunces (Soft + Wonky) ── */
+  .font-fraunces .brand-mark,
+  .font-fraunces .hero-headline,
+  .font-fraunces .strain-name {
+    font-family: 'Fraunces', Georgia, serif;
+    font-weight: 700;
+    font-variation-settings: "opsz" 144, "SOFT" 100, "WONK" 1;
+  }
+
+  /* ── E · Abril Fatface ── */
+  .font-abril .brand-mark,
+  .font-abril .hero-headline,
+  .font-abril .strain-name { font-family: 'Abril Fatface', Georgia, serif; font-weight: 400; }
+
+  /* ── F · Current (Georgia + Outfit) ── */
+  .font-current .brand-mark { font-family: 'Outfit', sans-serif; }
+  .font-current .hero-headline,
+  .font-current .strain-name { font-family: Georgia, 'Times New Roman', serif; }
+
+  .corner-nav {
+    position: fixed;
+    bottom: 24px; right: 24px;
+    background: rgba(34, 36, 32, 0.95);
+    backdrop-filter: blur(8px);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 12px;
+    z-index: 50;
+    display: flex; flex-direction: column; gap: 4px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+  }
+  .corner-nav a {
+    color: var(--text-muted);
+    padding: 6px 12px;
+    font-size: 13px;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: background 0.15s, color 0.15s;
+  }
+  .corner-nav a:hover { background: rgba(90,154,72,0.12); color: var(--text); }
+  .corner-nav .title {
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    padding: 0 12px 6px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 4px;
+  }
+</style>
+</head>
+<body>
+
+<header class="page-header">
+  <div class="pill">Font Previews</div>
+  <h1>Headline Font Options</h1>
+  <p>Each section shows the brand mark, hero headline, and a sample strain card in a different font. The current Georgia/Outfit combo is at the bottom as a control. Scroll and see which one feels right — body copy will stay in Arial/Outfit regardless.</p>
+</header>
+
+<section class="font-section font-bagel" id="a">
+  <div class="font-inner">
+    <div class="meta"><span class="label">Option A</span><span class="font-name">Bagel Fat One</span></div>
+    <div class="brand-mark">
+      <span class="w1">WOODY</span> <span class="w2">WEED</span><span class="w3">PECKER</span>
+    </div>
+    <p class="hero-eyebrow">PICKED · PECKED · LAB CERTIFIED</p>
+    <h2 class="hero-headline">We Peck Only the Finest</h2>
+    <div class="strain-card">
+      <span class="strain-name">Tropicana Cookies</span>
+      <span class="thc">THC 24%</span>
+      <span class="badge">Sativa</span>
+    </div>
+    <p class="desc">Chunky cartoon with soft rounded edges. Reads as premium artisan packaging (think craft beer, gelato shops). Most "cartoonish" of the lot while still feeling intentional and grown-up.</p>
+  </div>
+</section>
+
+<section class="font-section font-lilita" id="b">
+  <div class="font-inner">
+    <div class="meta"><span class="label">Option B</span><span class="font-name">Lilita One</span></div>
+    <div class="brand-mark">
+      <span class="w1">WOODY</span> <span class="w2">WEED</span><span class="w3">PECKER</span>
+    </div>
+    <p class="hero-eyebrow">PICKED · PECKED · LAB CERTIFIED</p>
+    <h2 class="hero-headline">We Peck Only the Finest</h2>
+    <div class="strain-card">
+      <span class="strain-name">Tropicana Cookies</span>
+      <span class="thc">THC 24%</span>
+      <span class="badge">Sativa</span>
+    </div>
+    <p class="desc">Rounded friendly display. Softer and more approachable than Bagel — less "WHAM" branding, more "welcoming shop sign." Slightly lower-impact, slightly more polished.</p>
+  </div>
+</section>
+
+<section class="font-section font-bowlby" id="c">
+  <div class="font-inner">
+    <div class="meta"><span class="label">Option C</span><span class="font-name">Bowlby One</span></div>
+    <div class="brand-mark">
+      <span class="w1">WOODY</span> <span class="w2">WEED</span><span class="w3">PECKER</span>
+    </div>
+    <p class="hero-eyebrow">PICKED · PECKED · LAB CERTIFIED</p>
+    <h2 class="hero-headline">We Peck Only the Finest</h2>
+    <div class="strain-card">
+      <span class="strain-name">Tropicana Cookies</span>
+      <span class="thc">THC 24%</span>
+      <span class="badge">Sativa</span>
+    </div>
+    <p class="desc">Bold, compact, very mascot-coded — feels like a Saturday morning cartoon logo. Most aggressive "cartoon" of the bunch. Risk: tips into kid-show territory if used too much.</p>
+  </div>
+</section>
+
+<section class="font-section font-fraunces" id="d">
+  <div class="font-inner">
+    <div class="meta"><span class="label">Option D</span><span class="font-name">Fraunces (Soft + Wonky)</span></div>
+    <div class="brand-mark">
+      <span class="w1">WOODY</span> <span class="w2">WEED</span><span class="w3">PECKER</span>
+    </div>
+    <p class="hero-eyebrow">PICKED · PECKED · LAB CERTIFIED</p>
+    <h2 class="hero-headline">We Peck Only the Finest</h2>
+    <div class="strain-card">
+      <span class="strain-name">Tropicana Cookies</span>
+      <span class="thc">THC 24%</span>
+      <span class="badge">Sativa</span>
+    </div>
+    <p class="desc">Premium variable serif with "softness" and "wonkiness" dialled up — keeps the sommelier elegance while adding character (wavy stems, soft terminals). My top pick for "cartoonish but premium" without leaving the serif lane.</p>
+  </div>
+</section>
+
+<section class="font-section font-abril" id="e">
+  <div class="font-inner">
+    <div class="meta"><span class="label">Option E</span><span class="font-name">Abril Fatface</span></div>
+    <div class="brand-mark">
+      <span class="w1">WOODY</span> <span class="w2">WEED</span><span class="w3">PECKER</span>
+    </div>
+    <p class="hero-eyebrow">PICKED · PECKED · LAB CERTIFIED</p>
+    <h2 class="hero-headline">We Peck Only the Finest</h2>
+    <div class="strain-card">
+      <span class="strain-name">Tropicana Cookies</span>
+      <span class="thc">THC 24%</span>
+      <span class="badge">Sativa</span>
+    </div>
+    <p class="desc">High-contrast bold display serif. Magazine-cover energy. Reads as luxury / editorial rather than cartoon — barely "cartoonish" but has lots of personality. Use if you want serious-with-character.</p>
+  </div>
+</section>
+
+<section class="font-section font-current" id="f">
+  <div class="font-inner">
+    <div class="meta"><span class="label">Option F — Current</span><span class="font-name">Outfit (brand) + Georgia (headlines)</span></div>
+    <div class="brand-mark">
+      <span class="w1">WOODY</span> <span class="w2">WEED</span><span class="w3">PECKER</span>
+    </div>
+    <p class="hero-eyebrow">PICKED · PECKED · LAB CERTIFIED</p>
+    <h2 class="hero-headline">We Peck Only the Finest</h2>
+    <div class="strain-card">
+      <span class="strain-name">Tropicana Cookies</span>
+      <span class="thc">THC 24%</span>
+      <span class="badge">Sativa</span>
+    </div>
+    <p class="desc">The current setup. No cartoon character, but the cleanest and most "premium / sommelier" feel of the bunch. Reference point.</p>
+  </div>
+</section>
+
+<nav class="corner-nav">
+  <div class="title">Jump to</div>
+  <a href="#a">A · Bagel Fat One</a>
+  <a href="#b">B · Lilita One</a>
+  <a href="#c">C · Bowlby One</a>
+  <a href="#d">D · Fraunces</a>
+  <a href="#e">E · Abril Fatface</a>
+  <a href="#f">F · Current</a>
+</nav>
+
+</body>
+</html>

@@ -589,3 +589,65 @@ function isHomePage() {
     '</svg>';
   document.body.insertBefore(layer, document.body.firstChild);
 })();
+
+(function initPageScrollReveal() {
+  if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const ease = 'power3.out';
+  const start = 'top 82%';
+
+  function reveal(targets, trigger, options = {}) {
+    const els = gsap.utils.toArray(targets);
+    if (!els.length) return;
+
+    const from = { y: options.y ?? 32, opacity: 0 };
+    if (options.scale != null) from.scale = options.scale;
+
+    const to = {
+      y: 0,
+      opacity: 1,
+      duration: options.duration ?? 0.85,
+      stagger: options.stagger ?? 0,
+      delay: options.delay ?? 0,
+      ease,
+    };
+    if (options.scale != null) to.scale = 1;
+
+    gsap.set(els, from);
+    gsap.to(els, {
+      ...to,
+      scrollTrigger: {
+        trigger: trigger || els[0],
+        start: options.start ?? start,
+        once: true,
+      },
+    });
+  }
+
+  if (document.querySelector('.about-article')) {
+    reveal('.about-lead', '.about-article', { y: 36, duration: 0.9, start: 'top 85%' });
+    reveal('.about-divider', '.about-divider', { y: 20, duration: 0.7, start: 'top 88%' });
+    reveal('.about-body p', '.about-article', { y: 24, stagger: 0.06, duration: 0.75, start: 'top 86%' });
+    reveal('.about-quote', '.about-quote', { y: 32, scale: 0.98, duration: 0.9, start: 'top 85%' });
+    reveal('.about-cta-eyebrow, .about-cta-title', '.about-cta', { y: 28, stagger: 0.1 });
+    reveal('.about-cta-btns', '.about-cta', { y: 24, duration: 0.75, start: 'top 88%' });
+  }
+
+  if (document.querySelector('.partners-intro')) {
+    reveal('.partners-lead', '.partners-intro', { y: 36, duration: 0.9, start: 'top 85%' });
+    reveal('.partners-intro > p:not(.partners-lead)', '.partners-intro', { y: 28, duration: 0.85, start: 'top 86%' });
+    reveal('.partners-stat', '.partners-stats', { y: 40, scale: 0.98, duration: 0.9, stagger: 0.1, start: 'top 85%' });
+    reveal('.partners-benefits-header > *', '.partners-benefits-header', { y: 28, stagger: 0.1 });
+    reveal('.partners-benefit', '.partners-benefits-grid', { y: 24, stagger: 0.06, duration: 0.8, start: 'top 86%' });
+    reveal('.partners-cta-label, .partners-cta-title', '.partners-cta', { y: 28, stagger: 0.1 });
+    reveal('.partners-cta-text', '.partners-cta', { y: 24, duration: 0.75, start: 'top 88%' });
+    reveal('.partners-cta-actions', '.partners-cta', { y: 32, duration: 0.85, start: 'top 88%' });
+  }
+
+  if (document.querySelector('.about-article') || document.querySelector('.partners-intro')) {
+    window.addEventListener('load', () => ScrollTrigger.refresh());
+  }
+})();
