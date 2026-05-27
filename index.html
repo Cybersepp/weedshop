@@ -10,12 +10,12 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700&family=Fraunces:opsz,wght,SOFT,WONK@9..144,400..900,0..100,0..1&display=swap" rel="stylesheet">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/DRACOLoader.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/DRACOLoader.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -41,8 +41,17 @@
     <button type="button" class="photo-lightbox-close" data-i18n-aria="photo_lightbox_close" aria-label="Close image viewer">×</button>
     <div class="photo-lightbox-backdrop" aria-hidden="true"></div>
     <figure class="photo-lightbox-content">
-      <img src="" alt="">
+      <div class="photo-lightbox-frame">
+        <img src="" alt="">
+        <button type="button" class="photo-lightbox-nav photo-lightbox-prev" data-i18n-aria="photo_lightbox_prev" aria-label="Previous image">
+          <span class="photo-lightbox-nav-icon" aria-hidden="true">‹</span>
+        </button>
+        <button type="button" class="photo-lightbox-nav photo-lightbox-next" data-i18n-aria="photo_lightbox_next" aria-label="Next image">
+          <span class="photo-lightbox-nav-icon" aria-hidden="true">›</span>
+        </button>
+      </div>
       <figcaption id="photo-lightbox-caption" class="photo-lightbox-caption"></figcaption>
+      <p id="photo-lightbox-counter" class="photo-lightbox-counter" aria-live="polite"></p>
     </figure>
   </div>
 
@@ -81,7 +90,7 @@
 
   <!-- HERO -->
   <section id="hero">
-    <div class="hero-left">
+    <div class="hero-left hero-pending">
       <p class="hero-eyebrow" data-i18n="hero_eyebrow">PREMIUM · LAB CERTIFIED · PHANGAN</p>
       <h1 class="hero-headline" data-i18n="hero_headline">The Art of Fine Cannabis</h1>
       <p class="hero-sub" data-i18n="hero_sub">We source, curate, and certify every strain — so connoisseurs always know exactly what they're enjoying.</p>
@@ -95,15 +104,15 @@
 
       <div class="hero-trust">
         <div class="hero-trust-stat">
-          <div class="hero-trust-number">5.0<span>★</span></div>
+          <div class="hero-trust-number"><span class="hero-trust-value" data-value="5" data-decimals="1">5.0</span><span class="hero-trust-suffix">★</span></div>
           <div class="hero-trust-label" data-i18n="trust_rating">Google Rating</div>
         </div>
         <div class="hero-trust-stat">
-          <div class="hero-trust-number">150<span>+</span></div>
+          <div class="hero-trust-number"><span class="hero-trust-value" data-value="150">150</span><span class="hero-trust-suffix">+</span></div>
           <div class="hero-trust-label" data-i18n="trust_reviews">Reviews</div>
         </div>
         <div class="hero-trust-stat">
-          <div class="hero-trust-number">12<span>+</span></div>
+          <div class="hero-trust-number"><span class="hero-trust-value" data-value="12">12</span><span class="hero-trust-suffix">+</span></div>
           <div class="hero-trust-label" data-i18n="trust_strains">Unique Strains</div>
         </div>
       </div>
@@ -155,20 +164,20 @@
   <section id="our-story">
     <div class="showcase-header">
       <p class="section-label" data-i18n="exp_label">THE EXPERIENCE</p>
-      <h2 class="section-title"><span data-i18n="exp_title_1">More Than a Shop.</span><br><span data-i18n="exp_title_2">A Place Worth Pecking Into.</span></h2>
+      <h2 class="section-title section-title--peck"><span class="title-line" data-i18n="exp_title_1">More Than a Shop.</span><br><span class="title-line title-line--accent" data-i18n="exp_title_2">A Place Worth Pecking Into.</span></h2>
     </div>
     <div class="showcase-photo-grid">
       <button type="button" class="showcase-photo showcase-photo-main" data-i18n-aria="photo_view_storefront" aria-label="View the shop from the street">
-        <img src="pics/store_front.jpg" data-i18n-alt="photo_storefront" alt="The lane-facing shop — Koh Phangan sun, Woody out front, room to linger">
+        <img src="pics/store_front.jpg" width="1280" height="960" data-i18n-alt="photo_storefront" alt="The lane-facing shop — Koh Phangan sun, Woody out front, room to linger">
       </button>
       <button type="button" class="showcase-photo" data-i18n-aria="photo_view_lounge" aria-label="View the sommelier lounge">
-        <img src="pics/lounge.jpg" data-i18n-alt="photo_lounge" alt="Sommelier lounge — browse the menu at your pace, drink in hand">
+        <img src="pics/lounge.jpg" loading="lazy" width="1280" height="960" data-i18n-alt="photo_lounge" alt="Sommelier lounge — browse the menu at your pace, drink in hand">
       </button>
       <button type="button" class="showcase-photo" data-i18n-aria="photo_view_chill" aria-label="View the chill zone">
-        <img src="pics/lounge_2.jpg" data-i18n-alt="photo_lounge2" alt="Chill zone — low lights, real couches, island pace">
+        <img src="pics/lounge_2.jpg" loading="lazy" width="1280" height="960" data-i18n-alt="photo_lounge2" alt="Chill zone — low lights, real couches, island pace">
       </button>
       <button type="button" class="showcase-photo showcase-photo-wide" data-i18n-aria="photo_view_dusk" aria-label="View the storefront at dusk">
-        <img src="pics/store_front_2.jpg" data-i18n-alt="photo_storefront_dusk" alt="Glass front at dusk — the sign, the glow, worth pecking in">
+        <img src="pics/store_front_2.jpg" loading="lazy" width="960" height="1280" data-i18n-alt="photo_storefront_dusk" alt="Glass front at dusk — the sign, the glow, worth pecking in">
       </button>
     </div>
     <div class="showcase-features">
@@ -282,12 +291,13 @@
     </div>
   </footer>
 
-  <script src="app.js"></script>
+  <script defer src="app.js"></script>
   <script>
+  document.addEventListener('DOMContentLoaded', () => {
     /* ── GSAP PLUGINS ─────────────────────────────────────────── */
     gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
-    function navScroll(id) {
+    window.navScroll = function(id) {
       document.querySelector('.nav-links').classList.remove('open');
       document.getElementById('nav-hamburger').classList.remove('open');
       gsap.to(window, {
@@ -296,7 +306,7 @@
         ease: 'power3.inOut',
         onComplete: () => ScrollTrigger.refresh(),
       });
-    }
+    };
 
     /* ── THREE.JS WOODY — RPG BUFF FX ─────────────────────────── */
     (function initThree() {
@@ -309,7 +319,7 @@
       renderer.setSize(W, H);
       renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
       renderer.toneMapping = THREE.ACESFilmicToneMapping;
-      renderer.toneMappingExposure = 1.45;
+      renderer.toneMappingExposure = 1.2;
       renderer.outputEncoding = THREE.sRGBEncoding;
 
       const scene = new THREE.Scene();
@@ -337,7 +347,7 @@
       const gltfLoader = new THREE.GLTFLoader();
       gltfLoader.setDRACOLoader(dracoLoader);
 
-      const HALO_OPACITY = 0.08;
+      const HALO_OPACITY = 0.05;
       const HALO_SCALE = 1;
       let initialStrainPicked = false;
 
@@ -378,7 +388,7 @@
         });
       }
 
-      const modelUrl = new URL('woody_woodpecker_movie_head.glb', window.location.href).href;
+      const modelUrl = new URL('cool_woody.glb', window.location.href).href;
       gltfLoader.load(
         modelUrl,
         (gltf) => {
@@ -404,28 +414,28 @@
         },
         undefined,
         (err) => {
-          console.error('woody_woodpecker_movie_head.glb', err);
+          console.error('cool_woody.glb', err);
           revealModel();
           pickInitialStrain();
         }
       );
 
-      const ambient = new THREE.AmbientLight(0xfff8ee, 0.85);
+      const ambient = new THREE.AmbientLight(0xfff8ee, 0.62);
       scene.add(ambient);
 
-      const keyLight = new THREE.DirectionalLight(0xfff5e8, 0.75);
+      const keyLight = new THREE.DirectionalLight(0xfff5e8, 0.52);
       keyLight.position.set(2, 3, 2);
       scene.add(keyLight);
 
-      const rimLight = new THREE.DirectionalLight(0xffe8c8, 0.55);
+      const rimLight = new THREE.DirectionalLight(0xffe8c8, 0.32);
       rimLight.position.set(-3, 1, -2);
       scene.add(rimLight);
 
-      const pt = new THREE.PointLight(0xffe066, 4.2, 12);
+      const pt = new THREE.PointLight(0xffe066, 2.1, 12);
       pt.position.set(2, 2, 2);
       scene.add(pt);
 
-      const pt2 = new THREE.PointLight(0xffc878, 2.4, 10);
+      const pt2 = new THREE.PointLight(0xffc878, 1.15, 10);
       pt2.position.set(-2, 0.5, -2);
       scene.add(pt2);
 
@@ -437,7 +447,7 @@
 
       const glowHalo = new THREE.Mesh(
         new THREE.SphereGeometry(1.12, 32, 32),
-        new THREE.MeshBasicMaterial({ color: 0xffe88a, transparent: true, opacity: 0.08, depthWrite: false, side: THREE.BackSide })
+        new THREE.MeshBasicMaterial({ color: 0xffe88a, transparent: true, opacity: 0.05, depthWrite: false, side: THREE.BackSide })
       );
 
       const BURST_SLOTS = 64;
@@ -501,7 +511,7 @@
           emissiveFlash: new THREE.Color(0xff9098),
           ringCss: '#df4a5c',
           speed: 0.0034,
-          ptIntensity: 5.2,
+          ptIntensity: 3.2,
           scaleBoost: 1.04,
         },
         patronus: {
@@ -515,7 +525,7 @@
           emissiveFlash: new THREE.Color(0xfff080),
           ringCss: '#e5cc42',
           speed: 0.0029,
-          ptIntensity: 4.8,
+          ptIntensity: 3,
           scaleBoost: 1.04,
         },
         topweed: {
@@ -529,7 +539,7 @@
           emissiveFlash: new THREE.Color(0xddb0ff),
           ringCss: '#9570dc',
           speed: 0.0032,
-          ptIntensity: 5,
+          ptIntensity: 3.1,
           scaleBoost: 1.04,
         },
       };
@@ -666,7 +676,9 @@
           const baseScale = woodyBaseScale;
           const peak = baseScale * s.scaleBoost;
           if (strainTween) strainTween.kill();
-          strainTween = gsap.timeline({ onComplete: () => { strainTween = null; } })
+          strainTween = gsap.timeline({
+            onComplete: () => { strainTween = null; },
+          })
             .to(budRoot.scale, { x: peak, y: peak, z: peak, duration: 0.42, ease: 'power2.out' })
             .to(budRoot.scale, { x: baseScale, y: baseScale, z: baseScale, duration: 0.5, ease: 'power2.inOut' });
         }
@@ -675,8 +687,10 @@
       };
 
       const clock = new THREE.Clock();
+      let isVisible = true;
 
       function animate() {
+        if (!isVisible) return;
         requestAnimationFrame(animate);
         const t = clock.getElapsedTime();
         if (budRoot) {
@@ -702,7 +716,7 @@
           buffPulse -= 0.028;
           const pulse = 1 + Math.sin(t * 9) * 0.018 * buffPulse;
           glowHalo.scale.setScalar(HALO_SCALE * pulse);
-          glowHalo.material.opacity = HALO_OPACITY - 0.02 + buffPulse * 0.12;
+          glowHalo.material.opacity = HALO_OPACITY - 0.01 + buffPulse * 0.07;
         }
 
         pt.position.set(Math.sin(t * 0.7) * 2.2, 1.2 + Math.cos(t * 0.4) * 0.6, Math.cos(t * 0.7) * 2.2);
@@ -734,6 +748,18 @@
         renderer.render(scene, camera);
       }
       animate();
+
+      if ('IntersectionObserver' in window) {
+        new IntersectionObserver((entries) => {
+          const nowVisible = entries[0].isIntersecting;
+          if (nowVisible && !isVisible) {
+            isVisible = true;
+            animate();
+          } else if (!nowVisible) {
+            isVisible = false;
+          }
+        }, { threshold: 0 }).observe(modelContainer);
+      }
 
     })();
 
@@ -773,7 +799,67 @@
         });
       }
 
-      reveal('.showcase-header > *', '.showcase-header', { y: 32, stagger: 0.12 });
+      (function initOurStoryHeaderReveal() {
+        const header = document.querySelector('#our-story .showcase-header');
+        if (!header) return;
+
+        const label = header.querySelector('.section-label');
+        const lines = gsap.utils.toArray('#our-story .section-title .title-line');
+        if (!label && !lines.length) return;
+
+        gsap.set(label, { y: 28, opacity: 0 });
+        gsap.set(lines, {
+          y: 36,
+          opacity: 0,
+          clipPath: 'inset(0 100% 0 0)',
+          filter: 'blur(4px)',
+        });
+
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: header,
+            start,
+            once: true,
+          },
+        });
+
+        if (label) {
+          tl.to(label, { y: 0, opacity: 1, duration: 0.65, ease });
+        }
+
+        if (lines.length) {
+          tl.to(
+            lines,
+            {
+              y: 0,
+              opacity: 1,
+              clipPath: 'inset(0 0% 0 0)',
+              filter: 'blur(0px)',
+              duration: 0.95,
+              stagger: 0.2,
+              ease: 'power4.out',
+            },
+            label ? '-=0.15' : 0
+          );
+
+          const accent = lines.find((el) => el.classList.contains('title-line--accent'));
+          if (accent) {
+            tl.to(
+              accent,
+              {
+                y: -5,
+                duration: 0.12,
+                ease: 'power2.in',
+              },
+              '-=0.08'
+            ).to(accent, {
+              y: 0,
+              duration: 0.55,
+              ease: 'back.out(2.8)',
+            });
+          }
+        }
+      })();
 
       gsap.utils.toArray('.showcase-photo').forEach((photo, i) => {
         reveal(photo, photo, { y: 44, scale: 0.97, duration: 0.9, delay: i * 0.05, start: 'top 88%' });
@@ -811,6 +897,7 @@
         setTimeout(() => prev.classList.remove('is-prev'), 700);
       }, 5000);
     })();
+  });
   </script>
 </body>
 </html>
