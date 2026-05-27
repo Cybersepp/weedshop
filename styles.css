@@ -1537,6 +1537,10 @@ footer {
 }
 
 /* -- AGE GATE -------------------------------------------- */
+html.age-verified #age-gate {
+  display: none;
+}
+
 #age-gate {
   position: fixed;
   inset: 0;

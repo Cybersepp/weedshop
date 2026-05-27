@@ -561,6 +561,7 @@ if (isHomePage() && window.location.hash === '#findus') {
   let stored = null;
   try { stored = localStorage.getItem(KEY); } catch (e) {}
   if (stored === '1') {
+    document.documentElement.classList.add('age-verified');
     gate.classList.add('hidden');
     return;
   }
@@ -569,6 +570,7 @@ if (isHomePage() && window.location.hash === '#findus') {
   const declineBtn = gate.querySelector('.age-gate-decline');
   if (confirmBtn) confirmBtn.addEventListener('click', () => {
     try { localStorage.setItem(KEY, '1'); } catch (e) {}
+    document.documentElement.classList.add('age-verified');
     gate.classList.add('hidden');
     document.body.style.overflow = '';
   });
