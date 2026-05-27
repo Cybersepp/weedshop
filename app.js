@@ -11,7 +11,7 @@ const i18n = {
     hero_eyebrow: 'PREMIUM · LAB CERTIFIED · PHANGAN',
     hero_headline: 'The Art of Fine Cannabis',
     hero_sub: "We source, curate, and certify every strain — so connoisseurs always know exactly what they're enjoying.",
-    cta_story: 'Experience',
+    cta_story: 'See the vibe',
     trust_rating: 'Google Rating',
     trust_reviews: 'Reviews',
     trust_strains: 'Unique Strains',
@@ -140,7 +140,7 @@ const i18n = {
     hero_eyebrow: 'พรีเมียม · ผ่านแล็บ · พังงา',
     hero_headline: 'ศิลปะแห่งกัญชาชั้นเลิศ',
     hero_sub: 'เราคัดสรร จัดเตรียม และรับรองทุกสายพันธุ์ — เพื่อให้ผู้รู้ลึกรู้เสมอว่ากำลังเพลิดเพลินกับอะไร',
-    cta_story: 'ประสบการณ์',
+    cta_story: 'ดูบรรยากาศ',
     trust_rating: 'คะแนน Google',
     trust_reviews: 'รีวิว',
     trust_strains: 'สายพันธุ์คัดสรร',
@@ -269,7 +269,7 @@ const i18n = {
     hero_eyebrow: 'ПРЕМИУМ · ЛАБ-СЕРТИФИКАТ · ПАНГАН',
     hero_headline: 'Искусство благородного каннабиса',
     hero_sub: 'Мы находим, курируем и сертифицируем каждый сорт — чтобы ценители знали, чем наслаждаются.',
-    cta_story: 'Атмосфера',
+    cta_story: 'Почувствуй атмосферу',
     trust_rating: 'Рейтинг Google',
     trust_reviews: 'Отзывы',
     trust_strains: 'Уникальных сортов',
@@ -445,6 +445,71 @@ function closeLangDropdown() {
 function isHomePage() {
   const page = window.location.pathname.split('/').pop() || 'index.html';
   return page === '' || page === 'index.html';
+}
+
+function getMaxScrollY() {
+  return Math.max(
+    0,
+    document.documentElement.scrollHeight - window.innerHeight,
+    document.body.scrollHeight - window.innerHeight
+  );
+}
+
+function getNavOffset() {
+  return document.getElementById('navbar')?.offsetHeight ?? 76;
+}
+
+function getScrollYForElement(el, extraOffset = 20) {
+  const top = el.getBoundingClientRect().top + window.scrollY;
+  const y = top - getNavOffset() - extraOffset;
+  return Math.max(0, Math.min(getMaxScrollY(), y));
+}
+
+function getFindUsScrollTarget() {
+  return document.querySelector('#findus .map-wrapper') || document.getElementById('findus');
+}
+
+window.navScroll = function navScroll(id) {
+  const gate = document.getElementById('age-gate');
+  if (gate && !gate.classList.contains('hidden')) return;
+
+  document.querySelector('.nav-links')?.classList.remove('open');
+  document.getElementById('nav-hamburger')?.classList.remove('open');
+
+  const target = id === 'findus' ? getFindUsScrollTarget() : (id ? document.getElementById(id) : null);
+  const y = target ? getScrollYForElement(target) : getMaxScrollY();
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let done = false;
+
+  const finish = () => {
+    if (done) return;
+    done = true;
+    if (id) history.replaceState(null, '', '#' + id);
+    if (typeof ScrollTrigger !== 'undefined') ScrollTrigger.refresh();
+  };
+
+  if (reduced) {
+    window.scrollTo(0, y);
+    finish();
+    return;
+  }
+
+  window.scrollTo({ top: y, left: 0, behavior: 'smooth' });
+  window.addEventListener('scrollend', finish, { once: true });
+  setTimeout(finish, 1200);
+};
+
+document.addEventListener('click', (e) => {
+  const link = e.target.closest('a[data-scroll-to]');
+  if (!link) return;
+  e.preventDefault();
+  navScroll(link.getAttribute('data-scroll-to') || '');
+});
+
+if (isHomePage() && window.location.hash === '#findus') {
+  const scrollOnLoad = () => requestAnimationFrame(() => navScroll('findus'));
+  if (document.readyState === 'complete') scrollOnLoad();
+  else window.addEventListener('load', scrollOnLoad, { once: true });
 }
 
 (function initNav() {
