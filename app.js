@@ -828,11 +828,25 @@ if (isHomePage() && window.location.hash === '#findus') {
 
 (function initHeroTextReveal() {
   const heroLeft = document.querySelector('.hero-left');
-  if (!heroLeft || typeof gsap === 'undefined') return;
+  if (!heroLeft) return;
+
+  function clearHeroCtaHide() {
+    heroLeft.querySelectorAll('.hero-ctas > *').forEach((el) => {
+      el.style.removeProperty('opacity');
+      el.style.removeProperty('visibility');
+    });
+  }
+
+  if (typeof gsap === 'undefined') {
+    heroLeft.classList.remove('hero-pending');
+    clearHeroCtaHide();
+    return;
+  }
 
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (reducedMotion) {
     heroLeft.classList.remove('hero-pending');
+    clearHeroCtaHide();
     return;
   }
 
@@ -842,6 +856,9 @@ if (isHomePage() && window.location.hash === '#findus') {
   const ctas = gsap.utils.toArray('.hero-ctas > *', heroLeft);
   const stats = gsap.utils.toArray('.hero-trust-stat', heroLeft);
   const trustValues = gsap.utils.toArray('.hero-trust-value', heroLeft);
+  if (ctas.length) {
+    gsap.set(ctas, { autoAlpha: 0 });
+  }
   const ease = 'power3.out';
   let played = false;
 
@@ -877,16 +894,10 @@ if (isHomePage() && window.location.hash === '#findus') {
   function play() {
     if (played) return;
     played = true;
-    heroLeft.classList.remove('hero-pending');
-    resetTrustCounters();
-
-    const tl = gsap.timeline({ defaults: { ease } });
 
     if (eyebrow) {
       gsap.set(eyebrow, { y: 18, opacity: 0, letterSpacing: '0.34em' });
-      tl.to(eyebrow, { y: 0, opacity: 1, letterSpacing: '0.24em', duration: 0.7 });
     }
-
     if (headline) {
       gsap.set(headline, {
         y: 36,
@@ -894,6 +905,27 @@ if (isHomePage() && window.location.hash === '#findus') {
         clipPath: 'inset(0 100% 0 0)',
         filter: 'blur(5px)',
       });
+    }
+    if (sub) {
+      gsap.set(sub, { y: 22, opacity: 0 });
+    }
+    if (ctas.length) {
+      gsap.set(ctas, { autoAlpha: 0 });
+    }
+    if (stats.length) {
+      gsap.set(stats, { y: 20, opacity: 0 });
+    }
+
+    heroLeft.classList.remove('hero-pending');
+    resetTrustCounters();
+
+    const tl = gsap.timeline({ defaults: { ease } });
+
+    if (eyebrow) {
+      tl.to(eyebrow, { y: 0, opacity: 1, letterSpacing: '0.24em', duration: 0.7 });
+    }
+
+    if (headline) {
       tl.to(
         headline,
         {
@@ -909,17 +941,14 @@ if (isHomePage() && window.location.hash === '#findus') {
     }
 
     if (sub) {
-      gsap.set(sub, { y: 22, opacity: 0 });
       tl.to(sub, { y: 0, opacity: 1, duration: 0.75 }, '-=0.5');
     }
 
     if (ctas.length) {
-      gsap.set(ctas, { y: 16, opacity: 0 });
-      tl.to(ctas, { y: 0, opacity: 1, duration: 0.65, stagger: 0.1 }, '-=0.45');
+      tl.to(ctas, { autoAlpha: 1, duration: 0.5, stagger: 0.08 });
     }
 
     if (stats.length) {
-      gsap.set(stats, { y: 20, opacity: 0 });
       tl.to(stats, { y: 0, opacity: 1, duration: 0.7, stagger: 0.08 }, '-=0.3');
       if (trustValues.length) {
         tl.call(animateTrustCounters, null, '-=0.45');
@@ -927,13 +956,14 @@ if (isHomePage() && window.location.hash === '#findus') {
     }
   }
 
-  function isGateOpen() {
+  function isAgeGateBlocking() {
+    if (document.documentElement.classList.contains('age-verified')) return false;
     const gate = document.getElementById('age-gate');
-    return gate && !gate.classList.contains('hidden');
+    return !!(gate && !gate.classList.contains('hidden'));
   }
 
   function tryPlay() {
-    if (!isGateOpen()) play();
+    if (!isAgeGateBlocking()) play();
   }
 
   const gate = document.getElementById('age-gate');
